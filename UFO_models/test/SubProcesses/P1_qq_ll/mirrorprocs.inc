@@ -1,1 +1,0 @@
-      DATA (MIRRORPROCS(I),I=1,3)/.TRUE.,.TRUE.,.TRUE./
