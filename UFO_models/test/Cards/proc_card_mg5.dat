@@ -1,0 +1,61 @@
+#************************************************************
+#*                     MadGraph5_aMC@NLO                    *
+#*                                                          *
+#*                *                       *                 *
+#*                  *        * *        *                   *
+#*                    * * * * 5 * * * *                     *
+#*                  *        * *        *                   *
+#*                *                       *                 *
+#*                                                          *
+#*                                                          *
+#*         VERSION 2.7.3                 2020-06-21         *
+#*                                                          *
+#*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+#*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+#*                                                          *
+#************************************************************
+#*                                                          *
+#*               Command File for MadGraph5_aMC@NLO         *
+#*                                                          *
+#*     run as ./bin/mg5_aMC  filename                       *
+#*                                                          *
+#************************************************************
+set default_unset_couplings 99
+set group_subprocesses Auto
+set ignore_six_quark_processes False
+set loop_optimized_output True
+set loop_color_flows False
+set gauge unitary
+set complex_mass_scheme False
+set max_npoint_for_channel 0
+import model sm
+define p = g u c d s u~ c~ d~ s~
+define j = g u c d s u~ c~ d~ s~
+define l+ = e+ mu+
+define l- = e- mu-
+define vl = ve vm vt
+define vl~ = ve~ vm~ vt~
+import model /home/ilaria/Work/SMEFTsim_public_git/SMEFTsim/UFO_models\
+/SMEFTsim_U35_alphaScheme_UFO_v3_0-massless
+import model /home/ilaria/Work/SMEFTsim_public_git/SMEFTsim/UFO_models\
+/SMEFTsim_U35_MwScheme_UFO_v3_0-massless
+import model /home/ilaria/Work/SMEFTsim_public_git/SMEFTsim/UFO_models\
+/SMEFTsim_U35_MwScheme_UFO_v3_0-SMlimit_massless
+import model /home/ilaria/Work/SMEFTsim_public_git/SMEFTsim/UFO_models\
+/SMEFTsim_MFV_alphaScheme_UFO_v3_0-massless
+import model /home/ilaria/Work/SMEFTsim_public_git/SMEFTsim/UFO_models\
+/SMEFTsim_MFV_MwScheme_UFO_v3_0-massless
+import model /home/ilaria/Work/SMEFTsim_public_git/SMEFTsim/UFO_models\
+/SMEFTsim_top_alphaScheme_UFO_v3_0-massless
+import model /home/ilaria/Work/SMEFTsim_public_git/SMEFTsim/UFO_models\
+/SMEFTsim_top_alphaScheme_UFO_v3_0-massless
+import model /home/ilaria/Work/SMEFTsim_public_git/SMEFTsim/UFO_models\
+/SMEFTsim_top_MwScheme_UFO_v3_0-massless
+import model /home/ilaria/Work/SMEFTsim_public_git/SMEFTsim/UFO_models\
+/SMEFTsim_topU3l_alphaScheme_UFO_v3_0-massless
+import model /home/ilaria/Work/SMEFTsim_public_git/SMEFTsim/UFO_models\
+/SMEFTsim_topU3l_MwScheme_UFO_v3_0-massless
+import model /home/ilaria/Work/SMEFTsim_public_git/SMEFTsim/UFO_models\
+/SMEFTsim_general_MwScheme_UFO_v3_0-massless
+generate p p > e+ e- NP=0
+output test
