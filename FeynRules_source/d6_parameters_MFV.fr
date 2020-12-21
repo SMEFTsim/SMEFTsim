@@ -1,0 +1,977 @@
+(* ********************************************************* *)
+(* *****   Wilson coefficients for the MFV framework   ***** *)
+(* ********************************************************* *)
+
+(* because MFV assumes the CKM is the only source of CP violation, none of the Wilson coefficients  *)
+(* can carry a complex phase. CP violating bosonic operators are also omitted, as they should be    *)
+(* proportional to the Jarlskog invariant  ~ 10^(-5)                                                *)
+
+
+SMEFTParametersPhases0 = {};
+
+
+SMEFTParameters0 = {
+
+(*** EFT cutoff - set to 1 TeV by default ***)
+
+  LambdaSMEFT == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTcutoff,
+    Value            -> 10^(3),
+    InteractionOrder -> {QED, -1},
+    TeX              -> \[CapitalLambda]
+  },
+
+(*** class 1 ***)
+  cG == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcG,1}},
+    TeX              -> Subscript[c,G]
+  },
+  cW == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcW,1}},
+    TeX              -> Subscript[c,W]
+  },
+
+(*** class 2 ***)
+
+  cH == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcH,1}},
+    TeX              -> Subscript[c,H]
+  },
+
+(*** class 3 ***)
+
+  cHbox == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcHbox,1}},
+    TeX              -> Subscript[c,H \[EmptySquare]]
+  },
+  cHDD == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcHDD,1}},
+    TeX              -> Subscript[c,HD]
+  },
+
+(*** class 4 ***)
+
+  cHG == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value          -> 0,
+    InteractionOrder -> {{NP,1},{NPcHG,1}},
+    TeX              -> Subscript[c,HG]
+  },
+  cHW == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value          -> 0,
+    InteractionOrder -> {{NP,1},{NPcHW,1}},
+    TeX              -> Subscript[c,HW]
+  },
+  cHB == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value          -> 0,
+    InteractionOrder -> {{NP,1},{NPcHB,1}},
+    TeX              -> Subscript[c,HB]
+  },
+  cHWB == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value          -> 0,
+    InteractionOrder -> {{NP,1},{NPcHWB,1}},
+    TeX              -> Subscript[c,HWB]
+  },
+
+(*** class 5 ***)
+
+ ceH == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value          -> 0,
+    InteractionOrder -> {{NP,1},{NPceH,1}},
+    TeX              -> Subscript[c,eH]
+  },
+ cuH0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value          -> 0,
+    InteractionOrder -> {{NP,1},{NPcuH,1}},
+    TeX              -> Subscript[c,uH]
+  },
+ cdH0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value          -> 0,
+    InteractionOrder -> {{NP,1},{NPcdH,1}},
+    TeX              -> Subscript[c,dH]
+  },
+ DeltaucuH == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value          -> 0,
+    InteractionOrder -> {{NP,1},{NPcuH,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subscript[c,uH]]
+  },
+ DeltadcuH == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value          -> 0,
+    InteractionOrder -> {{NP,1},{NPcuH,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subscript[c,uH]]
+  },
+ DeltaucdH == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value          -> 0,
+    InteractionOrder -> {{NP,1},{NPcdH,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subscript[c,dH]]
+  },
+ DeltadcdH == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value          -> 0,
+    InteractionOrder -> {{NP,1},{NPcdH,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subscript[c,dH]]
+  },
+
+(*** class 6 ***)
+
+  ceW == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPceW,1}},
+    TeX              -> Subscript[c,eW]
+  },
+  ceB == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPceB,1}},
+    TeX              -> Subscript[c,eB]
+  },
+  cuG0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcuG,1}},
+    TeX              -> Subscript[c,uG]
+  },
+  DeltaucuG == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcuG,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subscript[c,uG]]
+  },
+  DeltadcuG == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcuG,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subscript[c,uG]]
+  },
+  cuW0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcuW,1}},
+    TeX              -> Subscript[c,uW]
+  },
+  DeltaucuW == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcuW,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subscript[c,uW]]
+  },
+  DeltadcuW == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcuW,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subscript[c,uW]]
+  },
+  cuB0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcuB,1}},
+    TeX              -> Subscript[c,uB]
+  },
+  DeltaucuB == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcuB,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subscript[c,uB]]
+  },
+  DeltadcuB == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcuB,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subscript[c,uB]]
+  },
+  cdG0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcdG,1}},
+    TeX              -> Subscript[c,dG]
+  },
+  DeltaucdG == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcdG,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subscript[c,dG]]
+  },
+  DeltadcdG == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcdG,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subscript[c,dG]]
+  },
+  cdW0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcdW,1}},
+    TeX              -> Subscript[c,dW]
+  },
+  DeltaucdW == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcdW,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subscript[c,dW]]
+  },
+  DeltadcdW == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcdW,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subscript[c,dW]]
+  },
+  cdB0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcdB,1}},
+    TeX              -> Subscript[c,dB]
+  },
+  DeltaucdB == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcdB,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subscript[c,dB]]
+  },
+  DeltadcdB == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcdB,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subscript[c,dB]]
+  },
+
+(*** class 7 ***)
+
+ cHl1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcHl1,1}},
+    TeX              -> Subsuperscript[c,Hl,(1)]
+  },
+ cHl3 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcHl3,1}},
+    TeX              -> Subsuperscript[c,Hl,(3)]
+  },
+ cHe == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcHe,1}},
+    TeX              -> Subscript[c,He]
+  },
+ cHq10 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcHq1,1}},
+    TeX              -> Subsuperscript[c,Hq,(1)]
+  },
+ DeltaucHq1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcHq1,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subsuperscript[c,Hq,(1)]]
+  },
+ DeltadcHq1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcHq1,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subsuperscript[c,Hq,(1)]]
+  },
+ cHq30 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcHq3,1}},
+    TeX              -> Subsuperscript[c,Hq,(3)]
+  },
+ DeltaucHq3 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcHq3,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subsuperscript[c,Hq,(3)]]
+  },
+ DeltadcHq3 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcHq3,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subsuperscript[c,Hq,(3)]]
+  },
+ cHu0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcHu,1}},
+    TeX              -> Subscript[c,Hu]
+  },
+ DeltacHu == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcHu,1},{NPfv,1}},
+    TeX              -> Subscript[\[CapitalDelta]c,Hu]
+  },
+ cHd0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcHd,1}},
+    TeX              -> Subscript[c,Hd]
+  },
+ DeltacHd == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcHd,1},{NPfv,1}},
+    TeX              -> Subscript[\[CapitalDelta]c,Hd]
+  },
+ cHud0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value          -> 0,
+    InteractionOrder -> {{NP,1},{NPcHud,1}},
+    TeX              -> Subscript[c,Hud]
+  },
+
+(*** class 8a ***)
+
+ cll == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcll,1}},
+    TeX              -> Subscript[c,ll]
+  },
+ cll1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcll1,1}},
+    TeX              -> Subsuperscript[c,ll,Prime]
+  },
+ cqq10 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqq1,1}},
+    TeX              -> Subsuperscript[c,qq,(1)]
+  },
+ Deltaucqq1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqq1,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subsuperscript[c,qq,(1)]]
+  },
+ Deltadcqq1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqq1,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subsuperscript[c,qq,(1)]]
+  },
+ cqq110 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqq11,1}},
+    TeX              -> Subsuperscript[c,qq,(1)Prime]
+  },
+ Deltaucqq11 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqq11,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subsuperscript[c,qq,(1)Prime]]
+  },
+ Deltadcqq11 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqq11,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subsuperscript[c,qq,(1)Prime]]
+  },
+ cqq30 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqq3,1}},
+    TeX              -> Subsuperscript[c,qq,(3)]
+  },
+ Deltaucqq3 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqq3,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subsuperscript[c,qq,(3)]]
+  },
+ Deltadcqq3 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqq3,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subsuperscript[c,qq,(3)]]
+  },
+ cqq310 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqq31,1}},
+    TeX              -> Subsuperscript[c,qq,(3)Prime]
+  },
+ Deltaucqq31 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqq31,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subsuperscript[c,qq,(3)Prime]]
+  },
+ Deltadcqq31 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqq31,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subsuperscript[c,qq,(3)Prime]]
+  },
+ clq10 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPclq1,1}},
+    TeX              -> Subsuperscript[c,lq,(1)]
+  },
+ Deltauclq1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPclq1,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subsuperscript[c,lq,(1)]]
+  },
+ Deltadclq1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPclq1,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subsuperscript[c,lq,(1)]]
+  },
+ clq30 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPclq3,1}},
+    TeX              -> Subsuperscript[c,lq,(3)]
+  },
+ Deltauclq3 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPclq3,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subsuperscript[c,lq,(3)]]
+  },
+ Deltadclq3 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPclq3,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subsuperscript[c,lq,(3)]]
+  },
+
+(*** class 8b ***)
+
+ cee == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcee,1}},
+    TeX              -> Subscript[c,"ee"]
+  },
+ cuu0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcuu,1}},
+    TeX              -> Subscript[c,uu]
+  },
+ Deltacuu == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcuu,1},{NPfv,1}},
+    TeX              -> Subscript[\[CapitalDelta]c,uu]
+  },
+ cuu10 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcuu1,1}},
+    TeX              -> Subsuperscript[c,uu,Prime]
+  },
+ Deltacuu1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcuu1,1},{NPfv,1}},
+    TeX              -> Subsuperscript[\[CapitalDelta]c,uu,Prime]
+  },
+ cdd0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcdd,1}},
+    TeX              -> Subscript[c,dd]
+  },
+ Deltacdd == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcdd,1},{NPfv,1}},
+    TeX              -> Subscript[\[CapitalDelta]c,dd]
+  },
+ cdd10 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcdd1,1}},
+    TeX              -> Subsuperscript[c,dd,Prime]
+  },
+ Deltacdd1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcdd1,1},{NPfv,1}},
+    TeX              -> Subsuperscript[\[CapitalDelta]c,dd,Prime]
+  },
+ ceu0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPceu,1}},
+    TeX              -> Subscript[c,eu]
+  },
+ Deltaceu == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPceu,1},{NPfv,1}},
+    TeX              -> Subscript[\[CapitalDelta]c,eu]
+  },
+ ced0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPced,1}},
+    TeX              -> Subscript[c,ed]
+  },
+ Deltaced == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPced,1},{NPfv,1}},
+    TeX              -> Subscript[\[CapitalDelta]c,ed]
+  },
+ cud10 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcud1,1}},
+    TeX              -> Subsuperscript[c,ud,(1)]
+  },
+ Deltaucud1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcud1,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subsuperscript[c,ud,(1)]]
+  },
+ Deltadcud1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcud1,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subsuperscript[c,ud,(1)]]
+  },
+ cud80 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcud8,1}},
+    TeX              -> Subsuperscript[c,ud,(8)]
+  },
+ Deltaucud8 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcud8,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subsuperscript[c,ud,(8)]]
+  },
+ Deltadcud8 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcud8,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subsuperscript[c,ud,(8)]]
+  },
+
+(*** class 8c ***)
+
+ cle == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcle,1}},
+    TeX              -> Subscript[c,le]
+  },
+ clu0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPclu,1}},
+    TeX              -> Subscript[c,lu]
+  },
+ Deltaclu == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPclu,1},{NPfv,1}},
+    TeX              -> Subscript[\[CapitalDelta]c,lu]
+  },
+ cld0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcld,1}},
+    TeX              -> Subscript[c,ld]
+  },
+ Deltacld == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcld,1},{NPfv,1}},
+    TeX              -> Subscript[\[CapitalDelta]c,ld]
+  },
+ cqe0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqe,1}},
+    TeX              -> Subscript[c,qe]
+  },
+ Deltaucqe == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqe,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subscript[c,qe]]
+  },
+ Deltadcqe == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqe,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subscript[c,qe]]
+  },
+ cqu10 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqu1,1}},
+    TeX              -> Subsuperscript[c,qu,(1)]
+  },
+ Delta1ucqu1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqu1,1},{NPfv,1}},
+    TeX              -> HoldForm[Subsuperscript[\[CapitalDelta],1,u]Subsuperscript[c,qu,(1)]]
+  },
+ Delta1dcqu1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqu1,1},{NPfv,1}},
+    TeX              -> HoldForm[Subsuperscript[\[CapitalDelta],1,d]Subsuperscript[c,qu,(1)]]
+  },
+ Delta2cqu1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqu1,1},{NPfv,1}},
+    TeX              -> HoldForm[Subscript[\[CapitalDelta],2]Subsuperscript[c,qu,(1)]]
+  },
+ cqu110 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqu11,1}},
+    TeX              -> Subsuperscript[c,qu,(1)Prime]
+  },
+ cqu80 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqu8,1}},
+    TeX              -> Subsuperscript[c,qu,(8)]
+  },
+ Delta1ucqu8 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqu8,1},{NPfv,1}},
+    TeX              -> HoldForm[Subsuperscript[\[CapitalDelta],1,u]Subsuperscript[c,qu,(8)]]
+  },
+ Delta1dcqu8 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqu8,1},{NPfv,1}},
+    TeX              -> HoldForm[Subsuperscript[\[CapitalDelta],1,d]Subsuperscript[c,qu,(8)]]
+  },
+ Delta2cqu8 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqu8,1},{NPfv,1}},
+    TeX              -> HoldForm[Subscript[\[CapitalDelta],2]Subsuperscript[c,qu,(8)]]
+  },
+ cqu810 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqu81,1}},
+    TeX              -> Subsuperscript[c,qu,(8)Prime]
+  },
+ cqd10 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqd1,1}},
+    TeX              -> Subsuperscript[c,qd,(1)]
+  },
+ Delta1ucqd1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqd1,1},{NPfv,1}},
+    TeX              -> HoldForm[Subsuperscript[\[CapitalDelta],1,u]Subsuperscript[c,qd,(1)]]
+  },
+ Delta1dcqd1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqd1,1},{NPfv,1}},
+    TeX              -> HoldForm[Subsuperscript[\[CapitalDelta],1,d]Subsuperscript[c,qd,(1)]]
+  },
+ Delta2cqd1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqd1,1},{NPfv,1}},
+    TeX              -> HoldForm[Subscript[\[CapitalDelta],2]Subsuperscript[c,qd,(1)]]
+  },
+ cqd110 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqd11,1}},
+    TeX              -> Subsuperscript[c,qd,(1)Prime]
+  },
+ cqd80 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqd8,1}},
+    TeX              -> Subsuperscript[c,qd,(8)]
+  },
+ Delta1ucqd8 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqd8,1},{NPfv,1}},
+    TeX              -> HoldForm[Subsuperscript[\[CapitalDelta],1,u]Subsuperscript[c,qd,(8)]]
+  },
+ Delta1dcqd8 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqd8,1},{NPfv,1}},
+    TeX              -> HoldForm[Subsuperscript[\[CapitalDelta],1,d]Subsuperscript[c,qd,(8)]]
+  },
+ Delta2cqd8 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqd8,1},{NPfv,1}},
+    TeX              -> HoldForm[Subscript[\[CapitalDelta],2]Subsuperscript[c,qd,(8)]]
+  },
+ cqd810 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcqd81,1}},
+    TeX              -> Subsuperscript[c,qd,(8)Prime]
+  },
+
+(*** class 8d ***)
+
+ cledq0 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcledq,1}},
+    TeX              -> Subscript[c,ledq]
+  },
+ Deltaucledq == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcledq,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subscript[c,ledq]]
+  },
+ Deltadcledq == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcledq,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subscript[c,ledq]]
+  },
+ cquqd1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcquqd1,1}},
+    TeX              -> Subsuperscript[c,quqd,(1)]
+  },
+ cquqd11 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcquqd11,1}},
+    TeX              -> Subsuperscript[c,quqd,(1)Prime]
+  },
+ cquqd8 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcquqd8,1}},
+    TeX              -> Subsuperscript[c,quqd,(8)]
+  },
+ cquqd81 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcquqd81,1}},
+    TeX              -> Subsuperscript[c,quqd,(8)Prime]
+  },
+ clequ10 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPclequ1,1}},
+    TeX              -> Subsuperscript[c,lequ,(1)]
+  },
+ Deltauclequ1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPclequ1,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subsuperscript[c,lequ,(1)]]
+  },
+ Deltadclequ1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPclequ1,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subsuperscript[c,lequ,(1)]]
+  },
+ clequ30 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPclequ3,1}},
+    TeX              -> Subsuperscript[c,lequ,(3)]
+  },
+ Deltauclequ3 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPclequ3,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],u]Subsuperscript[c,lequ,(3)]]
+  },
+ Deltadclequ3 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTFV,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPclequ3,1},{NPfv,1}},
+    TeX              -> HoldForm[Superscript[\[CapitalDelta],d]Subsuperscript[c,lequ,(3)]]
+  }
+
+};
+
+
+
+
+
+(**** list names of all  Wilson coefficients ****)
+
+SMEFTParametersImParts0 = {};
+
+WC6 = SMEFTParameters0[[2;; , 1]];

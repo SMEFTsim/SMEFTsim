@@ -1,0 +1,572 @@
+(***************************************************)
+(* ***         dimension 6 Lagrangian          *** *)
+(***************************************************)
+
+Switch[Flavor,
+
+top|topU3l,
+Get["SMEFTsim_operators_top.fr"],
+
+_,
+Get["SMEFTsim_operators.fr"]
+];
+
+
+(*** class 1 ***)
+
+L6cl1:= (cG OG + cGtil OGtil + cW OW + cWtil OWtil)/LambdaSMEFT^2;
+
+
+(*** class 2 ***)
+
+L6cl2:= cH OH /LambdaSMEFT^2;
+
+
+(*** class 3 ***)
+
+L6cl3:= (cHbox OHbox + cHDD OHD)/LambdaSMEFT^2;
+
+
+(*** class 4 ***)
+
+L6cl4:= (cHG OHG  + cHW OHW + cHB OHB + cHWB OHWB )/ LambdaSMEFT^2;
+
+Switch[Flavor
+,MFV,
+L6cl4cpv:= 0
+,_,
+L6cl4cpv:= (cHGtil OHGtil + cHWtil OHWtil + cHBtil OHBtil + cHWBtil OHWBtil )/ LambdaSMEFT^2
+];
+
+
+(*** class 5 ***)
+
+Switch[Flavor,
+general,
+L6cl50:= Block[{ff1,ff2},
+         (ceH[ff1,ff2] OeH[ff1,ff2] + cuH[ff1,ff2] OuH[ff1,ff2] + cdH[ff1,ff2] OdH[ff1,ff2]
+         )/LambdaSMEFT^2]//OptimizeIndex
+
+,U35,
+L6cl50:= (ceH Block[{ff1, ff2}, OeH[ff1,ff2] Conjugate[yl[ff2, ff1]]]
+        + cuH Block[{ff1, ff2}, OuH[ff1,ff2] Conjugate[yu[ff2, ff1]]]
+        + cdH Block[{ff1, ff2}, OdH[ff1,ff2] Conjugate[yd[ff2, ff1]]]
+         )/LambdaSMEFT^2 //OptimizeIndex
+
+,MFV,
+L6cl50:= (ceH Block[{ff1, ff2}, OeH[ff1,ff2] Conjugate[yl[ff2, ff1]]]
+
+         + Block[{ff1, ff2, ff3},
+           ( cuH0 IndexDelta[ff1,ff3]
+           + DeltaucuH Squ[1,1,ff1,ff3]
+           + DeltadcuH Sqd[1,1,ff1,ff3] )
+           Conjugate[yu[ff2, ff3]] OuH[ff1,ff2]
+
+         + ( cdH0 IndexDelta[ff1,ff3]
+           + DeltaucdH Squ[2,2,ff1,ff3]
+           + DeltadcdH Sqd[2,2,ff1,ff3] )
+           Conjugate[yd[ff2, ff3]] OdH[ff1,ff2]
+           ]
+         )/LambdaSMEFT^2 //OptimizeIndex
+
+,top,
+L6cl50:= (ceH11 OeH[1,1] + ceH22 OeH[2,2] + ceH33 OeH[3,3]
+        + cuH OuH + ctH OtH + cdH OdH + cbH ObH
+          )/LambdaSMEFT^2
+
+,topU3l,
+L6cl50:= (ceH Block[{ff1,ff2}, Conjugate[yl[ff2,ff1]] OeH[ff1,ff2]]
+        + cuH OuH + ctH OtH + cdH OdH + cbH ObH
+         )/LambdaSMEFT^2
+];
+
+
+L6cl5 := L6cl50 + HC[L6cl50];
+
+
+(*** class 6 ***)
+
+Switch[Flavor,
+general,
+L6cl60:= Block[{ff1,ff2},
+                ( ceW[ff1,ff2] OeW[ff1,ff2] + ceB[ff1,ff2] OeB[ff1,ff2]
+                + cuG[ff1,ff2] OuG[ff1,ff2] + cuW[ff1,ff2] OuW[ff1,ff2] + cuB[ff1,ff2] OuB[ff1,ff2]
+                + cdG[ff1,ff2] OdG[ff1,ff2] + cdW[ff1,ff2] OdW[ff1,ff2] + cdB[ff1,ff2] OdB[ff1,ff2]
+                )/LambdaSMEFT^2 ]//OptimizeIndex
+
+,U35,
+L6cl60:= (ceW Block[{ff1,ff2}, Conjugate[yl[ff2, ff1]] OeW[ff1,ff2]]
+         +ceB Block[{ff1,ff2}, Conjugate[yl[ff2, ff1]] OeB[ff1,ff2]]
+         +cuW Block[{ff1,ff2}, Conjugate[yu[ff2, ff1]] OuW[ff1,ff2]]
+         +cuB Block[{ff1,ff2}, Conjugate[yu[ff2, ff1]] OuB[ff1,ff2]]
+         +cuG Block[{ff1,ff2}, Conjugate[yu[ff2, ff1]] OuG[ff1,ff2]]
+         +cdW Block[{ff1,ff2}, Conjugate[yd[ff2, ff1]] OdW[ff1,ff2]]
+         +cdB Block[{ff1,ff2}, Conjugate[yd[ff2, ff1]] OdB[ff1,ff2]]
+         +cdG Block[{ff1,ff2}, Conjugate[yd[ff2, ff1]] OdG[ff1,ff2]]
+         )/LambdaSMEFT^2//OptimizeIndex
+
+,MFV,
+L6cl60:= ( Block[{ff1,ff2},
+             ceW Conjugate[yl[ff2, ff1]] OeW[ff1,ff2]
+           + ceB Conjugate[yl[ff2, ff1]] OeB[ff1,ff2]
+           ]
+         + Block[{ff1, ff2, ff3},
+           ( cuG0 IndexDelta[ff1,ff3]
+           + DeltaucuG Squ[1,1,ff1,ff3]
+           + DeltadcuG Sqd[1,1,ff1,ff3])
+           Conjugate[yu[ff2, ff3]] OuG[ff1,ff2]
+
+         + ( cuW0 IndexDelta[ff1,ff3]
+           + DeltaucuW Squ[1,1,ff1,ff3]
+           + DeltadcuW Sqd[1,1,ff1,ff3])
+           Conjugate[yu[ff2, ff3]] OuW[ff1,ff2]
+
+         + ( cuB0 IndexDelta[ff1,ff3]
+           + DeltaucuB Squ[1,1,ff1,ff3]
+           + DeltadcuB Sqd[1,1,ff1,ff3])
+           Conjugate[yu[ff2, ff3]] OuB[ff1,ff2]
+
+         + ( cdG0 IndexDelta[ff1,ff3]
+           + DeltaucdG Squ[2,2,ff1,ff3]
+           + DeltadcdG Sqd[2,2,ff1,ff3])
+           Conjugate[yd[ff2, ff3]] OdG[ff1,ff2]
+
+         + ( cdW0 IndexDelta[ff1,ff3]
+           + DeltaucdW Squ[2,2,ff1,ff3]
+           + DeltadcdW Sqd[2,2,ff1,ff3])
+           Conjugate[yd[ff2, ff3]] OdW[ff1,ff2]
+
+         + ( cdB0 IndexDelta[ff1,ff3]
+           + DeltaucdB Squ[2,2,ff1,ff3]
+           + DeltadcdB Sqd[2,2,ff1,ff3])
+           Conjugate[yd[ff2, ff3]] OdB[ff1,ff2]
+           ]
+         )/LambdaSMEFT^2//OptimizeIndex
+
+,top,
+L6cl60:= (ceW11 OeW[1,1] + ceW22 OeW[2,2] + ceW33 OeW[3,3]
+        + ceB11 OeB[1,1] + ceB22 OeB[2,2] + ceB33 OeB[3,3]
+        + cuG OuG + ctG OtG + cuW OuW + ctW OtW + cuB OuB + ctB OtB
+        + cdG OdG + cbG ObG + cdW OdW + cbW ObW + cdB OdB + cbBB ObB
+         )/LambdaSMEFT^2
+
+
+,topU3l,
+L6cl60:= ( Block[{ff1,ff2},
+           ceW Conjugate[yl[ff2,ff1]] OeW[ff1,ff2]
+         + ceB Conjugate[yl[ff2,ff1]] OeB[ff1,ff2]
+            ]
+         + cuG OuG + ctG OtG + cuW OuW + ctW OtW + cuB OuB + ctB OtB
+         + cdG OdG + cbG ObG + cdW OdW + cbW ObW + cdB OdB + cbBB ObB
+         )/LambdaSMEFT^2
+];
+
+L6cl6 := L6cl60 + HC[L6cl60];
+
+
+(*** class 7 ***)
+
+
+
+Switch[Flavor,
+general,
+L6cl7:= Block[{ff1,ff2},
+        cHl1[ff1,ff2] OHl1[ff1,ff2] + cHl3[ff1,ff2] OHl3[ff1,ff2] + cHe[ff1,ff2] OHe[ff1,ff2]
+      + cHq1[ff1,ff2] OHq1[ff1,ff2] + cHq3[ff1,ff2] OHq3[ff1,ff2]
+      + cHu[ff1,ff2]  OHu[ff1,ff2]  + cHd[ff1,ff2] OHd[ff1,ff2]
+      + cHud[ff1,ff2] OHud[ff1,ff2] + HC[cHud[ff1,ff2] OHud[ff1,ff2]]
+        ]/LambdaSMEFT^2//OptimizeIndex
+
+,U35,
+L6cl7:= ( Block[{ff},
+          cHl1 OHl1[ff,ff]
+        + cHl3 OHl3[ff,ff]
+        + cHe  OHe[ff,ff]
+        + cHq1 OHq1[ff,ff]
+        + cHq3 OHq3[ff,ff]
+        + cHu  OHu[ff,ff]
+        + cHd  OHd[ff,ff]
+          ]
+        + Block[{ff1,ff2,ff3,ff4,ohud},
+          ohud = cHud yu[ff1, ff2] CKM[ff2,ff3] Conjugate[yd[ff4, ff3]]  OHud[ff1,ff4];
+          ohud+HC[ohud]
+          ]
+        )/LambdaSMEFT^2//OptimizeIndex
+
+,MFV,
+L6cl7:= ( Block[{ff},
+          cHl1  OHl1[ff,ff]
+        + cHl3  OHl3[ff,ff]
+        + cHe   OHe[ff,ff]
+        + cHq10 OHq1[ff,ff]
+        + cHq30 OHq3[ff,ff]
+        + cHu0  OHu[ff,ff]
+        + cHd0  OHd[ff,ff]
+          ]
+        + Block[{ff1,ff2},
+          DeltaucHq1 OHq1Du[ff1,ff2] + DeltadcHq1 OHq1Dd[ff1,ff2]
+        + DeltaucHq3 OHq3Du[ff1,ff2] + DeltadcHq3 OHq3Dd[ff1,ff2]
+        + DeltacHu Su[ff1,ff2]  OHu[ff1,ff2]
+        + DeltacHd Sd[ff1,ff2]  OHd[ff1,ff2]
+          ]
+        + Block[{ff1,ff2,ff3,ff4,ohud},
+          ohud = cHud0 yu[ff1, ff3] CKM[ff3,ff4] Conjugate[yd[ff2, ff4]] OHud[ff1,ff2];
+          ohud + HC[ohud]
+          ]
+        )/LambdaSMEFT^2//OptimizeIndex
+
+,top,
+L6cl7:= ( cHl111 OHl1[1] + cHl122 OHl1[2] + cHl133 OHl1[3]
+        + cHl311 OHl3[1] + cHl322 OHl3[2] + cHl333 OHl3[3]
+        + cHe11 OHe[1] + cHe22 OHe[2] + cHe33 OHe[3]
+        + cHj1 OHj1 + cHQ1 OHQ1 + cHj3 OHj3 + cHQ3 OHQ3
+        + cHu OHu + cHt OHt + cHd OHd + cHbq OHb
+        + cHud OHud + cHtb OHtb + HC[cHud OHud + cHtb OHtb]
+        )/LambdaSMEFT^2
+
+,topU3l,
+L6cl7:= ( Block[{ff},
+          cHl1 OHl1[ff]
+        + cHl3 OHl3[ff]
+        + cHe  OHe[ff]
+          ]
+        + cHj1 OHj1 + cHQ1 OHQ1 + cHj3 OHj3 + cHQ3 OHQ3
+        + cHu OHu + cHt OHt + cHd OHd + cHbq OHb
+        + cHud OHud + cHtb OHtb + HC[cHud OHud + cHtb OHtb]
+        )/LambdaSMEFT^2
+];
+
+
+(*** class 8a ***)
+
+Switch[Flavor,
+general,
+L6cl8a:= Block[{ff1,ff2,ff3,ff4},
+          cll[ff1,ff2,ff3,ff4]  Oll[ff1,ff2,ff3,ff4]
+        + cqq1[ff1,ff2,ff3,ff4] Oqq1[ff1,ff2,ff3,ff4] + cqq3[ff1,ff2,ff3,ff4] Oqq3[ff1,ff2,ff3,ff4]
+        + clq1[ff1,ff2,ff3,ff4] Olq1[ff1,ff2,ff3,ff4] + clq3[ff1,ff2,ff3,ff4] Olq3[ff1,ff2,ff3,ff4]
+         ]/LambdaSMEFT^2//OptimizeIndex
+
+,U35,
+L6cl8a:= Block[{ff1,ff2},
+          cll   Oll[ff1,ff1,ff2,ff2]
+        + cll1  Oll[ff1,ff2,ff2,ff1]
+        + cqq1  Oqq1[ff1,ff1,ff2,ff2]
+        + cqq11 Oqq1[ff1,ff2,ff2,ff1]
+        + cqq3  Oqq3[ff1,ff1,ff2,ff2]
+        + cqq31 Oqq3[ff1,ff2,ff2,ff1]
+        + clq1  Olq1[ff1,ff1,ff2,ff2]
+        + clq3  Olq3[ff1,ff1,ff2,ff2]
+        ]/LambdaSMEFT^2//OptimizeIndex
+,MFV,
+L6cl8a:= (Block[{ff1,ff2},
+          cll Oll[ff1,ff1,ff2,ff2]
+        + cll1   Oll[ff1,ff2,ff2,ff1]
+        + cqq10  Oqq1[ff1,ff1,ff2,ff2]
+        + cqq110 Oqq1[ff1,ff2,ff2,ff1]
+        + cqq30  Oqq3[ff1,ff1,ff2,ff2]
+        + cqq310 Oqq3[ff1,ff2,ff2,ff1]
+        + clq10  Olq1[ff1,ff1,ff2,ff2]
+        + clq30  Olq3[ff1,ff1,ff2,ff2]
+          ]
+        + Block[{ff1,ff2,ff},
+          Deltaucqq1  Oqq1Du[ff1,ff2,ff,ff]  + Deltadcqq1 Oqq1Dd[ff1,ff2,ff,ff]
+        + Deltaucqq11 Oqq11Du[ff1,ff,ff,ff2] + Deltadcqq11 Oqq11Dd[ff1,ff,ff,ff2]
+
+        + Deltaucqq3  Oqq3Du[ff1,ff2,ff,ff]  + Deltadcqq3  Oqq3Dd[ff1,ff2,ff,ff]
+        + Deltaucqq31 Oqq31Du[ff1,ff,ff,ff2] + Deltadcqq31 Oqq31Dd[ff1,ff,ff,ff2]
+
+        + Deltauclq1 Olq1Du[ff,ff,ff1,ff2] + Deltadclq1 Olq1Dd[ff,ff,ff1,ff2]
+        + Deltauclq3 Olq3Du[ff,ff,ff1,ff2] + Deltadclq3 Olq3Dd[ff,ff,ff1,ff2]
+          ]
+         )/LambdaSMEFT^2//OptimizeIndex
+,top,
+L6cl8a:= ( cll1111 Oll[1,1] + cll2222 Oll[2,2] + cll3333 Oll[3,3]
+         + cll1122 Oll[1,2] + cll1133 Oll[1,3] + cll2233 Oll[2,3]
+         + cll1221 Oll1[1,2] + cll1331 Oll1[1,3] + cll2332 Oll1[2,3]
+         + cjj11 Ojj11 + cjj18 Ojj18 + cjj31 Ojj31 + cjj38 Ojj38 + cQQ1 OQQ1 + cQQ8 OQQ8
+         + cQj11 OQj11 + cQj18 OQj18 + cQj31 OQj31 + cQj38 OQj38
+         + clj111 Olj1[1] + clj122 Olj1[2] + clj133 Olj1[3]
+         + clj311 Olj3[1] + clj322 Olj3[2] + clj333 Olj3[3]
+         + cQl111 OQl1[1] + cQl122 OQl1[2] + cQl133 OQl1[3]
+         + cQl311 OQl3[1] + cQl322 OQl3[2] + cQl333 OQl3[3]
+         )/LambdaSMEFT^2
+
+,topU3l,
+L6cl8a:= ( Block[{ff1,ff2},
+           cll  Oll[ff1,ff2]
+         + cll1 Oll1[ff1,ff2]
+           ]
+         + cjj11 Ojj11 + cjj18 Ojj18 + cjj31 Ojj31 + cjj38 Ojj38 + cQQ1 OQQ1 + cQQ8 OQQ8
+         + cQj11 OQj11 + cQj18 OQj18 + cQj31 OQj31 + cQj38 OQj38
+         + Block[{ff},
+           clj1 Olj1[ff] + clj3 Olj3[ff]
+         + cQl1 OQl1[ff] + cQl3 OQl3[ff]
+           ]
+         )/LambdaSMEFT^2
+];
+
+
+
+
+
+(*** class 8b  ***)
+
+Switch[Flavor,
+general,
+L6cl8b:= Block[{ff1,ff2,ff3,ff4},
+           cee[ff1,ff2,ff3,ff4] Oee[ff1,ff2,ff3,ff4]
+         + cuu[ff1,ff2,ff3,ff4] Ouu[ff1,ff2,ff3,ff4] + cdd[ff1,ff2,ff3,ff4] Odd[ff1,ff2,ff3,ff4]
+         + ceu[ff1,ff2,ff3,ff4] Oeu[ff1,ff2,ff3,ff4] + ced[ff1,ff2,ff3,ff4] Oed[ff1,ff2,ff3,ff4]
+         + cud1[ff1,ff2,ff3,ff4] Oud1[ff1,ff2,ff3,ff4] + cud8[ff1,ff2,ff3,ff4] Oud8[ff1,ff2,ff3,ff4]
+         ]/LambdaSMEFT^2//OptimizeIndex
+
+,U35,
+L6cl8b:=  Block[{ff1,ff2},
+           cee  Oee[ff1,ff1,ff2,ff2]
+         + cuu  Ouu[ff1,ff1,ff2,ff2]
+         + cuu1 Ouu[ff1,ff2,ff2,ff1]
+         + cdd  Odd[ff1,ff1,ff2,ff2]
+         + cdd1 Odd[ff1,ff2,ff2,ff1]
+         + ceu  Oeu[ff1,ff1,ff2,ff2]
+         + ced  Oed[ff1,ff1,ff2,ff2]
+         + cud1 Oud1[ff1,ff1,ff2,ff2]
+         + cud8 Oud8[ff1,ff1,ff2,ff2]
+         ]/LambdaSMEFT^2//OptimizeIndex
+
+,MFV,
+L6cl8b:= ( Block[{ff1,ff2},
+           cee   Oee[ff1,ff1,ff2,ff2]
+         + cuu0  Ouu[ff1,ff1,ff2,ff2]
+         + cuu10 Ouu[ff1,ff2,ff2,ff1]
+         + cdd0  Odd[ff1,ff1,ff2,ff2]
+         + cdd10 Odd[ff1,ff2,ff2,ff1]
+         + ceu0  Oeu[ff1,ff1,ff2,ff2]
+         + ced0  Oed[ff1,ff1,ff2,ff2]
+         + cud10 Oud1[ff1,ff1,ff2,ff2]
+         + cud80 Oud8[ff1,ff1,ff2,ff2]
+           ]
+         + Block[{ff1,ff2,ff},
+             Deltacuu   Su[ff1,ff2] Ouu[ff1,ff2,ff,ff]
+           + Deltacuu1  Su[ff1,ff2] Ouu[ff1,ff,ff,ff2]
+           + Deltacdd   Sd[ff1,ff2] Odd[ff1,ff2,ff,ff]
+           + Deltacdd1  Sd[ff1,ff2] Odd[ff1,ff,ff,ff2]
+           + Deltaceu   Su[ff1,ff2] Oeu[ff,ff,ff1,ff2]
+           + Deltaced   Sd[ff1,ff2] Oed[ff,ff,ff1,ff2]
+           + Deltaucud1 Su[ff1,ff2] Oud1[ff1,ff2,ff,ff]
+           + Deltadcud1 Sd[ff1,ff2] Oud1[ff,ff,ff1,ff2]
+           + Deltaucud8 Su[ff1,ff2] Oud8[ff1,ff2,ff,ff]
+           + Deltadcud8 Sd[ff1,ff2] Oud8[ff,ff,ff1,ff2]
+          ]
+         )/LambdaSMEFT^2//OptimizeIndex
+
+,top,
+L6cl8b:= (cee1111 Oee[1,1] + cee2222 Oee[2,2] + cee3333 Oee[3,3]
+        + cee1122 Oee[1,2] + cee1133 Oee[1,3] + cee2233 Oee[2,3]
+        + cuu1 Ouu1 + cuu8 Ouu8 + ctt Ott +  cdd1 Odd1 + cdd8 Odd8 + cbb Obb
+        + ctu1 Otu1 + ctu8 Otu8 + cbd1 Obd1 + cbd8 Obd8
+        + cud1 Oud1 + ctb1 Otb1 + ctd1 Otd1 + cbu1 Obu1
+        + cud8 Oud8 + ctb8 Otb8 + ctd8 Otd8 + cbu8 Obu8
+        + ceu11 Oeu[1] + ceu22 Oeu[2] + ceu33 Oeu[3]
+        + cte11 Ote[1] + cte22 Ote[2] + cte33 Ote[3]
+        + ced11 Oed[1] + ced22 Oed[2] + ced33 Oed[3]
+        + cbe11 Obe[1] + cbe22 Obe[2] + cbe33 Obe[3]
+        + cutbd1 Outbd1 + cutbd8 Outbd8 + HC[cutbd1 Outbd1 + cutbd8 Outbd8]
+         )/LambdaSMEFT^2
+
+,topU3l,
+L6cl8b:= (Block[{ff1,ff2},
+          cee Oee[ff1,ff2]
+          ]
+        + cuu1 Ouu1 + cuu8 Ouu8 + ctt Ott +  cdd1 Odd1 + cdd8 Odd8 + cbb Obb
+        + ctu1 Otu1 + ctu8 Otu8 + cbd1 Obd1 + cbd8 Obd8
+        + cud1 Oud1 + ctb1 Otb1 + ctd1 Otd1 + cbu1 Obu1
+        + cud8 Oud8 + ctb8 Otb8 + ctd8 Otd8 + cbu8 Obu8
+        + cutbd1 Outbd1 + cutbd8 Outbd8 + HC[cutbd1 Outbd1 + cutbd8 Outbd8]
+        + Block[{ff},
+          ceu Oeu[ff] + cte Ote[ff]
+        + ced Oed[ff] + cbe Obe[ff]
+          ]
+         )/LambdaSMEFT^2
+];
+
+
+
+
+(*** class 8c ***)
+Switch[Flavor,
+general,
+L6cl8c:= Block[{ff1,ff2,ff3,ff4},
+          cle[ff1,ff2,ff3,ff4] Ole[ff1,ff2,ff3,ff4] + cqe[ff1,ff2,ff3,ff4] Oqe[ff1,ff2,ff3,ff4]
+        + clu[ff1,ff2,ff3,ff4] Olu[ff1,ff2,ff3,ff4] + cld[ff1,ff2,ff3,ff4] Old[ff1,ff2,ff3,ff4]
+        + cqu1[ff1,ff2,ff3,ff4] Oqu1[ff1,ff2,ff3,ff4] + cqu8[ff1,ff2,ff3,ff4] Oqu8[ff1,ff2,ff3,ff4]
+        + cqd1[ff1,ff2,ff3,ff4] Oqd1[ff1,ff2,ff3,ff4] + cqd8[ff1,ff2,ff3,ff4] Oqd8[ff1,ff2,ff3,ff4]
+         ]/LambdaSMEFT^2//OptimizeIndex
+
+,U35,
+L6cl8c:=Block[{ff1,ff2},
+          cle  Ole[ff1,ff1,ff2,ff2]
+        + cqe  Oqe[ff1,ff1,ff2,ff2]
+        + clu  Olu[ff1,ff1,ff2,ff2]
+        + cld  Old[ff1,ff1,ff2,ff2]
+        + cqu1 Oqu1[ff1,ff1,ff2,ff2]
+        + cqu8 Oqu8[ff1,ff1,ff2,ff2]
+        + cqd1 Oqd1[ff1,ff1,ff2,ff2]
+        + cqd8 Oqd8[ff1,ff1,ff2,ff2]
+        ]/LambdaSMEFT^2//OptimizeIndex
+
+,MFV,
+L6cl8c:=( Block[{ff1,ff2},
+          cle   Ole[ff1,ff1,ff2,ff2]
+        + cqe0  Oqe[ff1,ff1,ff2,ff2]
+        + clu0  Olu[ff1,ff1,ff2,ff2]
+        + cld0  Old[ff1,ff1,ff2,ff2]
+        + cqu10 Oqu1[ff1,ff1,ff2,ff2]
+        + cqu80 Oqu8[ff1,ff1,ff2,ff2]
+        + cqd10 Oqd1[ff1,ff1,ff2,ff2]
+        + cqd80 Oqd8[ff1,ff1,ff2,ff2]
+          ]
+        + Block[{ff1,ff2,ff},
+          Deltaucqe   OqeDu[ff1,ff2,ff,ff]   + Deltadcqe   OqeDd[ff1,ff2,ff,ff]
+        + Deltaclu    Su[ff1,ff2] Olu[ff,ff,ff1,ff2]
+        + Deltacld    Sd[ff1,ff2] Old[ff,ff,ff1,ff2]
+        + Delta1ucqu1 Oqu1D1u[ff1,ff2,ff,ff] + Delta1dcqu1 Oqu1D1d[ff1,ff2,ff,ff]
+        + Delta2cqu1  Su[ff1,ff2] Oqu1[ff,ff,ff1,ff2]
+        + Delta1ucqu8 Oqu8D1u[ff1,ff2,ff,ff] + Delta1dcqu8 Oqu8D1d[ff1,ff2,ff,ff]
+        + Delta2cqu8  Su[ff1,ff2] Oqu8[ff,ff,ff1,ff2]
+        + Delta1ucqd1 Oqd1D1u[ff1,ff2,ff,ff] + Delta1dcqd1 Oqd1D1d[ff1,ff2,ff,ff]
+        + Delta2cqd1  Sd[ff1,ff2] Oqd1[ff,ff,ff1,ff2]
+        + Delta1ucqd8 Oqd8D1u[ff1,ff2,ff,ff] + Delta1dcqd8 Oqd8D1d[ff1,ff2,ff,ff]
+        + Delta2cqd8  Sd[ff1,ff2] Oqd8[ff,ff,ff1,ff2]
+          ]
+        + Block[{ff1,ff2,ff3,ff4},
+          cqu110 Conjugate[yu[ff4,ff1]] yu[ff3,ff2] Oqu1[ff1,ff2,ff3,ff4]
+        + cqu810 Conjugate[yu[ff4,ff1]] yu[ff3,ff2] Oqu8[ff1,ff2,ff3,ff4]
+        + cqd110 Conjugate[yd[ff4,ff1]] yd[ff3,ff2] Oqd1[ff1,ff2,ff3,ff4]
+        + cqd810 Conjugate[yd[ff4,ff1]] yd[ff3,ff2] Oqd8[ff1,ff2,ff3,ff4]
+          ]
+        )/LambdaSMEFT^2//OptimizeIndex
+
+,top,
+L6cl8c:= (cle1111 Ole[1,1] + cle2222 Ole[2,2] + cle3333 Ole[3,3] + cle1122 Ole[1,2] + cle1133 Ole[1,3]
+         + cle2233 Ole[2,3] + cle2211 Ole[2,1] + cle3311 Ole[3,1] + cle3322 Ole[3,2]
+         + cle1221 Ole1[1,2] + cle1331 Ole1[1,3] + cle2332 Ole1[2,3]
+         +HC[ cle1221 Ole1[1,2] + cle1331 Ole1[1,3] + cle2332 Ole1[2,3] ]
+         + clu11 Olu[1] + clu22 Olu[2] + clu33 Olu[3] + cld11 Old[1] + cld22 Old[2] + cld33 Old[3]
+         + ctl11 Otl[1] + ctl22 Otl[2] + ctl33 Otl[3] + cbl11 Obl[1] + cbl22 Obl[2] + cbl33 Obl[3]
+         + cje11 Oje[1] + cje22 Oje[2] + cje33 Oje[3]
+         + cQe11 OQe[1] + cQe22 OQe[2] + cQe33 OQe[3]
+         + cju1 Oju1 + cQu1 OQu1 + ctj1 Otj1 + cQt1 OQt1
+         + cju8 Oju8 + cQu8 OQu8 + ctj8 Otj8 + cQt8 OQt8
+         + cjd1 Ojd1 + cQd1 OQd1 + cbj1 Obj1 + cQb1 OQb1
+         + cjd8 Ojd8 + cQd8 OQd8 + cbj8 Obj8 + cQb8 OQb8
+         + cjQtu1 OjQtu1 + cjQtu8 OjQtu8 + cjQbd1 OjQbd1 + cjQbd8 OjQbd8
+         + HC[cjQtu1 OjQtu1 + cjQtu8 OjQtu8 + cjQbd1 OjQbd1 + cjQbd8 OjQbd8]
+         )/LambdaSMEFT^2
+
+,topU3l,
+L6cl8c:= ( Block[{ff1,ff2},
+           cle Ole[ff1,ff2]
+           ]
+         + Block[{ff},
+           clu Olu[ff] + cld Old[ff]
+         + ctl Otl[ff] + cbl Obl[ff]
+         + cje Oje[ff] + cQe OQe[ff]
+           ]
+         + cju1 Oju1 + cQu1 OQu1 + ctj1 Otj1 + cQt1 OQt1
+         + cju8 Oju8 + cQu8 OQu8 + ctj8 Otj8 + cQt8 OQt8
+         + cjd1 Ojd1 + cQd1 OQd1 + cbj1 Obj1 + cQb1 OQb1
+         + cjd8 Ojd8 + cQd8 OQd8 + cbj8 Obj8 + cQb8 OQb8
+         + cjQtu1 OjQtu1 + cjQtu8 OjQtu8 + cjQbd1 OjQbd1 + cjQbd8 OjQbd8
+         + HC[cjQtu1 OjQtu1 + cjQtu8 OjQtu8 + cjQbd1 OjQbd1 + cjQbd8 OjQbd8]
+         )/LambdaSMEFT^2
+
+];
+
+
+(*** class 8d ***)
+
+Switch[Flavor,
+general,
+L6cl8d0:= Block[{ff1,ff2,ff3,ff4},
+              cledq[ff1,ff2,ff3,ff4]  Oledq[ff1,ff2,ff3,ff4]
+            + cquqd1[ff1,ff2,ff3,ff4] Oquqd1[ff1,ff2,ff3,ff4]
+            + cquqd8[ff1,ff2,ff3,ff4] Oquqd8[ff1,ff2,ff3,ff4]
+            + clequ1[ff1,ff2,ff3,ff4] Olequ1[ff1,ff2,ff3,ff4]
+            + clequ3[ff1,ff2,ff3,ff4] Olequ3[ff1,ff2,ff3,ff4]
+            ]/LambdaSMEFT^2//OptimizeIndex
+
+,U35,
+L6cl8d0:= Block[{ff1,ff2,ff3,ff4,ff5},
+            cledq  Conjugate[yl[ff2, ff1]] yd[ff3, ff4] Conjugate[CKM[ff5,ff4]] Oledq[ff1,ff2,ff3,ff5]
+          + cquqd1 Conjugate[yu[ff2, ff1]] Conjugate[yd[ff5, ff4]] CKM[ff3,ff4] Oquqd1[ff1,ff2,ff3,ff5]
+          + cquqd8 Conjugate[yu[ff2, ff1]] Conjugate[yd[ff5, ff4]] CKM[ff3,ff4] Oquqd8[ff1,ff2,ff3,ff5]
+          + cquqd11 Conjugate[yu[ff2, ff3]] Conjugate[yd[ff5, ff4]] CKM[ff1,ff4] Oquqd1[ff1,ff2,ff3,ff5]
+          + cquqd81 Conjugate[yu[ff2, ff3]] Conjugate[yd[ff5, ff4]] CKM[ff1,ff4] Oquqd8[ff1,ff2,ff3,ff5]
+          + clequ1 Conjugate[yl[ff2, ff1]] Conjugate[yu[ff4, ff3]] Olequ1[ff1,ff2,ff3,ff4]
+          + clequ3 Conjugate[yl[ff2, ff1]] Conjugate[yu[ff4, ff3]] Olequ3[ff1,ff2,ff3,ff4]
+          ]/LambdaSMEFT^2//OptimizeIndex
+
+,MFV,
+L6cl8d0:= ( Block[{ff1,ff2,ff3,ff4,ff5},
+            cledq0  Conjugate[yl[ff2,ff1]] yd[ff3,ff4] Conjugate[CKM[ff5,ff4]] Oledq[ff1,ff2,ff3,ff5]
+          + cquqd1 Conjugate[yu[ff2,ff1]] Conjugate[yd[ff5,ff4]] CKM[ff3,ff4] Oquqd1[ff1,ff2,ff3,ff5]
+          + cquqd8 Conjugate[yu[ff2,ff1]] Conjugate[yd[ff5,ff4]] CKM[ff3,ff4] Oquqd8[ff1,ff2,ff3,ff5]
+          + cquqd11 Conjugate[yu[ff2,ff3]] Conjugate[yd[ff5,ff4]] CKM[ff1,ff4] Oquqd1[ff1,ff2,ff3,ff5]
+          + cquqd81 Conjugate[yu[ff2,ff3]] Conjugate[yd[ff5,ff4]] CKM[ff1,ff4] Oquqd8[ff1,ff2,ff3,ff5]
+          + clequ10 Conjugate[yl[ff2,ff1]] Conjugate[yu[ff4,ff3]] Olequ1[ff1,ff2,ff3,ff4]
+          + clequ30 Conjugate[yl[ff2,ff1]] Conjugate[yu[ff4,ff3]] Olequ3[ff1,ff2,ff3,ff4]
+          ]
+          + Block[{ff1,ff2,ff3,ff4},
+            Deltaucledq OledqDu[ff1,ff2,ff3,ff4] Conjugate[yl[ff2,ff1]]
+          + Deltadcledq OledqDd[ff1,ff2,ff3,ff4] Conjugate[yl[ff2,ff1]]
+
+          + Deltauclequ1 Olequ1Du[ff1,ff2,ff3,ff4] Conjugate[yl[ff2,ff1]]
+          + Deltadclequ1 Olequ1Dd[ff1,ff2,ff3,ff4] Conjugate[yl[ff2,ff1]]
+          + Deltauclequ3 Olequ3Du[ff1,ff2,ff3,ff4] Conjugate[yl[ff2,ff1]]
+          + Deltadclequ3 Olequ3Dd[ff1,ff2,ff3,ff4] Conjugate[yl[ff2,ff1]]
+          ]
+          )/LambdaSMEFT^2//OptimizeIndex
+
+,top,
+L6cl8d0:= (cledj11 Oledj[1,1] + cledj22 Oledj[2,2] + cledj33 Oledj[3,3]
+         + clebQ11 OlebQ[1,1] + clebQ22 OlebQ[2,2] + clebQ33 OlebQ[3,3]
+         + cleju111 Oleju1[1,1] + cleju122 Oleju1[2,2] + cleju133 Oleju1[3,3]
+         + cleQt111 OleQt1[1,1] + cleQt122 OleQt1[2,2] + cleQt133 OleQt1[3,3]
+         + cleju311 Oleju3[1,1] + cleju322 Oleju3[2,2] + cleju333 Oleju3[3,3]
+         + cleQt311 OleQt3[1,1] + cleQt322 OleQt3[2,2] + cleQt333 OleQt3[3,3]
+         + cjujd1 Ojujd1 + cQtQb1 OQtQb1 + cjujd8 Ojujd8 + cQtQb8 OQtQb8
+         + cjujd11 Ojujd11 + cjujd81 Ojujd81
+         + cQtjd1 OQtjd1 + cjuQb1 OjuQb1 + cQtjd8 OQtjd8 + cjuQb8 OjuQb8
+         + cjtQd1 OjtQd1 + cQujb1 OQujb1 + cjtQd8 OjtQd8 + cQujb8 OQujb8
+          )/LambdaSMEFT^2
+
+,topU3l,
+L6cl8d0:= ( Block[{ff1,ff2},
+            cledj  Conjugate[yl[ff2,ff1]] Oledj[ff1,ff2]
+          + clebQ  Conjugate[yl[ff2,ff1]] OlebQ[ff1,ff2]
+          + cleju1 Conjugate[yl[ff2,ff1]] Oleju1[ff1,ff2]
+          + cleQt1 Conjugate[yl[ff2,ff1]] OleQt1[ff1,ff2]
+          + cleju3 Conjugate[yl[ff2,ff1]] Oleju3[ff1,ff2]
+          + cleQt3 Conjugate[yl[ff2,ff1]] OleQt3[ff1,ff2]
+            ]
+          + cjujd1 Ojujd1 + cQtQb1 OQtQb1 + cjujd8 Ojujd8 + cQtQb8 OQtQb8
+          + cjujd11 Ojujd11 + cjujd81 Ojujd81
+          + cQtjd1 OQtjd1 + cjuQb1 OjuQb1 + cQtjd8 OQtjd8 + cjuQb8 OjuQb8
+          + cjtQd1 OjtQd1 + cQujb1 OQujb1 + cjtQd8 OjtQd8 + cQujb8 OQujb8
+          )/LambdaSMEFT^2
+];
+
+
+L6cl8d := L6cl8d0 + HC[L6cl8d0];
+
+L6cl8:= L6cl8a + L6cl8b + L6cl8c + L6cl8d;
+
+
+
+
+(* sum of all d=6 terms*)
+
+L6no4f:= L6cl1 + L6cl2 + L6cl3 + L6cl4 + L6cl4cpv + L6cl5 + L6cl6 + L6cl7;
+
+L6:= L6cl1 + L6cl2 + L6cl3 + L6cl4 + L6cl4cpv + L6cl5 + L6cl6 + L6cl7 + L6cl8;

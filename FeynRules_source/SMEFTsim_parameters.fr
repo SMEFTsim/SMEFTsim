@@ -1,0 +1,958 @@
+(* ************************'********************************************************************** *)
+(* *****   definitions of the parameters - depend on both flavor framework and input scheme  ***** *)
+(* *********************************************************************************************** *)
+
+(* ******************************************** *)
+(* *****   flavor dependent definitions   ***** *)
+(* ******************************************** *)
+
+MFVSp = {};
+ShY = {};
+qYuk = {};
+
+
+Switch[Flavor,
+general,
+
+   (* import Wilson coefficients from file *)
+
+      Get["d6_parameters_general.fr"];
+
+   (* value of dGf *)
+
+      DGFdef =  vevhat^2/LambdaSMEFT^2 (cHl3Re11 + cHl3Re22 - cllRe1221);
+      DGForder = {{NP,1},{NPshifts,1},{NPcHl3,1},{NPcll,1}};
+
+   (* "bare" yukawa terms including the parameter redefinition necessary to diagonalize the mass terms in LYukawa + L6cl5 and have the final result expressed with yhat= m sqrt2 / vevhat *)
+
+      ShY = {
+    yl0 == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[Generation], Index[Generation]},
+      Definitions      -> {yl0[i_, j_] :> yl[i,j] (1 - dGf/2) + vevhat^2/2 Conjugate[ceH[j,i]]/LambdaSMEFT^2},
+      InteractionOrder -> {QED, 1},
+      ComplexParameter -> True
+    },
+    yd0 == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[Generation], Index[Generation]},
+      Definitions      -> {yd0[i_, j_] :> Module[{k}, yd[i,j] (1 - dGf/2) + vevhat^2/2 Conjugate[cdH[k,i]]CKM[k,j] /LambdaSMEFT^2]},
+      InteractionOrder -> {QED, 1},
+      ComplexParameter -> True
+    },
+    yu0 == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[Generation], Index[Generation]},
+      Definitions      -> {yu0[i_, j_] :> yu[i,j] (1 - dGf/2) + vevhat^2/2 Conjugate[cuH[j,i]]/LambdaSMEFT^2},
+      InteractionOrder -> {QED, 1},
+      ComplexParameter -> True
+    }
+      };
+
+      qYuk = {
+    yu == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[Generation], Index[Generation]},
+      Definitions      -> {yu[i_?NumericQ, j_?NumericQ] :> 0  /; (i =!= j)},
+      Value            -> {yu[1,1] -> Sqrt[2] ymup/vevhat, yu[2,2] -> Sqrt[2] ymc/vevhat, yu[3,3] -> Sqrt[2] ymt/vevhat},
+      InteractionOrder -> {QED, 1},
+      ParameterName    -> {yu[1,1] -> yup, yu[2,2] -> yc, yu[3,3] -> yt},
+      ComplexParameter -> False,
+      TeX              -> Superscript[y, u],
+      Description      -> "Up-type Yukawa couplings"
+    },
+    yd == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[Generation], Index[Generation]},
+      Definitions      -> {yd[i_?NumericQ, j_?NumericQ] :> 0  /; (i =!= j)},
+      Value            -> {yd[1,1] -> Sqrt[2] ymdo/vevhat, yd[2,2] -> Sqrt[2] yms/vevhat, yd[3,3] -> Sqrt[2] ymb/vevhat},
+      InteractionOrder -> {QED, 1},
+      ParameterName    -> {yd[1,1] -> ydo, yd[2,2] -> ys, yd[3,3] -> yb},
+      ComplexParameter -> False,
+      TeX              -> Superscript[y, d],
+      Description      -> "Down-type Yukawa couplings"
+    }
+      };
+
+
+
+,U35,
+
+      Get["d6_parameters_U35.fr"]; (* Wilson coefficients*)
+
+      DGFdef =  vevhat^2/LambdaSMEFT^2 (2 cHl3 - cll1);
+      DGForder = {{NP,1},{NPshifts,1},{NPcHl3,1},{NPcll1,1}};
+
+      ShY = {
+	yl0 == {
+	  ParameterType    -> Internal,
+	  Indices          -> {Index[Generation], Index[Generation]},
+	  Definitions      -> { yl0[i_, j_] :> yl[i,j] (1 - dGf/2 + vevhat^2/2/LambdaSMEFT^2 Conjugate[ceH])},
+	  InteractionOrder -> {QED, 1},
+	  ComplexParameter -> True
+	},
+	yu0 == {
+	  ParameterType    -> Internal,
+	  Indices          -> {Index[Generation], Index[Generation]},
+	  Definitions      -> {yu0[i_, j_] :> yu[i,j] (1 - dGf/2  + vevhat^2/2/LambdaSMEFT^2 Conjugate[cuH])},
+	  InteractionOrder -> {QED, 1},
+	  ComplexParameter -> True
+	},
+	yd0 == {
+	  ParameterType    -> Internal,
+	  Indices          -> {Index[Generation], Index[Generation]},
+	  Definitions      -> {yd0[i_, j_] :> yd[i,j] (1 - dGf/2  + vevhat^2/2/LambdaSMEFT^2 Conjugate[cdH])},
+	  InteractionOrder -> {QED, 1},
+	  ComplexParameter -> True
+	}
+      };
+
+     qYuk = {
+    yu == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[Generation], Index[Generation]},
+      Definitions      -> {yu[i_?Numeric, j_?NumericQ] :> 0  /; (i =!= j)},
+      Value            -> {yu[1,1] -> Sqrt[2] ymup/vevhat, yu[2,2] -> Sqrt[2] ymc/vevhat, yu[3,3] -> Sqrt[2] ymt/vevhat},
+      InteractionOrder -> {QED, 1},
+      ParameterName    -> {yu[1,1] -> yup, yu[2,2] -> yc, yu[3,3] -> yt},
+      ComplexParameter -> False,
+      TeX              -> Superscript[y, u],
+      Description      -> "Up-type Yukawa couplings"
+    },
+    yd == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[Generation], Index[Generation]},
+      Definitions      -> {yd[i_?NumericQ, j_?NumericQ] :> 0  /; (i =!= j)},
+      Value            -> {yd[1,1] -> Sqrt[2] ymdo/vevhat, yd[2,2] -> Sqrt[2] yms/vevhat, yd[3,3] -> Sqrt[2] ymb/vevhat},
+      InteractionOrder -> {QED, 1},
+      ParameterName    -> {yd[1,1] -> ydo, yd[2,2] -> ys, yd[3,3] -> yb},
+      ComplexParameter -> False,
+      TeX              -> Superscript[y, d],
+      Description      -> "Down-type Yukawa couplings"
+    }
+      };
+
+
+
+,MFV,
+
+      Get["d6_parameters_MFV.fr"]; (* Wilson coefficients*)
+
+      DGFdef = vevhat^2/LambdaSMEFT^2 (2 cHl3 - cll1);
+      DGForder = {{NP,1},{NPshifts,1},{NPcHl3,1},{NPcll1,1}};
+
+
+      ShY = {
+    yl0 == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[Generation], Index[Generation]},
+      Definitions      -> {yl0[i_, j_] :> yl[i,j] (1 - dGf/2 + vevhat^2/2/LambdaSMEFT^2  ceH)},
+      InteractionOrder -> {QED, 1},
+      ComplexParameter -> False
+    },
+    yd0 == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[Generation], Index[Generation]},
+      Definitions      -> {yd0[i_, j_] :> yd[i,j] (1 - dGf/2 + vevhat^2/2/LambdaSMEFT^2 cdH0)
+                          + vevhat^2/2/LambdaSMEFT^2 Module[{k},
+                          DeltaucdH yd[i,k] Squ[2,2,k,j] + DeltadcdH yd[i,k] Sqd[2,2,k,j]
+                          ]},
+      InteractionOrder -> {QED, 1},
+      ComplexParameter -> True
+    },
+    yu0 == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[Generation], Index[Generation]},
+      Definitions      -> {yu0[i_, j_] :> yu[i,j] (1 - dGf/2 + vevhat^2/2/LambdaSMEFT^2 cuH0)
+                          + vevhat^2/2/LambdaSMEFT^2 Module[{k},
+                          DeltaucuH yu[i,k] Squ[1,1,k,j] + DeltadcuH yu[i,k] Sqd[1,1,k,j]
+                          ]},
+      InteractionOrder -> {QED, 1},
+      ComplexParameter -> True
+    }
+      };
+
+      qYuk = {
+    yu == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[Generation], Index[Generation]},
+      Definitions      -> {yu[i_?NumericQ, j_?NumericQ] :> 0  /; (i =!= j)},
+      Value            -> {yu[1,1] -> Sqrt[2] ymup/vevhat, yu[2,2] -> Sqrt[2] ymc/vevhat, yu[3,3] -> Sqrt[2] ymt/vevhat},
+      InteractionOrder -> {QED, 1},
+      ParameterName    -> {yu[1,1] -> yup, yu[2,2] -> yc, yu[3,3] -> yt},
+      ComplexParameter -> False,
+      TeX              -> Superscript[y, u],
+      Description      -> "Up-type Yukawa couplings"
+    },
+    yd == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[Generation], Index[Generation]},
+      Definitions      -> {yd[i_?NumericQ, j_?NumericQ] :> 0  /; (i =!= j)},
+      Value            -> {yd[1,1] -> Sqrt[2] ymdo/vevhat, yd[2,2] -> Sqrt[2] yms/vevhat, yd[3,3] -> Sqrt[2] ymb/vevhat},
+      InteractionOrder -> {QED, 1},
+      ParameterName    -> {yd[1,1] -> ydo, yd[2,2] -> ys, yd[3,3] -> yb},
+      ComplexParameter -> False,
+      TeX              -> Superscript[y, d],
+      Description      -> "Down-type Yukawa couplings"
+    }
+      };
+
+  (* MFV spurions. those for q are defined with su(2) indices, and they have to be applied to Qm,
+     as the CKM in Q is already simplified out in the spurion definition *)
+
+      MFVSp = {
+   Squ == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[SU2D],Index[SU2D],Index[Generation],Index[Generation]},
+      Definitions      -> {(* Squ *)
+                           Squ[1,1,i_?NumericQ,j_?NumericQ] :> yu[i,j]^2,
+
+                           (* Squ V *)
+                           Squ[1,2,i_?NumericQ,j_?NumericQ] :> Module[{k}, yu[i,k]^2 CKM[k,j]],
+
+                           (* V+ Squ *)
+                           Squ[2,1,i_?NumericQ,j_?NumericQ] :> Module[{k}, Conjugate[CKM[k,i]] yu[k,j]^2],
+
+                           (* V+ Squ V *)
+                           Squ[2,2,i_?NumericQ,j_?NumericQ] :> Module[{k,l}, Conjugate[CKM[k,i]] yu[k,l]^2 CKM[l,j]]
+                         },
+      ComplexParameter -> True,
+      TeX              -> Superscript[S,qu]
+   },
+   Sqd == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[SU2D],Index[SU2D],Index[Generation],Index[Generation]},
+      Definitions      -> {(* Sqd *)
+                           Sqd[1,1,i_?NumericQ,j_?NumericQ] :> Module[{k,l},CKM[i,k] yd[k,l]^2 Conjugate[CKM[j,l]]],
+
+                           (* Sqd V *)
+                           Sqd[1,2,i_?NumericQ,j_?NumericQ] :> Module[{k}, CKM[i,k] yd[k,j]^2],
+
+                           (* V+ Sqd *)
+                           Sqd[2,1,i_?NumericQ,j_?NumericQ] :> Module[{k}, yd[i,k]^2 Conjugate[CKM[j,k]]],
+
+                           (* V+ Sqd V *)
+                           Sqd[2,2,i_?NumericQ,j_?NumericQ] :> yd[i,j]^2
+                          },
+      ComplexParameter -> True,
+      TeX              -> Superscript[S,qd]
+   },
+   Su == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[Generation],Index[Generation]},
+      Definitions      -> {Su[i_?NumericQ,j_?NumericQ] :> yu[i,j]^2},
+      ComplexParameter -> False,
+      Hermitian        -> True,
+      TeX              -> Superscript[S,u]
+   },
+   Sd == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[Generation],Index[Generation]},
+      Definitions      -> {Sd[i_?NumericQ,j_?NumericQ] :> yd[i,j]^2},
+      ComplexParameter -> False,
+      Hermitian        -> True,
+      TeX              -> Superscript[S,d]
+   }
+      };
+
+
+
+,top|topU3l,
+      Get["d6_parameters_top.fr"]; (* Wilson coefficients*)
+
+      DGForder = {{NP,1},{NPshifts,1},{NPcHl3,1},{NPcll1,1}};
+
+      Switch[Flavor,
+      top,
+      DGFdef =  vevhat^2/LambdaSMEFT^2 (cHl311 + cHl322 - cll1221/2);
+
+          ShY = {
+      yl0 == {
+	  ParameterType    -> Internal,
+	  Indices          -> {Index[Generation], Index[Generation]},
+	  Definitions      -> {yl0[1,1] -> yl[1,1] (1 - dGf/2) + vevhat^2/2/LambdaSMEFT^2 Conjugate[ceH11],
+                         yl0[2,2] -> yl[2,2] (1 - dGf/2) + vevhat^2/2/LambdaSMEFT^2 Conjugate[ceH22],
+                         yl0[3,3] -> yl[3,3] (1 - dGf/2) + vevhat^2/2/LambdaSMEFT^2 Conjugate[ceH33],
+                         yl0[i_?NumericQ,j_?NumericQ]:> 0 /; (i=!=j)},
+	  InteractionOrder -> {QED, 1},
+	  ComplexParameter -> True
+	  }}
+
+
+	  ,topU3l,
+      DGFdef =  vevhat^2/LambdaSMEFT^2 (2 cHl3 - cll1);
+
+           ShY = {
+	  yl0 == {
+	  ParameterType    -> Internal,
+	  Indices          -> {Index[Generation], Index[Generation]},
+	  Definitions      -> {yl0[i_, j_] :> yl[i,j] (1 - dGf/2 + vevhat^2/2/LambdaSMEFT^2  Conjugate[ceH])},
+	  InteractionOrder -> {QED, 1},
+	  ComplexParameter -> True
+	  }}
+	  ];
+
+
+
+      ShY = Join[ShY, {
+	yu0 == {
+	  ParameterType    -> Internal,
+	  Indices          -> {Index[Generation2], Index[Generation2]},
+	  Definitions      -> {yu0[i_, j_] :> yutop[i,j] (1 - dGf/2  + vevhat^2/2/LambdaSMEFT^2 Conjugate[cuH])},
+	  InteractionOrder -> {QED, 1},
+	  ComplexParameter -> True
+	},
+	yd0 == {
+	  ParameterType    -> Internal,
+	  Indices          -> {Index[Generation2], Index[Generation2]},
+	  Definitions      -> {yd0[i_, j_] :> ydtop[i,j] (1 - dGf/2  + vevhat^2/2/LambdaSMEFT^2 Conjugate[cdH])},
+	  InteractionOrder -> {QED, 1},
+	  ComplexParameter -> True
+	},
+	yt0 == {
+	  ParameterType    -> Internal,
+	  Definitions      -> {yt0 :> yt (1 - dGf/2)  + vevhat^2/2/LambdaSMEFT^2 Conjugate[ctHH]},
+	  InteractionOrder -> {QED, 1},
+	  ComplexParameter -> True
+	},
+	yb0 == {
+	  ParameterType    -> Internal,
+	  Definitions      -> {yb0 :> yb (1 - dGf/2)  + vevhat^2/2/LambdaSMEFT^2 Conjugate[cbH]},
+	  InteractionOrder -> {QED, 1},
+	  ComplexParameter -> True
+	}
+      }];
+
+      qYuk = {
+   yutop == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[Generation2], Index[Generation2]},
+      Definitions      -> {yutop[i_?NumericQ, j_?NumericQ] :> 0  /; (i =!= j)},
+      Value            -> {yutop[1,1] -> Sqrt[2] ymup/vevhat, yutop[2,2] -> Sqrt[2] ymc/vevhat},
+      InteractionOrder -> {QED, 1},
+      ParameterName    -> {yutop[1,1] -> yup, yutop[2,2] -> yc},
+      ComplexParameter -> False,
+      TeX              -> Superscript[y, u]
+   },
+   ydtop == {
+      ParameterType    -> Internal,
+      Indices          -> {Index[Generation2], Index[Generation2]},
+      Definitions      -> {ydtop[i_?NumericQ, j_?NumericQ] :> 0  /; (i =!= j)},
+      Value            -> {ydtop[1,1] -> Sqrt[2] ymdo/vevhat, ydtop[2,2] -> Sqrt[2] yms/vevhat},
+      InteractionOrder -> {QED, 1},
+      ParameterName    -> {ydtop[1,1] -> ydo, ydtop[2,2] -> ys},
+      ComplexParameter -> False,
+      TeX              -> Superscript[y, d]
+   },
+   yt == {
+      ParameterType    -> Internal,
+      Value            -> Sqrt[2] ymt/vevhat,
+      InteractionOrder -> {QED, 1},
+      TeX              -> Superscript[y, t]
+   },
+   yb == {
+      ParameterType    -> Internal,
+      Value            -> Sqrt[2] ymb/vevhat,
+      InteractionOrder -> {QED, 1},
+      TeX              -> Superscript[y, b]
+   }
+      };
+
+];
+
+
+
+(* ******************************************** *)
+(* *****   scheme dependent definitions   ***** *)
+(* ******************************************** *)
+
+Switch[Scheme,
+alphaScheme,
+
+  (* SM value of the sine squared of the Weinberg angle *)
+
+    STH2def = 1/2 - 1/2 Sqrt[1-(4 Pi aEW)/(Sqrt[2] Gf MZ^2)];
+
+  (* Values of the shifts of the g1 and g2 couplings*)
+
+    DG1def =   sth^2/2/(1-2sth^2) (dGf + dMZ2 + 2 cth^2 cth/sth cHWB vevhat^2/LambdaSMEFT^2);
+    DGWdef = - cth^2/2/(1-2sth^2) (dGf + dMZ2 + 2 sth^2 sth/cth cHWB vevhat^2/LambdaSMEFT^2);
+
+    Switch[Flavor,
+    general,
+    DG1order =   {{NP,1},{NPcHWB,1},{NPcHDD,1},{NPcHl3,1},{NPcll,1},{NPshifts,1}};
+    DGWorder =   {{NP,1},{NPcHWB,1},{NPcHDD,1},{NPcHl3,1},{NPcll,1},{NPshifts,1}};
+    ,_,
+    DG1order =   {{NP,1},{NPcHWB,1},{NPcHDD,1},{NPcHl3,1},{NPcll1,1},{NPshifts,1}};
+    DGWorder =   {{NP,1},{NPcHWB,1},{NPcHDD,1},{NPcHl3,1},{NPcll1,1},{NPshifts,1}};
+    ]
+
+,MwScheme,
+
+    STH2def =  1-(MW/MZ)^2;
+
+    DG1def = - 1/2(dGf + 1/sth^2 dMZ2);
+    DGWdef = - dGf/2;
+
+    Switch[Flavor,
+    general,
+    DG1order =   {{NP,1},{NPcHl3,1},{NPcll,1},{NPshifts,1}};
+    DGWorder =   {{NP,1},{NPcHWB,1},{NPcHDD,1},{NPcHl3,1},{NPcll,1},{NPshifts,1}};
+    ,_,
+    DG1order =   {{NP,1},{NPcHl3,1},{NPcll1,1},{NPshifts,1}};
+    DGWorder =   {{NP,1},{NPcHWB,1},{NPcHDD,1},{NPcHl3,1},{NPcll1,1},{NPshifts,1}}
+    ]
+
+];
+
+
+(* ************************************ *)
+(* *****    external parameters   ***** *)
+(* ************************************ *)
+
+
+ExternalParameters = {
+
+  Gf == {
+    ParameterType    -> External,
+    BlockName        -> SMINPUTS,
+    OrderBlock       -> 2,
+    Value            -> 1.1663787*^-5,
+    InteractionOrder -> {QED,2},
+    TeX              -> Subscript[G,f],
+    Description      -> "Fermi constant"
+  },
+  aS == {
+    ParameterType    -> External,
+    BlockName        -> SMINPUTS,
+    OrderBlock       -> 3,
+    Value            -> 0.1179,
+    InteractionOrder -> {QCD,2},
+    TeX              -> Subscript[\[Alpha],s],
+    Description      -> "Strong coupling constant at the Z pole"
+  },
+
+ (* yukawas *)
+  ymdo == {
+    ParameterType -> External,
+    BlockName     -> YUKAWA,
+    OrderBlock    -> 1,
+    Value         -> 4.67*^-3,
+    Description   -> "Down Yukawa mass"
+  },
+  ymup == {
+    ParameterType -> External,
+    BlockName     -> YUKAWA,
+    OrderBlock    -> 2,
+    Value         -> 2.16*^-3,
+    Description   -> "Up Yukawa mass"
+  },
+  yms == {
+    ParameterType -> External,
+    BlockName     -> YUKAWA,
+    OrderBlock    -> 3,
+    Value         -> 0.093,
+    Description   -> "Strange Yukawa mass"
+  },
+  ymc == {
+    ParameterType -> External,
+    BlockName     -> YUKAWA,
+    OrderBlock    -> 4,
+    Value         -> 1.27,
+    Description   -> "Charm Yukawa mass"
+  },
+  ymb == {
+    ParameterType -> External,
+    BlockName     -> YUKAWA,
+    OrderBlock    -> 5,
+    Value         -> 4.18,
+    Description   -> "Bottom Yukawa mass"
+  },
+  ymt == {
+    ParameterType -> External,
+    BlockName     -> YUKAWA,
+    OrderBlock    -> 6,
+    Value         -> 172.76,
+    Description   -> "Top Yukawa mass"
+  },
+  yme == {
+    ParameterType -> External,
+    BlockName     -> YUKAWA,
+    OrderBlock    -> 11,
+    Value         -> 5.11*^-4,
+    Description   -> "Electron Yukawa mass"
+  },
+  ymm == {
+    ParameterType -> External,
+    BlockName     -> YUKAWA,
+    OrderBlock    -> 13,
+    Value         -> 0.10566,
+    Description   -> "Muon Yukawa mass"
+  },
+  ymtau == {
+    ParameterType -> External,
+    BlockName     -> YUKAWA,
+    OrderBlock    -> 15,
+    Value         -> 1.777,
+    Description   -> "Tau Yukawa mass"
+  }
+};
+
+If[Flavor=!=top && Flavor=!=topU3l,
+
+ExternalParameters = Join[ExternalParameters,
+
+(* CKM angles in Wolfenstein parameterization *)
+
+ {
+  CKMlambda == {
+    ParameterType -> External,
+    BlockName     -> CKMBLOCK,
+    OrderBlock    -> 2,
+    Value         -> 0.22650,
+    Description   -> "Wolfenstein parameter lambda"
+  },
+  CKMA == {
+    ParameterType -> External,
+    BlockName     -> CKMBLOCK,
+    OrderBlock    -> 3,
+    Value         -> 0.790,
+    Description   -> "Wolfenstein parameter A"
+  },
+  CKMrho == {
+    ParameterType -> External,
+    BlockName     -> CKMBLOCK,
+    OrderBlock    -> 4,
+    Value         -> 0.141,
+    Description   -> "Wolfenstein parameter rho"
+  },
+  CKMeta == {
+    ParameterType -> External,
+    BlockName     -> CKMBLOCK,
+    OrderBlock    -> 5,
+    Value         -> 0.357,
+    Description   -> "Wolfenstein parameter eta"
+  }
+ }
+]
+];
+
+
+
+
+(* ************************************ *)
+(* *****   internal parameters    ***** *)
+(* ************************************ *)
+
+InternalParameters = {
+
+ vevhat == {
+    ParameterType    -> Internal,
+    Value            -> 1/Sqrt[Sqrt[2] Gf],
+    InteractionOrder -> {QED,-1},
+    Description      -> "v as inferred from the input Gf",
+    TeX              -> OverHat[v]
+  },
+ lam == {
+    ParameterType    -> Internal,
+    Value            -> MH^2 Gf/(Sqrt[2]),
+    InteractionOrder -> {QED, 2},
+    Description      -> "Higgs quartic coupling"
+  },
+ dkH == {
+    ParameterType    -> Internal,
+    Value            -> vevhat^2/LambdaSMEFT^2 (cHbox - cHDD/4),
+    InteractionOrder -> {{NP,1},{NPcHbox,1},{NPcHDD,1},{NPshifts,1}},
+    Description      -> "Shift from H kinetic term normalization"
+  },
+ dMH2 == {
+    ParameterType    -> Internal,
+    InteractionOrder -> {{NP,1},{NPcH,1},{NPcHbox,1},{NPcHDD,1},{NPshifts,1}},
+    Value            -> (2 dkH - 3 /(2 lam) cH vevhat^2/LambdaSMEFT^2)
+  },
+ gs == {
+    ParameterType    -> Internal,
+    Value            -> Sqrt[4 Pi aS],
+    InteractionOrder -> {QCD,1},
+    TeX              -> Subscript[g,s],
+    ParameterName    -> G,
+    Description      -> "Strong coupling constant at the Z pole"
+  },
+ ee == {
+    ParameterType    -> Internal,
+    Value            -> Sqrt[4 Pi aEW],
+    InteractionOrder -> {QED,1},
+    TeX              -> e,
+    Description      -> "Electric coupling constant"
+  },
+ yl == {
+    ParameterType    -> Internal,
+    Indices          -> {Index[Generation], Index[Generation]},
+    Definitions      -> {yl[i_?NumericQ, j_?NumericQ] :> 0  /; (i =!= j)},
+    Value            -> {yl[1,1] -> Sqrt[2] yme/ vevhat, yl[2,2] -> Sqrt[2] ymm / vevhat, yl[3,3] -> Sqrt[2] ymtau / vevhat},
+    InteractionOrder -> {QED, 1},
+    ParameterName    -> {yl[1,1] -> ye, yl[2,2] -> ym, yl[3,3] -> ytau},
+    ComplexParameter -> False,
+    TeX              -> Superscript[y, l],
+    Description      -> "Lepton Yukawa couplings"
+  },
+ dGf == {
+    ParameterType    -> Internal,
+    InteractionOrder -> DGForder,
+    Value            -> DGFdef
+  },
+ vevT == {
+    ParameterType    -> Internal,
+    Value            -> vevhat(1 + dGf/2),
+    ComplexParameter -> False,
+    Description      -> "True Higgs vacuum expectation value"
+  },
+ barlam == {
+    ParameterType    -> Internal,
+    Definitions      -> {barlam -> lam (1-dMH2- dGf)},
+    Description      -> "Higgs quartic coupling"
+  },
+ vev == {
+    ParameterType    -> Internal,
+    Definitions      -> {vev -> vevT (1 - 3 cH vevhat^2/LambdaSMEFT^2/(8 lam))},
+    ComplexParameter -> False,
+    Description      -> "Higgs vacuum expectation value for cH=0"
+  },
+ sth2 == {
+    ParameterType -> Internal,
+    Value         -> STH2def,
+    Description   -> "Squared sine of the Weinberg angle"
+  },
+ cth == {
+    ParameterType -> Internal,
+    Value         -> Sqrt[1-sth2],
+    TeX           -> Subscript[c,\[Theta]],
+    Description   -> "Cosine of the Weinberg angle"
+  },
+ sth == {
+    ParameterType -> Internal,
+    Value         -> Sqrt[sth2],
+    TeX           -> Subscript[s,\[Theta]],
+    Description   -> "Sine of the Weinberg angle"
+  },
+ dMZ2 == {
+    ParameterType    -> Internal,
+    InteractionOrder -> {{NP,1},{NPcHDD,1},{NPcHWB,1},{NPshifts,1}},
+    ComplexParameter -> False,
+    Value            -> vevhat^2 (cHDD/2 + 2 cth sth cHWB)/LambdaSMEFT^2
+  },
+ gw == {
+    ParameterType    -> Internal,
+    Definitions      -> {gw->ee/sth },
+    InteractionOrder -> {QED,1},
+    TeX              -> Subscript[g,w],
+    Description      -> "Weak coupling constant at the Z pole"
+  },
+ g1 == {
+    ParameterType    -> Internal,
+    Definitions      -> {g1->ee/cth},
+    InteractionOrder -> {QED,1},
+    TeX              -> Subscript[g,1],
+    Description      -> "U(1)Y coupling constant at the Z pole"
+  },
+ dg1 == {
+    ParameterType    -> Internal,
+    InteractionOrder -> DG1order,
+    ComplexParameter -> False,
+    Value            -> DG1def
+ },
+ dgw == {
+    ParameterType    -> Internal,
+    InteractionOrder -> DGWorder,
+    ComplexParameter -> False,
+    Value            -> DGWdef
+ },
+ gwsh == {
+    ParameterType    -> Internal,
+    Definitions      -> {gwsh->ee/sth(1-cHW vevhat^2/LambdaSMEFT^2 +dgw)},
+    TeX              -> Subscript[g,w],
+    Description      -> "shifted Weak coupling constant at the Z pole"
+  },
+ g1sh == {
+    ParameterType    -> Internal,
+    Definitions      -> {g1sh->ee/cth(1-cHB vevhat^2/LambdaSMEFT^2 +dg1)},
+    TeX              -> Subscript[g,1],
+    Description      -> "shifted U(1)Y coupling constant at the Z pole"
+  }
+};
+
+
+If[Flavor=!=top && Flavor=!=topU3l,
+InternalParameters = Join[InternalParameters,
+{
+ CKM == {
+    ParameterType -> Internal,
+    Indices       -> {Index[Generation], Index[Generation]},
+    Unitary       -> True,
+    Value         -> {CKM[1,1] -> 1-CKMlambda^2/2,                      CKM[1,2] -> CKMlambda,          CKM[1,3] ->  CKMA CKMlambda^3 (CKMrho - I CKMeta),
+                      CKM[2,1] -> -CKMlambda,                           CKM[2,2] -> 1-CKMlambda^2/2,    CKM[2,3] ->  CKMA CKMlambda^2,
+                      CKM[3,1] -> CKMA CKMlambda^3(1-CKMrho-I CKMeta),  CKM[3,2] -> -CKMA CKMlambda^2,  CKM[3,3] -> 1},
+    TeX           -> Superscript[V,CKM],
+    Description   -> "CKM-Matrix"
+   }
+}
+]];
+
+
+(* ******************************************************************************************* *)
+(* *****   if alpha is an input: add alpha to the list of external parameters            ***** *)
+(* *****            and definition of W mass as internal (includes shift)                ***** *)
+(* ******************************************************************************************* *)
+
+If[Scheme === alphaScheme,
+  ExternalParameters = Join[ExternalParameters, {
+    aEW == {
+      ParameterType    -> External,
+      BlockName        -> SMINPUTS,
+      OrderBlock       -> 1,
+      Value            -> 1/127.950,
+      InteractionOrder -> {QED,2},
+      TeX              -> Subscript[\[Alpha], EW],
+      Description      -> "EW coupling constant at the Z pole"
+    }
+  }];
+
+  InternalParameters = Join[InternalParameters, {
+    MWsm == {
+      ParameterType    -> Internal,
+      ComplexParameter -> False,
+      Value            -> MZ cth
+    },
+    dMW == {
+      ParameterType    -> Internal,
+      BlockName        -> SHIFTS,
+      InteractionOrder -> {{NP,1},{NPcHWB,1},{NPcHDD,1},{NPcHl3,1},{NPcll1,1},{NPshifts,1}},
+      ComplexParameter -> False,
+      Value            -> MWsm(dGf/2 + dgw)
+    },
+    MW == {
+      ParameterType -> Internal,
+      Definitions   -> {MW -> MWsm + (1-linearPropCorrections) * dMW},
+      TeX           -> Subscript[M,W],
+      Description   -> "W mass"
+    }
+  }];
+];
+
+
+(* *************************************************************************** *)
+(* *****   if Mw is an input: add MWsm to the external parameters and    ***** *)
+(* *****    alpha and MW on top of the list of internal parameters       ***** *)
+(* *************************************************************************** *)
+
+(** Both MWsm and MW are kept in the Mw scheme in order to have e.g. the Higgs loop functions well-defined **)
+
+If[Scheme === MwScheme,
+  ExternalParameters = Append[ExternalParameters,
+    MW == {
+      ParameterType -> External,
+      BlockName     -> SMINPUTS,
+      OrderBlock    -> 1,
+      Value         -> 80.387,
+      Description   -> "W mass"
+    }
+  ];
+
+  InternalParameters = Join[{
+    MWsm == {
+	ParameterType -> Internal,
+	Value         -> MW,
+	Description   -> "W mass for scheme-independent expressions"
+    },
+
+  aEW == {
+    ParameterType    -> Internal,
+    Value            -> Sqrt[2] MW^2 Gf (1-MW^2/MZ^2) / Pi,
+    InteractionOrder -> {QED,2},
+    TeX              -> Subscript[\[Alpha], EW],
+    Description      -> "Electroweak coupling constant"
+    }
+  }, InternalParameters];
+
+];
+
+
+
+
+(* ************************************************************************************* *)
+(* *****                 mass and width shift parameters                           ***** *)
+(* ************************************************************************************* *)
+
+(* **************   external: switch and SM widths    *************** *)
+
+PropCorrExtPar = {
+
+ linearPropCorrections == {
+    ParameterType    -> External,
+    BlockName        -> SWITCHES,
+    OrderBlock       -> 1,
+    Value            -> 0,
+    Description      -> "switch for propagator corrections. 1/0"
+  }
+};
+
+(* *****************          internal              ***************** *)
+
+PropCorrIntPar = {
+
+ propCorr == {
+    ParameterType    -> Internal,
+    Value            -> linearPropCorrections,
+    InteractionOrder -> {{NPprop,1}},
+    Description      -> "tracking propagator corrections",
+    TeX              -> Subscript[\[CapitalDelta],"prop."]
+  },
+
+(* masses *)
+
+  MZ1 == {
+    ParameterType    -> Internal,
+    Value            -> MZ,
+    TeX              -> Superscript["MZ",\[Prime]],
+    Description      -> "mass of the dummy Z"
+  },
+  MW1 == {
+    ParameterType    -> Internal,
+    Value            -> MWsm,
+    TeX              -> Superscript["MW",\[Prime]],
+    Description      -> "mass of the dummy W"
+  },
+  MH1 == {
+    ParameterType    -> Internal,
+    Value            -> MH,
+    TeX              -> Superscript["MH",\[Prime]],
+    Description      -> "mass of the dummy H"
+  },
+  MT1 == {
+    ParameterType    -> Internal,
+    Value            -> MT,
+    TeX              -> Superscript["MT",\[Prime]],
+    Description      -> "mass of the dummy top"
+  },
+
+(* widths*)
+  WZ1 == {
+    ParameterType    -> Internal,
+    Value            -> WZ,
+    TeX              -> Superscript["WZ",\[Prime]],
+    Description      -> "width of the dummy Z"
+  },
+  WW1 == {
+    ParameterType    -> Internal,
+    Value            -> WW,
+    TeX              -> Superscript["WW",\[Prime]],
+    Description      -> "width of the dummy W"
+  },
+  WH1 == {
+    ParameterType    -> Internal,
+    Value            -> WH,
+    TeX              -> Superscript["WH",\[Prime]],
+    Description      -> "width of the dummy Higgs"
+  },
+  WT1 == {
+    ParameterType    -> Internal,
+    Value            -> WT,
+    TeX              -> Superscript["WT",\[Prime]],
+    Description      -> "width of the dummy top"
+  },
+
+(* width corrections for dummy propagators *)
+
+  dWZ == {
+    ParameterType    -> Internal,
+    Value            -> dGammaZ
+  },
+  dWW == {
+    ParameterType    -> Internal,
+    Value            -> dGammaW
+  },
+  dWH == {
+    ParameterType    -> Internal,
+    Value            -> dGammaH
+  },
+  dWT == {
+    ParameterType    -> Internal,
+    Value            -> dGammaT
+  }
+
+};
+
+
+(* ************************************************************************************* *)
+(* ************************************************************************************* *)
+(* *****      common functions for analytic manipulations and approximations       ***** *)
+(* ************************************************************************************* *)
+(* ************************************************************************************* *)
+
+shifts = {dMH2,dGf,dMZ2,dMW,dMW2,dWZ,dWW,dWT,dWH,dg1,dgw,dkH};
+
+d6pars  = Join[WC6,shifts];
+d6pars2 = d6pars;
+If[ValueQ[WC6indices],
+    d6pars=Join[d6pars,WC6indices];
+   d6pars2=Join[d6pars2,WC6indices2];
+];
+
+(* replacement needed for operator simplification *)
+
+redefCtoZero={Alternatives@@Flatten[Through[{#&,Conjugate,Re,Im,Abs}[d6pars]]]-> 0, vevT -> vevhat, propCorr->0}
+
+(* function that cuts at the linear order in the d=6 coefficients *)
+
+LinearWC[x_]:=Normal[Series[ReplaceAll[x,
+   MapThread[#1 -> #2 xx &, {Flatten[Through[{#&,Conjugate,Re,Im,Abs}[d6pars]]], Flatten[Through[{#&,Conjugate,Re,Im,Abs}[d6pars2]]]}]]
+                , {xx, 0, 1}]] /. xx -> 1;
+
+(* function that sets to zero all the d=6 coefficients *)
+
+SMlimit[x_]:=ReplaceAll[x,  Alternatives@@Flatten[Through[{#&,Conjugate,Re,Im,Abs}[Join[d6pars,{propCorr}]]]]-> 0];
+
+ (* function to simplify couplings of dummy fields carrying propagator corrections *)
+
+PropSimplify[x_]:=ReplaceAll[x, Alternatives@@Flatten[Through[{#&,Conjugate,Re,Im,Abs}[d6pars]]]-> 0];
+
+(* function that simplifies the SM expression of the Yukawa couplings:                               *)
+(* avoids redefining the Yukawa with extra corrections when they multiply another Wilson coefficient *)
+
+SimplifyYukawasTop[x_] := ReplaceAll[Expand[x], Flatten[Map[{
+   yl0[i_, j_] # -> yl[i, j] #, Conjugate[yl0[i_, j_]] # -> Conjugate[yl[i, j]] #,
+   yu0[i_, j_] # -> yutop[i, j] #, Conjugate[yu0[i_, j_]] # -> Conjugate[yutop[i, j]] #,
+   yd0[i_, j_] # -> ydtop[i, j] #, Conjugate[yd0[i_, j_]] # -> Conjugate[ydtop[i, j]] #,
+   yt0 # -> yt #, Conjugate[yt0] # -> Conjugate[yt] #,
+   yb0 # -> yb #, Conjugate[yb0] # -> Conjugate[yb] # } &, {cHDD, cHbox, dkH, dGf, propCorr}]]];
+
+SimplifyYukawas[x_] := ReplaceAll[Expand[x], Flatten[Map[{
+   yl0[i_, j_] # -> yl[i, j] #, Conjugate[yl0[i_, j_]] # -> Conjugate[yl[i, j]] #,
+   yu0[i_, j_] # -> yu[i, j] #, Conjugate[yu0[i_, j_]] # -> Conjugate[yu[i, j]] #,
+   yd0[i_, j_] # -> yd[i, j] #, Conjugate[yd0[i_, j_]] # -> Conjugate[yd[i, j]] #} &, {cHDD, cHbox, dkH, dGf, propCorr}]]];
+
+relativeVariation[x_] := x/SMlimit[x] // Simplify
+
+WCsimplify[x_] := Module[{par},
+                  par = Select[d6pars, ! FreeQ[x, #] &];
+                  Collect[Expand[x], Flatten[Through[{# &, Conjugate, Re, Im, Abs}[par]]], Simplify]
+                  ]
+
+(* ************************************************************************************* *)
+(* ************************************************************************************* *)
+(* *****   joint list of parameters (the ordering is relevant for dependencies)    ***** *)
+(* ************************************************************************************* *)
+(* ************************************************************************************* *)
+
+(* dummy redefinition of all the lists introduced in the Switch environment: *)
+(* ensures that their Head is properly seen as List by FeynRules             *)
+
+SMEFTParametersImParts = Flatten[List[SMEFTParametersImParts0]];
+SMEFTParameters = Flatten[List[SMEFTParameters0]];
+ShiftedYukawas = Flatten[List[ShY]];
+QuarkYukawas = Flatten[List[qYuk]];
+MFVSpurions = Flatten[List[MFVSp]];
+
+
+
+M$Parameters = Join[SMEFTParametersImParts, SMEFTParameters, ExternalParameters, PropCorrExtPar, QuarkYukawas, InternalParameters, PropCorrIntPar, MFVSpurions, ShiftedYukawas];

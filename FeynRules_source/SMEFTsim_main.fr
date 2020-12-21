@@ -1,0 +1,433 @@
+(* ************************** *)
+(* *****  Information   ***** *)
+(* ************************** *)
+
+
+M$ModelName = "SMEFTsim";
+
+M$Information = {
+  Authors -> {"I. Brivio"},
+  Version -> "3.0",
+  Date -> "December 2020",
+  Institutions	-> {"ITP, Universität Heidelberg"},
+  Emails -> {"brivio@thphys.uni-heidelberg.de"},
+  References -> {"arXiv:1709.06492", "arXiv:2012.xxxxx"},
+  URLs -> {"https://feynrules.irmp.ucl.ac.be/wiki/SMEFT", "https://SMEFTsim.github.io"}
+};
+
+
+
+FlavorNames[flavor_] := Switch[flavor,
+    general, "Flavor general",
+    U35, "U(3)^5 symmetric",
+    MFV, "MFV",
+    top, "Top physics",
+    topU3l, "Top physics with U(3) sym. leptons"
+];
+
+SchemeNames[scheme_] := Switch[scheme,
+    MwScheme, ToExpression["{Subscript[m,W],  Subscript[m,Z], Subscript[G,f]}"],
+    alphaScheme, ToExpression["{\[Alpha],  Subscript[m,Z], Subscript[G,f]}"]
+];
+
+flavor_error = "Flavor flag not defined or incorrectly assigned. Allowed values are general, U35, MFV, top, topU3l";
+scheme_error = "Scheme flag not defined or incorrectly assigned. Allowed values are alphaScheme, MwScheme";
+
+
+Print[FlavorNames[Flavor], " framework selected, with ", SchemeNames[Scheme], " input parameters."];
+
+
+
+
+FeynmanGauge = False;
+FR$DSign = -1; 			            (* the covariant derivatives are defined with the convention D = d + I A *)
+IncludeSMloopHcouplings = True; (* set to False to remove the one loop SM Higgs couplings to gg, gamma-gamma, z-gamma *)
+
+feynmangaugerules := If[Not[FeynmanGauge], {G0|GP|GPbar ->0}, {}];
+
+
+(* ************************** *)
+(* *****      vevs      ***** *)
+(* ************************** *)
+
+M$vevs = { {Phi[2],vevT} };
+
+
+(* ************************** *)
+(* *****  Gauge groups  ***** *)
+(* ************************** *)
+
+M$GaugeGroups = {
+  U1Y  == {
+    Abelian          -> True,
+    CouplingConstant -> g1,
+    GaugeBoson       -> B,
+    Charge           -> Y
+  },
+  SU2L == {
+    Abelian           -> False,
+    CouplingConstant  -> gw,
+    GaugeBoson        -> Wi,
+    StructureConstant -> Eps,
+    Representations   -> {Ta,SU2D},
+    Definitions       -> {Ta[a_,b_,c_]->PauliSigma[a,b,c]/2, FSU2L[i_,j_,k_]:> I Eps[i,j,k]}
+  },
+  SU3C == {
+    Abelian           -> False,
+    CouplingConstant  -> gs,
+    GaugeBoson        -> G,
+    StructureConstant -> f,
+    Representations   -> {T,Colour},
+    SymmetricTensor   -> dSUN
+  }
+};
+
+
+(* ************************** *)
+(* *****    Indices     ***** *)
+(* ************************** *)
+
+IndexRange[Index[SU2W      ]]  = Unfold[Range[3]];
+IndexRange[Index[SU2D      ]]  = Unfold[Range[2]];
+IndexRange[Index[Gluon     ]]  = NoUnfold[Range[8]];
+IndexRange[Index[Colour    ]]  = NoUnfold[Range[3]];
+IndexRange[Index[Generation]]  = Range[3];
+IndexRange[Index[Generation2]] = Range[2];
+
+IndexStyle[SU2W,        j];
+IndexStyle[SU2D,        k];
+IndexStyle[Gluon,       a];
+IndexStyle[Colour,      m];
+IndexStyle[Generation,  f];
+IndexStyle[Generation2, q];
+
+
+(* ************************** *)
+(* *** Interaction orders *** *)
+(* ***  (as used by mg5)  *** *)
+(* ************************** *)
+
+M$InteractionOrderHierarchy = {
+  {QCD, 1}, {QED, 2}, {SMHLOOP, 99}, {NP, 99}, {NPshifts, 99}, {NPprop, 99}
+  };
+
+If[Flavor === MFV,
+AppendTo[M$InteractionOrderHierarchy, {NPfv,99}]
+,
+AppendTo[M$InteractionOrderHierarchy, {NPcpv,99}]
+];
+
+
+
+(* ************************** *)
+(* *****     Gauge      ***** *)
+(* *****   Parameters   ***** *)
+(* *****   (FeynArts)   ***** *)
+(* ************************** *)
+
+GaugeXi[ V[1]  ] = GaugeXi[A];
+GaugeXi[ V[2]  ] = GaugeXi[Z];
+GaugeXi[ V[3]  ] = GaugeXi[W];
+GaugeXi[ V[4]  ] = GaugeXi[G];
+GaugeXi[ S[1]  ] = 1;
+GaugeXi[ S[2]  ] = GaugeXi[Z];
+GaugeXi[ S[3]  ] = GaugeXi[W];
+GaugeXi[ U[1]  ] = GaugeXi[A];
+GaugeXi[ U[2]  ] = GaugeXi[Z];
+GaugeXi[ U[31] ] = GaugeXi[W];
+GaugeXi[ U[32] ] = GaugeXi[W];
+GaugeXi[ U[4]  ] = GaugeXi[G];
+
+
+
+
+(* ************************** *)
+(* *****   Parameters   ***** *)
+(* ************************** *)
+
+Get["SMEFTsim_parameters.fr"];
+
+(* CKM unitarity conditions *)
+ckmMat=Table[CKM[Index[Generation,a], Index[Generation,b]],{a,3},{b,3}];
+CKMunitarity=And@@Thread[Flatten[ckmMat.ConjugateTranspose[ckmMat]] == Flatten[IdentityMatrix[3]]];
+
+assumptions := (cth^2 + sth^2 == 1 && vevhat^2 == 1/(Sqrt[2] Gf) && CKMunitarity && (CKMunitarity/.ParamRules));
+(* ParamRules gets created at LoadModel. therefore assumptions needs to be evaluated in Mathematica after import *)
+
+(* ******************* *)
+(* **** Particles **** *)
+(* ******************* *)
+
+
+Switch[Flavor,
+top | topU3l,
+Get["SMEFTsim_fields_top.fr"]
+,_,
+Get["SMEFTsim_fields.fr"]
+];
+
+
+
+
+(* ******************************************* *)
+(* *****   redefinitions and rotations   ***** *)
+(* ******************************************* *)
+
+(* rotation to have canonical kinetic terms: replacement at the level of mass eigenstates to be done on the SM Lag. only *)
+
+rotateGaugeB = {
+G[mu_,a_]-> G[mu,a] (1 + cHG vevhat^2/LambdaSMEFT^2),
+A[mu_]   -> A[mu]   (1 + vevhat^2/LambdaSMEFT^2 (cHB cth^2 + cHW sth^2 - cHWB sth cth))+
+            Z[mu]   ( vevhat^2/LambdaSMEFT^2 (- cHB cth sth + cHW cth sth - 1/2 cHWB (1 - 2 sth^2)) - dsth2/(2 sth cth)),
+Z[mu_]   -> Z[mu]   (1 + vevhat^2/LambdaSMEFT^2 (cHB sth^2 + cHW cth^2 + cHWB sth cth))+
+            A[mu]   ( vevhat^2/LambdaSMEFT^2 (- cHB cth sth + cHW cth sth - 1/2 cHWB (1 - 2 sth^2)) + dsth2/(2 sth cth)),
+W[mu_]   -> W[mu]   (1 + cHW vevhat^2/LambdaSMEFT^2),
+Wbar[mu_]-> Wbar[mu](1 + cHW vevhat^2/LambdaSMEFT^2)
+}/.{dsth2-> 2 cth sth (cth sth (dg1 - dgw) + (1/2- sth^2) cHWB vevhat^2/LambdaSMEFT^2)};
+
+
+(* redefinition of the coupling constants and vev. To be applied to the SM Lag only. *)
+
+redefConst = {
+gs -> gs(1 - cHG vevhat^2/LambdaSMEFT^2),
+gw -> gwsh,
+g1 -> g1sh};
+
+redefVev={vevT -> vevhat(1 + dGf/2)};
+
+
+(* ************************************************************************** *)
+(* *****   expressions of the shifts in terms of Wilson coefficients.   ***** *)
+(* ************************************************************************** *)
+(* alphaShifts or MwShifts should be used with ReplaceRepeated in the Mathematica notebook*)
+
+
+Switch[Scheme,
+alphaScheme,
+
+  alphaShifts={
+    dMZ2 -> vevhat^2 (cHDD/2 + 2 cth sth cHWB)/LambdaSMEFT^2,
+    dGf  -> DGFdef,
+    dg1  ->   sth^2/2/(1-2sth^2) (dGf + dMZ2 + 2 cth^2 cth/sth cHWB vevhat^2/LambdaSMEFT^2 ),
+    dgw  -> - cth^2/2/(1-2sth^2) (dGf + dMZ2 + 2 sth^2 sth/cth cHWB vevhat^2/LambdaSMEFT^2 ),
+    dMW  -> MWsm(dGf/2 +  dgw ),
+    dMH2 -> 2 dkH - 3/(2 lam) cH vevhat^2/LambdaSMEFT^2,
+    dkH -> vevhat^2/LambdaSMEFT^2 (cHbox - cHDD/4)
+  };
+
+,MwScheme,
+
+  MwShifts={
+    dMZ2 -> vevhat^2/LambdaSMEFT^2 (cHDD/2 + 2 cth sth cHWB),
+    dGf  -> DGFdef,
+    dg1  -> -(dGf + 1/sth^2 dMZ2)/2,
+    dgw  -> - dGf/2,
+    dMH2 -> 2 dkH - 3/(2 lam) cH vevhat^2/LambdaSMEFT^2,
+    dkH -> vevhat^2/LambdaSMEFT^2 (cHbox - cHDD/4)
+  };
+];
+
+
+
+
+(* ********************************** *)
+(* *****   useful definitions   ***** *)
+(* ********************************** *)
+
+(* sigma_munu tensor *)
+
+sigmaT[mu_,nu_,sp1_,sp2_]:= I/2 Module[{sp3}, Ga[mu,sp1,sp3].Ga[nu,sp3,sp2]-Ga[nu,sp1,sp3].Ga[mu,sp3,sp2]];
+
+(* symmetric derivative  iH+(DH) - i(DH+)H  *)
+
+HDH[mu_]:= Block[{ii,jj},
+		ExpandIndices[I Phibar[ii] DC[Phi[ii],mu] - I DC[Phibar[jj],mu] Phi[jj], FlavorExpand->{SU2D,SU2W}]/.feynmangaugerules
+		];
+
+operator[ind_, expr_]:= Block[ind,
+                          ExpandIndices[ expr,
+                          FlavorExpand->{SU2D,SU2W}]/.redefCtoZero/.feynmangaugerules
+                        ]//OptimizeIndex;
+
+SMoperator[ind_, expr_]:= Block[ind,
+                          ExpandIndices[ expr/.redefConst,
+                          FlavorExpand->{SU2D,SU2W}]/.rotateGaugeB/.feynmangaugerules/.redefVev
+                        ]/.redefVev;
+
+
+
+
+(* ************************** *)
+(* *****   Higgs SM     ***** *)
+(* ***** loop couplings ***** *)
+(* ************************** *)
+
+
+Get["SMEFTsim_HiggsLoops.fr"];
+
+
+
+(* ************************** *)
+(* *****   Lagrangian   ***** *)
+(* ************************** *)
+
+LGauge0:= SMoperator[{mu,nu,ii,aa},
+            -1/4 FS[B,mu,nu] FS[B,mu,nu] - 1/4 FS[Wi,mu,nu,ii] FS[Wi,mu,nu,ii] - 1/4 FS[G,mu,nu,aa] FS[G,mu,nu,aa]
+            ];
+
+LGauge1:= OptimizeIndex[LinearWC/@LGauge0]//Simplify[#,sth^2+cth^2==1]&;
+
+(* sm fields with vertex corrections *)
+LGauge:=LGauge1/.propCorr->0;
+
+(* terms with dummy fields for propagator corrections.*)
+(* allows vertices with arbitrary # of dummy fields, but no other shift *)
+LGaugeP:=LGauge1-LGauge //PropSimplify;
+
+
+Switch[Flavor,
+top | topU3l,
+LFermions0:= SMoperator[{mu},
+  I*(
+    QLbar.Ga[mu].DC[QL, mu] + qLbar.Ga[mu].DC[qL, mu] + LLbar.Ga[mu].DC[LL, mu] + uRbar.Ga[mu].DC[uR, mu] + dRbar.Ga[mu].DC[dR, mu] + tRbar.Ga[mu].DC[tR, mu] + bRbar.Ga[mu].DC[bR, mu] + lRbar.Ga[mu].DC[lR, mu]
+    + propCorr  ( t1Lbar.Ga[mu].DC[QL,mu] + t1Rbar.Ga[mu].DC[tR,mu]
+                + QLbar.Ga[mu].DC[t1L,mu] + tRbar.Ga[mu].DC[t1R,mu]
+                 )
+    + propCorr^2 (t1Lbar.Ga[mu].DC[t1L,mu] + t1Rbar.Ga[mu].DC[t1R,mu] )
+    )
+  ]
+,_,
+LFermions0:= SMoperator[{mu,ii,cc,sp1,sp2},
+   I*(
+    QLbar.Ga[mu].DC[QL, mu] + LLbar.Ga[mu].DC[LL, mu] + uRbar.Ga[mu].DC[uR, mu] + dRbar.Ga[mu].DC[dR, mu] + lRbar.Ga[mu].DC[lR, mu]
+    + propCorr ( t1Lbar[sp1,ii,cc].Ga[mu,sp1,sp2].DC[QL[sp2,ii,3,cc],mu]
+               + QLbar[sp1,ii,3,cc].Ga[mu,sp1,sp2].DC[t1L[sp2,ii,cc],mu]
+               + t1Rbar[sp1,cc].Ga[mu,sp1,sp2].DC[uR[sp2,3,cc],mu]
+               + uRbar[sp1,3,cc].Ga[mu,sp1,sp2].DC[t1R[sp2,cc],mu]
+               )
+    + propCorr^2 (t1Lbar.Ga[mu].DC[t1L,mu] + t1Rbar.Ga[mu].DC[t1R,mu] )
+    )
+   ];
+];
+
+LFermions1:= OptimizeIndex[LinearWC/@LFermions0]//Simplify[#,sth^2+cth^2==1]&;
+
+(* sm fields with vertex corrections *)
+LFermions:=LFermions1/.propCorr->0;
+
+(* terms with dummy fields for propagator corrections.*)
+LFermionsP:=LFermions1-LFermions//PropSimplify;
+
+
+
+LHiggs0:= SMoperator[{ii, jj, mu},
+           DC[Phibar[ii], mu] DC[Phi[ii], mu]
+           -  barlam (Phibar[ii] Phi[ii] Phibar[jj] Phi[jj] - Phibar[ii] Phi[ii] vev^2)
+           ];
+
+LHiggs1:= OptimizeIndex[LinearWC/@Expand[LHiggs0]]//Simplify[#,sth^2+cth^2==1]&;
+
+(* sm fields with vertex corrections *)
+LHiggs:=LHiggs1/.propCorr->0;
+(* terms with dummy fields for propagator corrections. *)
+LHiggsP:=LHiggs1-LHiggs//PropSimplify;
+
+
+
+
+
+Switch[Flavor,
+top | topU3l,
+
+LYukawa0:= Block[{sp,ii,jj,cc,ff1,ff2,qq1,qq2,yuk},
+
+  yuk = ExpandIndices[
+
+  -yl0[ff1, ff2] lRbar[sp, ff1].LL[sp, ii, ff2] Phibar[ii]
+  -yd0[qq1, qq2] dRbar[sp, qq1, cc].qL[sp, ii, qq2, cc] Phibar[ii]
+  -yu0[qq1, qq2] uRbar[sp, qq1, cc].qL[sp, jj, qq2, cc] Phi[ii] Eps[jj, ii]
+  -yb0 bRbar[sp,cc].QL[sp,ii,cc] Phibar[ii]
+  -yt0 tRbar[sp,cc].QL[sp,jj,cc] Phi[ii] Eps[jj, ii]
+
+  - propCorr yt0 ( tRbar[sp, cc].t1L[sp, jj, cc] (H + propCorr H1)/Sqrt[2] Eps[jj, 2]
+                 + t1Rbar[sp, cc].QL[sp, jj, cc] (H + propCorr H1)/Sqrt[2] Eps[jj, 2]
+                 )
+  - propCorr^2 yt0 t1Rbar[sp, cc].t1L[sp, jj, cc] (H + propCorr H1)/Sqrt[2] Eps[jj, 2]
+
+, FlavorExpand -> {SU2D}];
+
+  SimplifyYukawasTop[yuk+HC[yuk]/.feynmangaugerules/.redefConst/.redefVev]
+
+ ]
+,_,
+LYukawa0:= Block[{sp,ii,jj,cc,ff1,ff2,yuk},
+
+  yuk = ExpandIndices[
+
+  -yd0[ff1, ff2] dRbar[sp, ff1, cc].QLm[sp, ii, ff2, cc] Phibar[ii]
+  -yl0[ff1, ff2] lRbar[sp, ff1].LL[sp, ii, ff2] Phibar[ii]
+  -yu0[ff1, ff2] uRbar[sp, ff1, cc].QL[sp, jj, ff2, cc] Phi[ii] Eps[jj, ii]
+
+  - propCorr yu0[3, 3](  uRbar[sp, 3, cc].t1L[sp, jj, cc] (H + propCorr H1)/Sqrt[2] Eps[jj, 2]
+                       + t1Rbar[sp, cc].QL[sp, jj, 3, cc] (H + propCorr H1)/Sqrt[2] Eps[jj, 2]
+                      )
+  - propCorr^2 yu0[3, 3] t1Rbar[sp, cc].t1L[sp, jj, cc] (H + propCorr H1)/Sqrt[2] Eps[jj, 2]
+
+, FlavorExpand -> {SU2D}];
+
+  SimplifyYukawas[yuk+HC[yuk]/.feynmangaugerules/.redefConst/.redefVev]
+
+ ]
+];
+
+LYukawa1:= OptimizeIndex[LinearWC/@LYukawa0]//Simplify[#,sth^2+cth^2==1]&
+
+(* sm fields with vertex corrections *)
+LYukawa:=LYukawa1/.propCorr->0;
+
+(* terms with dummy fields for propagator corrections.*)
+LYukawaP:=LYukawa1-LYukawa//PropSimplify;
+
+
+
+LGhost:= Block[{LGh1,LGhw,LGhs,LGhphi,mu, generators,gh,ghbar,Vectorize,phi1,phi2,togoldstones,doublet,doublet0},
+  (* Pure gauge piece *)
+  LGh1 = -ghBbar.del[DC[ghB,mu],mu];
+  LGhw = -ghWibar.del[DC[ghWi,mu],mu];
+  LGhs = -ghGbar.del[DC[ghG,mu],mu];
+
+  (* Scalar pieces: see Peskin pages 739-742 *)
+  (* phi1 and phi2 are the real degrees of freedom of GP *)
+  (* Vectorize transforms a doublet in a vector in the phi-basis, i.e. the basis of real degrees of freedom *)
+  gh    = {ghB, ghWi[1], ghWi[2], ghWi[3]};
+  ghbar = {ghBbar, ghWibar[1], ghWibar[2], ghWibar[3]};
+  generators = {-I/2 g1 IdentityMatrix[2], -I/2 gw PauliSigma[1], -I/2 gw PauliSigma[2], -I/2 gw PauliSigma[3]};
+
+  doublet = Expand[{(-I phi1 - phi2)/Sqrt[2], Phi[2]} /. MR$Definitions /. vevT-> 0];
+  doublet0 = {0, vevT/Sqrt[2]};
+
+  Vectorize[{a_, b_}]:= Simplify[{Sqrt[2] Re[Expand[a]], Sqrt[2] Im[Expand[a]], Sqrt[2] Re[Expand[b]], Sqrt[2] Im[Expand[b]]}/.{Im[_]->0, Re[num_]->num}];
+
+  togoldstones := {phi1 -> (GP + GPbar)/Sqrt[2], phi2 -> (-GP + GPbar)/(I Sqrt[2])};
+
+  LGhphi=Plus@@Flatten[Table[-ghbar[[kkk]].gh[[lll]] Vectorize[generators[[kkk]].doublet0].Vectorize[generators[[lll]].(doublet+doublet0)],{kkk,4},{lll,4}]] /.togoldstones;
+
+  ExpandIndices[ LGhs + If[FeynmanGauge, LGh1 + LGhw + LGhphi,0],
+  FlavorExpand->SU2W]];
+
+
+
+LSM:=SMlimit/@LGauge + SMlimit/@LFermions + SMlimit/@LHiggs + SMlimit/@LYukawa; (* pure SM Lagrangian (without d=6) *)
+
+LSMlinear:=LGauge + LFermions + LHiggs + LYukawa; (* SM Lagrangian with shifts, linear in d=6 *)
+
+LSMincl:=LSMlinear + If[IncludeSMloopHcouplings, LSMloop, 0]  (* SM lagrangian shifted, with Higgs loop couplings *)
+
+
+
+(* import dimension 6 operators from file *)
+
+Get["SMEFTsim_d6_lagrangian.fr"];
+
+
+LSMEFT:= LSMincl + L6;

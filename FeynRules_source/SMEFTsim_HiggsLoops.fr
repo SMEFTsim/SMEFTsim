@@ -1,0 +1,136 @@
+(* ********************************************************** *)
+(* *****   loop functions for SM loop Higgs couplings   ***** *)
+(* ********************************************************** *)
+
+
+Ifermion[x_,y_]:= 1/3 + (11 y)/90 + (7 x)/90;
+                (* higher order terms in 1/mt: *)
+                (* + (22 y^2)/315 + (74 y^3)/1575 + (16 y x)/315 + (58 y^2 x)/1575 + (2 x^2)/63 + (2 y x^2)/75 + (26 x^3)/1575*)
+
+Iw[x_]:= -(7/4) - (11 x)/30 - (19 x^2)/105 - (58 x^3)/525;
+
+IwZ[x_,y_]:= ( 11/24 - (31 cth^2)/(24 sth^2) + (11 x)/180 - (11 cth^2 x)/(36 sth^2) + (19 x^2)/630 - (19 cth^2 x^2)/(126 sth^2)
+	     + (29 x^3)/1575 - (29 cth^2 x^3)/(315 sth^2) + (7 y)/45 - (4 cth^2 y)/(9 sth^2) + (2 x y)/35 - (62 cth^2 x y)/(315 sth^2)
+	     + (16 x^2 y)/525 - (4 cth^2 x^2 y)/(35 sth^2) + (53 y^2)/630 - (17 cth^2 y^2)/(70 sth^2) + (67 x y^2)/1575
+	     - (43 cth^2 x y^2)/(315 sth^2) + (86 y^3)/1575 - (10 cth^2 y^3)/(63 sth^2));
+
+
+(* ************************************************************ *)
+(* *****   couplings of SM radiative Higgs interactions   ***** *)
+(* ************************************************************ *)
+
+(* gHgg2...5 are coefficients of dimension 7 corrections from SM loops *)
+(* the values are taken from 0908.1573                                 *)
+
+SMHiggsloopCouplings = {
+
+  gHgg1 == {
+    ParameterType    -> Internal,
+    Value            -> gs^2 / (48 Pi^2),
+    InteractionOrder -> {{QCD,2}, {SMHLOOP, 1}},
+    TeX              -> Subsuperscript[g,HGG,(1)],
+    Description      -> "loop-induced SM HGG coupling 1"
+  },
+
+  gHgg2 == {
+    ParameterType    -> Internal,
+    Value            -> - (7/720) aS/Pi,
+    InteractionOrder -> {{QCD,2}, {SMHLOOP, 1}},
+    TeX              -> Subsuperscript[g,HGG,(2)],
+    Description      -> "loop-induced SM HGG coupling 2"
+  },
+
+  gHgg3 == {
+    ParameterType    -> Internal,
+    Value            -> gs aS/(60 Pi), (* Ogg3 is defined with opposite sign wrt. 0908.1573 *)
+    InteractionOrder -> {{QCD,2}, {SMHLOOP, 1}},
+    TeX              -> Subsuperscript[g,HGG,(3)],
+    Description      -> "loop-induced SM HGG coupling 3"
+  },
+
+  gHgg4 == {
+    ParameterType    -> Internal,
+    Value            -> aS / (360 Pi),
+    InteractionOrder -> {{QCD,2}, {SMHLOOP, 1}},
+    TeX              -> Subsuperscript[g,HGG,(4)],
+    Description      -> "loop-induced SM HGG coupling 4"
+  },
+
+  gHgg5 == {
+    ParameterType    -> Internal,
+    Value            -> aS / (20 Pi),
+    InteractionOrder -> {{QCD,2}, {SMHLOOP, 1}},
+    TeX              -> Subsuperscript[g,HGG,(5)],
+    Description      -> "loop-induced SM HGG coupling 5"
+  },
+
+  gHaa == {
+    ParameterType    -> Internal,
+    Value            -> ee^2/(8 Pi^2) (Iw[MH^2/(4 MWsm^2)] + 3 (2/3)^2 Ifermion[MH^2/(4 MT^2),0]),
+    InteractionOrder -> {{QED,2}, {SMHLOOP,1}},
+    TeX              -> Subscript[g,H\[Gamma]\[Gamma]],
+    Description      -> "loop-induced SM Haa coupling"
+  },
+
+  gHza == {
+    ParameterType    -> Internal,
+    Value            -> ee^2/(4 Pi^2) (sth/cth IwZ[MH^2/(4 MWsm^2),MZ^2/(4 MWsm^2)]
+                                       + 3 2/3 (1/2-2 sth^2 2/3) /(2 sth cth) Ifermion[MH^2/(4 MT^2), MZ^2/(4 MT^2)]
+                                      ),
+    InteractionOrder -> {{QED,2}, {SMHLOOP,1}},
+    TeX              -> Subscript[g,HZ\[Gamma]],
+    Description      -> "loop-induced SM Hza coupling"
+   }
+};
+
+M$Parameters = Join[M$Parameters, SMHiggsloopCouplings];
+
+(* ************************** *)
+(* *****   Lagrangian   ***** *)
+(* ************************** *)
+
+Ogg1:= Block[{mu,nu,aa},
+        (H + propCorr H1 )/vevhat FS[G,mu,nu,aa] FS[G,mu,nu,aa]
+     ];
+
+Ogg2:= Block[{mu,nu,sig,aa},
+        (H + propCorr H1 )/vevhat DC[FS[G,mu,nu,aa],sig] DC[FS[G,mu,nu,aa],sig]
+     ];
+
+Ogg3:= Block[{mu,nu,sig,aa,bb,cc},
+        (H + propCorr H1 )/vevhat f[aa,bb,cc] FS[G,mu,nu,aa] FS[G,nu,sig,bb] FS[G,sig,mu,cc]
+     ];
+
+Ogg4:= Block[{mu,nu,sig,aa},
+        (H + propCorr H1 )/vevhat DC[FS[G,mu,nu,aa],mu] DC[FS[G,sig,nu,aa],sig]
+     ];
+
+Ogg5:= Block[{mu,nu,sig,aa},
+        (H + propCorr H1 )/vevhat FS[G,mu,nu,aa] DC[DC[FS[G,sig,mu,aa],sig],nu]
+     ];
+
+Oaa:= Block[{mu,nu},
+        (H + propCorr H1 )/vevhat FS[A,mu,nu] FS[A,mu,nu]
+       ];
+
+Oza:= Block[{mu,nu},
+        (H + propCorr H1 )/vevhat (FS[Z,mu,nu] + propCorr FS[Z1,mu,nu]) FS[A,mu,nu]
+       ];
+
+
+
+LSMloop1:= (  gHgg1 Ogg1
+           + (gHgg2 Ogg2 + gHgg3 Ogg3 + gHgg4 Ogg4 + gHgg5 Ogg5)/MT^2
+
+           +  gHaa Oaa
+           +  gHza Oza
+
+           )/.redefVev//LinearWC;
+
+
+
+(* sm fields with vertex corrections *)
+LSMloop:=LSMloop1/.propCorr->0;
+
+(* terms with dummy fields for propagator corrections. allows vertices with arbitrary # of dummy fields, but no other shift *)
+LSMloopP:=LSMloop1-LSMloop /.Alternatives@@Join[WC6,Conjugate/@WC6, Re/@WC6, Im/@WC6, shifts]-> 0;

@@ -1,0 +1,648 @@
+(***************************************************)
+(* ***  definitions of dimension 6 operators   *** *)
+(* ***  all flavor assumptions except top      *** *)
+(***************************************************)
+
+
+(*** class 1 ***)
+
+OG:= operator[{mu,nu,ro,aa,bb,cc},
+	f[aa,bb,cc] FS[G,mu,nu,aa] FS[G,nu,ro,bb] FS[G,ro,mu,cc]
+      ];
+
+OGtil:= operator[{mu,nu,ro,sig,lam,aa,bb,cc},
+	f[aa,bb,cc] 1/2 Eps[mu,nu,sig,lam] FS[G,sig,lam,aa] FS[G,nu,ro,bb] FS[G,ro,mu,cc]
+      ];
+
+OW:= operator[{mu,nu,ro,ii,jj,kk},
+		Eps[ii,jj,kk] FS[Wi,mu,nu,ii] FS[Wi,nu,ro,jj] FS[Wi,ro,mu,kk]
+      ];
+
+OWtil:= operator[{mu,nu,ro,lam,sig,ii,jj,kk},
+		Eps[ii,jj,kk] 1/2 Eps[mu,nu,lam,sig] FS[Wi,lam,sig,ii] FS[Wi,nu,ro,jj] FS[Wi,ro,mu,kk]
+      ];
+
+(*** class 2 ***)
+
+OH:= operator[{ii,jj,kk},
+ 	 Phibar[ii] Phi[ii] Phibar[jj] Phi[jj] Phibar[kk] Phi[kk]
+	];
+
+(*** class 3 ***)
+
+OHbox:= operator[{ii,jj,mu},
+ 	 Phibar[ii]Phi[ii] del[del[Phibar[jj] Phi[jj],mu],mu]
+	];
+
+OHD:= operator[{ii,jj,mu},
+ 	 DC[Phibar[ii],mu] Phi[ii] Phibar[jj] DC[Phi[jj],mu]
+	];
+
+(*** class 4 ***)
+
+OHG:= operator[{mu,nu,ii,aa},
+		Phibar[ii] Phi[ii] FS[G,mu,nu,aa] FS[G,mu,nu,aa]
+      ];
+
+OHGtil:= operator[{mu,nu,ro,sig,ii,aa},
+		Phibar[ii] Phi[ii] 1/2 Eps[mu,nu,ro,sig] FS[G,ro,sig,aa] FS[G,mu,nu,aa]
+      ];
+
+OHW:= operator[{mu,nu,ii,kk},
+		Phibar[ii] Phi[ii] FS[Wi,mu,nu,kk] FS[Wi,mu,nu,kk]
+      ];
+
+OHWtil:= operator[{mu,nu,ro,sig,ii},
+		Phibar[ii] Phi[ii] 1/2 Eps[mu,nu,ro,sig] FS[Wi,ro,sig,kk] FS[Wi,mu,nu,kk]
+      ];
+
+OHB:= operator[{mu,nu,ii},
+		Phibar[ii] Phi[ii] FS[B,mu,nu] FS[B,mu,nu]
+      ];
+
+OHBtil:= operator[{mu,nu,ro,sig,ii},
+		Phibar[ii] Phi[ii] 1/2 Eps[mu,nu,ro,sig] FS[B,ro,sig] FS[B,mu,nu]
+      ];
+
+OHWB:= operator[{mu,nu,ii,jj,kk},
+		Phibar[ii] PauliSigma[kk,ii,jj] Phi[jj] FS[Wi,mu,nu,kk] FS[B,mu,nu]
+      ];
+
+OHWBtil:= operator[{mu,nu,ro,sig,ii,jj,kk},
+		Phibar[ii] PauliSigma[kk,ii,jj] Phi[jj] 1/2 Eps[mu,nu,ro,sig] FS[Wi,ro,sig,kk] FS[B,mu,nu]
+      ];
+
+(*** class 5 ***)
+
+OeH[ff1_,ff2_]:= operator[{sp1,ii,jj},
+	 Phibar[jj] Phi[jj] LLbar[sp1,ii,ff1].lR[sp1,ff2] Phi[ii]
+	];
+
+Switch[Flavor,
+general,
+OuH[ff1_,ff2_]:= operator[{sp1,ii,jj,kk,cc},
+	 Phibar[kk] Phi[kk] QLbar[sp1,ii,ff1,cc].uR[sp1,ff2,cc] Eps[ii,jj] Phibar[jj]
+	];
+
+OdH[ff1_,ff2_]:= operator[{sp1,ii,jj,cc},
+	 Phibar[jj] Phi[jj] QLbar[sp1,ii,ff1,cc].dR[sp1,ff2,cc] Phi[ii]
+	]
+,_,
+OuH[ff1_,ff2_]:= operator[{sp1,ii,jj,kk,cc},
+	 Phibar[kk] Phi[kk] QLmbar[sp1,ii,ff1,cc].uR[sp1,ff2,cc] Eps[ii,jj] Phibar[jj]
+	];
+
+OdH[ff1_,ff2_]:= operator[{sp1,ii,jj,cc},
+	 Phibar[jj] Phi[jj] QLmbar[sp1,ii,ff1,cc].dR[sp1,ff2,cc] Phi[ii]
+	]
+];
+
+(*** class 6 ***)
+
+OeW[ff1_,ff2_]:= operator[{sp1,sp2,mu,nu,ii,jj,kk},
+	LLbar[sp1,ii,ff1].lR[sp2,ff2] sigmaT[mu,nu,sp1,sp2]  PauliSigma[kk,ii,jj] Phi[jj] FS[Wi,mu,nu,kk]
+	];
+
+OeB[ff1_,ff2_]:= operator[{sp1,sp2,mu,nu,ii},
+	LLbar[sp1,ii,ff1].lR[sp2,ff2] sigmaT[mu,nu,sp1,sp2]  Phi[ii] FS[B,mu,nu]
+	];
+Switch[Flavor,
+general,
+OuG[ff1_,ff2_]:= operator[{sp1,sp2,mu,nu,ii,jj,aa,bb,cc},
+	QLbar[sp1,ii,ff1,aa].uR[sp2,ff2,bb] sigmaT[mu,nu,sp1,sp2] Phibar[jj] FS[G,mu,nu,cc]
+	T[cc,aa,bb] Eps[ii,jj]
+	];
+
+OuW[ff1_,ff2_]:= operator[{sp1,sp2,mu,nu,ii,jj1,jj2,kk,cc},
+	QLbar[sp1,ii,ff1,cc].uR[sp2,ff2,cc] sigmaT[mu,nu,sp1,sp2]  PauliSigma[kk,ii,jj1] Eps[jj1,jj2] Phibar[jj2] FS[Wi,mu,nu,kk]
+	];
+
+OuB[ff1_,ff2_]:= operator[{sp1,sp2,mu,nu,ii,jj,cc},
+	QLbar[sp1,ii,ff1,cc].uR[sp2,ff2,cc] sigmaT[mu,nu,sp1,sp2] Eps[ii,jj] Phibar[jj] FS[B,mu,nu]
+	];
+
+OdG[ff1_,ff2_]:= operator[{sp1,sp2,mu,nu,ii,aa,bb,cc},
+	QLbar[sp1,ii,ff1,aa].dR[sp2,ff2,bb] sigmaT[mu,nu,sp1,sp2] Phi[ii] FS[G,mu,nu,cc]
+	T[cc,aa,bb]
+	];
+
+OdW[ff1_,ff2_]:= operator[{sp1,sp2,mu,nu,ii,jj,kk,cc},
+	QLbar[sp1,ii,ff1,cc].dR[sp2,ff2,cc] sigmaT[mu,nu,sp1,sp2] PauliSigma[kk,ii,jj] Phi[jj] FS[Wi,mu,nu,kk]
+	];
+
+OdB[ff1_,ff2_]:= operator[{sp1,sp2,mu,nu,ii,cc},
+	QLbar[sp1,ii,ff1,cc].dR[sp2,ff2,cc] sigmaT[mu,nu,sp1,sp2] Phi[ii] FS[B,mu,nu]
+	]
+,_,
+
+OuG[ff1_,ff2_]:= operator[{sp1,sp2,mu,nu,ii,jj,aa,bb,cc},
+	QLmbar[sp1,ii,ff1,aa].uR[sp2,ff2,bb] sigmaT[mu,nu,sp1,sp2] Phibar[jj] FS[G,mu,nu,cc]
+	T[cc,aa,bb] Eps[ii,jj]
+	];
+
+OuW[ff1_,ff2_]:= operator[{sp1,sp2,mu,nu,ii,jj1,jj2,kk,cc},
+	QLmbar[sp1,ii,ff1,cc].uR[sp2,ff2,cc] sigmaT[mu,nu,sp1,sp2]  PauliSigma[kk,ii,jj1] Eps[jj1,jj2] Phibar[jj2] FS[Wi,mu,nu,kk]
+	];
+
+OuB[ff1_,ff2_]:= operator[{sp1,sp2,mu,nu,ii,jj,cc},
+	QLmbar[sp1,ii,ff1,cc].uR[sp2,ff2,cc] sigmaT[mu,nu,sp1,sp2] Eps[ii,jj] Phibar[jj] FS[B,mu,nu]
+	];
+
+OdG[ff1_,ff2_]:= operator[{sp1,sp2,mu,nu,ii,aa,bb,cc},
+	QLmbar[sp1,ii,ff1,aa].dR[sp2,ff2,bb] sigmaT[mu,nu,sp1,sp2] Phi[ii] FS[G,mu,nu,cc]
+	T[cc,aa,bb]
+	];
+
+OdW[ff1_,ff2_]:= operator[{sp1,sp2,mu,nu,ii,jj,kk,cc},
+	QLmbar[sp1,ii,ff1,cc].dR[sp2,ff2,cc] sigmaT[mu,nu,sp1,sp2] PauliSigma[kk,ii,jj] Phi[jj] FS[Wi,mu,nu,kk]
+	];
+
+OdB[ff1_,ff2_]:= operator[{sp1,sp2,mu,nu,ii,cc},
+	QLmbar[sp1,ii,ff1,cc].dR[sp2,ff2,cc] sigmaT[mu,nu,sp1,sp2] Phi[ii] FS[B,mu,nu]
+	]
+]
+
+
+(*** class 7 ***)
+
+OHl1[ff1_,ff2_]:= operator[{mu,sp1,sp2,ii},
+	 HDH[mu] LLbar[sp1,ii,ff1].LL[sp2,ii,ff2] Ga[mu,sp1,sp2]
+	];
+
+OHl3[ff1_,ff2_]:= operator[{mu,sp1,sp2,ii,jj,jj1,jj2,kk},
+	 I( Phibar[jj1] DC[Phi[jj2],mu] - DC[Phibar[jj1],mu] Phi[jj2])
+     LLbar[sp1,ii,ff1].LL[sp2,jj,ff2] Ga[mu,sp1,sp2]
+     PauliSigma[kk,jj1,jj2] PauliSigma[kk,ii,jj]
+	];
+
+OHe[ff1_,ff2_]:= operator[{mu,sp1,sp2},
+	HDH[mu] lRbar[sp1,ff1].lR[sp2,ff2] Ga[mu,sp1,sp2]
+	];
+
+Switch[Flavor,
+general,
+OHq1[ff1_,ff2_]:= operator[{sp1,sp2,mu,ii,cc},
+	HDH[mu] QLbar[sp1,ii,ff1,cc].QL[sp2,ii,ff2,cc] Ga[mu,sp1,sp2]
+	],
+_,
+OHq1[ff1_,ff2_]:= operator[{sp1,sp2,mu,ii,cc},
+	HDH[mu] QLmbar[sp1,ii,ff1,cc].QLm[sp2,ii,ff2,cc] Ga[mu,sp1,sp2]
+	]
+];
+
+OHq3[ff1_,ff2_]:= operator[{sp1,sp2,mu,ii,jj,kk,jj1,jj2,cc},
+	 I( Phibar[jj1] DC[Phi[jj2],mu] - DC[Phibar[jj1],mu] Phi[jj2])
+         QLbar[sp1,ii,ff1,cc].QL[sp2,jj,ff2,cc] Ga[mu,sp1,sp2]
+         PauliSigma[kk,jj1,jj2]  PauliSigma[kk,ii,jj]
+     ];
+
+OHu[ff1_,ff2_]:= operator[{mu,sp1,sp2,cc},
+	HDH[mu] uRbar[sp1,ff1,cc].uR[sp2,ff2,cc] Ga[mu,sp1,sp2]
+	];
+
+OHd[ff1_,ff2_]:= operator[{mu,sp1,sp2,cc},
+	HDH[mu] dRbar[sp1,ff1,cc].dR[sp2,ff2,cc] Ga[mu,sp1,sp2]
+	];
+
+OHud[ff1_,ff2_]:= operator[{ii,mu,sp1,sp2,cc},
+	I Eps[jj,ii] Phi[jj] DC[Phi[ii],mu]
+	uRbar[sp1,ff1,cc].dR[sp2,ff2,cc] Ga[mu,sp1,sp2]
+	];
+
+
+If[Flavor === MFV,
+OHq1Du[ff1_,ff2_]:= operator[{sp1,sp2,mu,cc,ii},
+    Squ[ii,ii,ff1,ff2]
+	HDH[mu] QLmbar[sp1,ii,ff1,cc].QLm[sp2,ii,ff2,cc] Ga[mu,sp1,sp2]
+	];
+
+OHq1Dd[ff1_,ff2_]:= operator[{sp1,sp2,mu,cc,ii},
+    Sqd[ii,ii,ff1,ff2]
+	HDH[mu] QLmbar[sp1,ii,ff1,cc].QLm[sp2,ii,ff2,cc] Ga[mu,sp1,sp2]
+	];
+
+OHq3Du[ff1_,ff2_]:= operator[{sp1,sp2,mu,ii,jj,kk,jj1,jj2,cc},
+     Squ[ii,jj,ff1,ff2]
+	 I( Phibar[jj1] DC[Phi[jj2],mu] - DC[Phibar[jj1],mu] Phi[jj2])
+         QLmbar[sp1,ii,ff1,cc].QLm[sp2,jj,ff2,cc] Ga[mu,sp1,sp2]
+         PauliSigma[kk,jj1,jj2]  PauliSigma[kk,ii,jj]
+     ];
+
+OHq3Dd[ff1_,ff2_]:= operator[{sp1,sp2,mu,ii,jj,kk,jj1,jj2,cc},
+     Sqd[ii,jj,ff1,ff2]
+	 I( Phibar[jj1] DC[Phi[jj2],mu] - DC[Phibar[jj1],mu] Phi[jj2])
+         QLmbar[sp1,ii,ff1,cc].QLm[sp2,jj,ff2,cc] Ga[mu,sp1,sp2]
+         PauliSigma[kk,jj1,jj2]  PauliSigma[kk,ii,jj]
+     ];
+];
+
+
+
+
+(*** class 8a ***)
+
+Oll[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,jj},
+	LLbar[sp1,ii,ff1].LL[sp2,ii,ff2] Ga[mu,sp1,sp2]
+	LLbar[sp3,jj,ff3].LL[sp4,jj,ff4] Ga[mu,sp3,sp4]
+	];
+Olq1[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,jj,cc},
+	LLbar[sp1,ii,ff1].LL[sp2,ii,ff2] Ga[mu,sp1,sp2]
+	QLbar[sp3,jj,ff3,cc].QL[sp4,jj,ff4,cc] Ga[mu,sp3,sp4]
+	];
+Olq3[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,cc,ii1,jj1,ii2,jj2,kk},
+	LLbar[sp1,ii1,ff1].LL[sp2,jj1,ff2] Ga[mu,sp1,sp2]
+	QLbar[sp3,ii2,ff3,cc].QL[sp4,jj2,ff4,cc] Ga[mu,sp3,sp4]
+	PauliSigma[kk,ii1,jj1] PauliSigma[kk,ii2,jj2]
+	];
+Oqq1[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,jj,cc1,cc2},
+	QLbar[sp1,ii,ff1,cc1].QL[sp2,ii,ff2,cc1] Ga[mu,sp1,sp2]
+	QLbar[sp3,jj,ff3,cc2].QL[sp4,jj,ff4,cc2] Ga[mu,sp3,sp4]
+	];
+Oqq3[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,cc1,cc2,ii1,jj1,ii2,jj2,kk},
+	QLbar[sp1,ii1,ff1,cc1].QL[sp2,jj1,ff2,cc1] Ga[mu,sp1,sp2]
+	QLbar[sp3,ii2,ff3,cc2].QL[sp4,jj2,ff4,cc2] Ga[mu,sp3,sp4]
+	PauliSigma[kk,ii1,jj1] PauliSigma[kk,ii2,jj2]
+	];
+
+
+If[Flavor===MFV,
+
+Oqq1Du[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,jj,cc1,cc2},
+    Squ[ii,ii,ff1,ff2]
+	QLmbar[sp1,ii,ff1,cc1].QLm[sp2,ii,ff2,cc1] Ga[mu,sp1,sp2]
+	QLbar[sp3,jj,ff3,cc2].QL[sp4,jj,ff4,cc2] Ga[mu,sp3,sp4]
+	];
+Oqq1Dd[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,jj,cc1,cc2},
+    Sqd[ii,ii,ff1,ff2]
+	QLmbar[sp1,ii,ff1,cc1].QLm[sp2,ii,ff2,cc1] Ga[mu,sp1,sp2]
+	QLbar[sp3,jj,ff3,cc2].QL[sp4,jj,ff4,cc2] Ga[mu,sp3,sp4]
+	];
+Oqq11Du[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,jj,cc1,cc2},
+    Squ[ii,jj,ff1,ff4]
+	QLmbar[sp1,ii,ff1,cc1].QL[sp2,ii,ff2,cc1] Ga[mu,sp1,sp2]
+	QLbar[sp3,jj,ff3,cc2].QLm[sp4,jj,ff4,cc2] Ga[mu,sp3,sp4]
+	];
+Oqq11Dd[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,jj,cc1,cc2},
+    Sqd[ii,jj,ff1,ff4]
+	QLmbar[sp1,ii,ff1,cc1].QL[sp2,ii,ff2,cc1] Ga[mu,sp1,sp2]
+	QLbar[sp3,jj,ff3,cc2].QLm[sp4,jj,ff4,cc2] Ga[mu,sp3,sp4]
+	];
+
+Olq1Du[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,jj,cc},
+    Squ[jj,jj,ff3,ff4]
+	LLbar[sp1,ii,ff1].LL[sp2,ii,ff2] Ga[mu,sp1,sp2]
+	QLmbar[sp3,jj,ff3,cc].QLm[sp4,jj,ff4,cc] Ga[mu,sp3,sp4]
+	];
+Olq1Dd[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,jj,cc},
+    Sqd[jj,jj,ff3,ff4]
+	LLbar[sp1,ii,ff1].LL[sp2,ii,ff2] Ga[mu,sp1,sp2]
+	QLmbar[sp3,jj,ff3,cc].QLm[sp4,jj,ff4,cc] Ga[mu,sp3,sp4]
+	];
+
+Oqq3Du[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,cc1,cc2,ii1,jj1,ii2,jj2,kk},
+    Squ[ii1,jj1,ff1,ff2]
+	QLmbar[sp1,ii1,ff1,cc1].QLm[sp2,jj1,ff2,cc1] Ga[mu,sp1,sp2]
+	QLbar[sp3,ii2,ff3,cc2].QL[sp4,jj2,ff4,cc2] Ga[mu,sp3,sp4]
+	PauliSigma[kk,ii1,jj1] PauliSigma[kk,ii2,jj2]
+	];
+Oqq3Dd[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,cc1,cc2,ii1,jj1,ii2,jj2,kk},
+    Sqd[ii1,jj1,ff1,ff2]
+	QLmbar[sp1,ii1,ff1,cc1].QLm[sp2,jj1,ff2,cc1] Ga[mu,sp1,sp2]
+	QLbar[sp3,ii2,ff3,cc2].QL[sp4,jj2,ff4,cc2] Ga[mu,sp3,sp4]
+	PauliSigma[kk,ii1,jj1] PauliSigma[kk,ii2,jj2]
+	];
+Oqq31Du[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,cc1,cc2,ii1,jj1,ii2,jj2,kk},
+    Squ[ii1,jj2,ff1,ff4]
+	QLmbar[sp1,ii1,ff1,cc1].QL[sp2,jj1,ff2,cc1] Ga[mu,sp1,sp2]
+	QLbar[sp3,ii2,ff3,cc2].QLm[sp4,jj2,ff4,cc2] Ga[mu,sp3,sp4]
+	PauliSigma[kk,ii1,jj1] PauliSigma[kk,ii2,jj2]
+	];
+Oqq31Dd[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,cc1,cc2,ii1,jj1,ii2,jj2,kk},
+    Sqd[ii1,jj2,ff1,ff4]
+	QLmbar[sp1,ii1,ff1,cc1].QL[sp2,jj1,ff2,cc1] Ga[mu,sp1,sp2]
+	QLbar[sp3,ii2,ff3,cc2].QLm[sp4,jj2,ff4,cc2] Ga[mu,sp3,sp4]
+	PauliSigma[kk,ii1,jj1] PauliSigma[kk,ii2,jj2]
+	];
+
+Olq3Du[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,cc,ii1,jj1,ii2,jj2,kk},
+    Squ[ii2,jj2,ff3,ff4]
+	LLbar[sp1,ii1,ff1].LL[sp2,jj1,ff2] Ga[mu,sp1,sp2]
+	QLmbar[sp3,ii2,ff3,cc].QLm[sp4,jj2,ff4,cc] Ga[mu,sp3,sp4]
+	PauliSigma[kk,ii1,jj1] PauliSigma[kk,ii2,jj2]
+	];
+Olq3Dd[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,cc,ii1,jj1,ii2,jj2,kk},
+    Sqd[ii2,jj2,ff3,ff4]
+	LLbar[sp1,ii1,ff1].LL[sp2,jj1,ff2] Ga[mu,sp1,sp2]
+	QLmbar[sp3,ii2,ff3,cc].QLm[sp4,jj2,ff4,cc] Ga[mu,sp3,sp4]
+	PauliSigma[kk,ii1,jj1] PauliSigma[kk,ii2,jj2]
+	]
+];
+
+
+(*** class 8b  ***)
+
+Oee[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4},
+	 lRbar[sp1,ff1].lR[sp2,ff2] Ga[mu,sp1,sp2]
+	 lRbar[sp3,ff3].lR[sp4,ff4] Ga[mu,sp3,sp4]
+	];
+
+Ouu[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,cc1,cc2},
+	 uRbar[sp1,ff1,cc1].uR[sp2,ff2,cc1] Ga[mu,sp1,sp2]
+	 uRbar[sp3,ff3,cc2].uR[sp4,ff4,cc2] Ga[mu,sp3,sp4]
+	];
+
+Odd[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,cc1,cc2},
+	 dRbar[sp1,ff1,cc1].dR[sp2,ff2,cc1] Ga[mu,sp1,sp2]
+	 dRbar[sp3,ff3,cc2].dR[sp4,ff4,cc2] Ga[mu,sp3,sp4]
+	];
+
+Oeu[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,cc},
+	 lRbar[sp1,ff1].lR[sp2,ff2] Ga[mu,sp1,sp2]
+	 uRbar[sp3,ff3,cc].uR[sp4,ff4,cc] Ga[mu,sp3,sp4]
+	];
+
+Oed[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,cc},
+	 lRbar[sp1,ff1].lR[sp2,ff2] Ga[mu,sp1,sp2]
+	 dRbar[sp3,ff3,cc].dR[sp4,ff4,cc] Ga[mu,sp3,sp4]
+	];
+
+Oud1[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,cc1,cc2},
+	 uRbar[sp1,ff1,cc1].uR[sp2,ff2,cc1] Ga[mu,sp1,sp2]
+	 dRbar[sp3,ff3,cc2].dR[sp4,ff4,cc2] Ga[mu,sp3,sp4]
+	];
+
+Oud8[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,cc1,cc2,cc3,cc4,aa},
+	 uRbar[sp1,ff1,cc1].uR[sp2,ff2,cc2] Ga[mu,sp1,sp2]
+	 dRbar[sp3,ff3,cc3].dR[sp4,ff4,cc4] Ga[mu,sp3,sp4]
+	 T[aa,cc1,cc2] T[aa,cc3,cc4]
+	];
+
+
+
+(*** class 8c ***)
+
+Ole[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii},
+	LLbar[sp1,ii,ff1].LL[sp2,ii,ff2] Ga[mu,sp1,sp2]
+	lRbar[sp3,ff3].lR[sp4,ff4] Ga[mu,sp3,sp4]
+	];
+
+Olu[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,cc},
+	LLbar[sp1,ii,ff1].LL[sp2,ii,ff2] Ga[mu,sp1,sp2]
+	uRbar[sp3,ff3,cc].uR[sp4,ff4,cc] Ga[mu,sp3,sp4]
+	];
+
+Old[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,cc},
+	LLbar[sp1,ii,ff1].LL[sp2,ii,ff2] Ga[mu,sp1,sp2]
+	dRbar[sp3,ff3,cc].dR[sp4,ff4,cc] Ga[mu,sp3,sp4]
+	];
+
+Oqe[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,cc},
+	QLbar[sp1,ii,ff1,cc].QL[sp2,ii,ff2,cc] Ga[mu,sp1,sp2]
+	lRbar[sp3,ff3].lR[sp4,ff4] Ga[mu,sp3,sp4]
+	];
+
+Oqu1[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,cc1,cc2},
+	QLbar[sp1,ii,ff1,cc1].QL[sp2,ii,ff2,cc1] Ga[mu,sp1,sp2]
+	uRbar[sp3,ff3,cc2].uR[sp4,ff4,cc2] Ga[mu,sp3,sp4]
+	];
+
+Oqu8[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,cc1,cc2,cc3,cc4,aa},
+	QLbar[sp1,ii,ff1,cc1].QL[sp2,ii,ff2,cc2] Ga[mu,sp1,sp2]
+	uRbar[sp3,ff3,cc3].uR[sp4,ff4,cc4] Ga[mu,sp3,sp4]
+	T[aa,cc1,cc2] T[aa,cc3,cc4]
+	];
+
+Oqd1[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,cc1,cc2},
+	QLbar[sp1,ii,ff1,cc1].QL[sp2,ii,ff2,cc1] Ga[mu,sp1,sp2]
+	dRbar[sp3,ff3,cc2].dR[sp4,ff4,cc2] Ga[mu,sp3,sp4]
+	];
+
+Oqd8[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,cc1,cc2,cc3,cc4,aa},
+	QLbar[sp1,ii,ff1,cc1].QL[sp2,ii,ff2,cc2] Ga[mu,sp1,sp2]
+	dRbar[sp3,ff3,cc3].dR[sp4,ff4,cc4] Ga[mu,sp3,sp4]
+	T[aa,cc1,cc2] T[aa,cc3,cc4]
+	];
+
+
+If[Flavor===MFV,
+
+OqeDu[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,cc},
+    Squ[ii,ii,ff1,ff2]
+	QLmbar[sp1,ii,ff1,cc].QLm[sp2,ii,ff2,cc] Ga[mu,sp1,sp2]
+	lRbar[sp3,ff3].lR[sp4,ff4] Ga[mu,sp3,sp4]
+	];
+OqeDd[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,cc},
+    Sqd[ii,ii,ff1,ff2]
+	QLmbar[sp1,ii,ff1,cc].QLm[sp2,ii,ff2,cc] Ga[mu,sp1,sp2]
+	lRbar[sp3,ff3].lR[sp4,ff4] Ga[mu,sp3,sp4]
+	];
+
+Oqu1D1u[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,cc1,cc2},
+    Squ[ii,ii,ff1,ff2]
+	QLmbar[sp1,ii,ff1,cc1].QLm[sp2,ii,ff2,cc1] Ga[mu,sp1,sp2]
+	uRbar[sp3,ff3,cc2].uR[sp4,ff4,cc2] Ga[mu,sp3,sp4]
+	];
+Oqu1D1d[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,cc1,cc2},
+    Sqd[ii,ii,ff1,ff2]
+	QLmbar[sp1,ii,ff1,cc1].QLm[sp2,ii,ff2,cc1] Ga[mu,sp1,sp2]
+	uRbar[sp3,ff3,cc2].uR[sp4,ff4,cc2] Ga[mu,sp3,sp4]
+	];
+
+Oqu8D1u[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,cc1,cc2,cc3,cc4,aa},
+    Squ[ii,ii,ff1,ff2]
+	QLmbar[sp1,ii,ff1,cc1].QLm[sp2,ii,ff2,cc2] Ga[mu,sp1,sp2]
+	uRbar[sp3,ff3,cc3].uR[sp4,ff4,cc4] Ga[mu,sp3,sp4]
+	T[aa,cc1,cc2] T[aa,cc3,cc4]
+	];
+Oqu8D1d[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,cc1,cc2,cc3,cc4,aa},
+    Sqd[ii,ii,ff1,ff2]
+	QLmbar[sp1,ii,ff1,cc1].QLm[sp2,ii,ff2,cc2] Ga[mu,sp1,sp2]
+	uRbar[sp3,ff3,cc3].uR[sp4,ff4,cc4] Ga[mu,sp3,sp4]
+	T[aa,cc1,cc2] T[aa,cc3,cc4]
+	];
+
+Oqd1D1u[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,cc1,cc2},
+    Squ[ii,ii,ff1,ff2]
+	QLmbar[sp1,ii,ff1,cc1].QLm[sp2,ii,ff2,cc1] Ga[mu,sp1,sp2]
+	dRbar[sp3,ff3,cc2].dR[sp4,ff4,cc2] Ga[mu,sp3,sp4]
+	];
+Oqd1D1d[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,cc1,cc2},
+    Sqd[ii,ii,ff1,ff2]
+	QLmbar[sp1,ii,ff1,cc1].QLm[sp2,ii,ff2,cc1] Ga[mu,sp1,sp2]
+	dRbar[sp3,ff3,cc2].dR[sp4,ff4,cc2] Ga[mu,sp3,sp4]
+	];
+
+Oqd8D1u[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,cc1,cc2,cc3,cc4,aa},
+    Squ[ii,ii,ff1,ff2]
+	QLmbar[sp1,ii,ff1,cc1].QLm[sp2,ii,ff2,cc2] Ga[mu,sp1,sp2]
+	dRbar[sp3,ff3,cc3].dR[sp4,ff4,cc4] Ga[mu,sp3,sp4]
+	T[aa,cc1,cc2] T[aa,cc3,cc4]
+	];
+Oqd8D1d[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,sp1,sp2,sp3,sp4,ii,cc1,cc2,cc3,cc4,aa},
+    Sqd[ii,ii,ff1,ff2]
+	QLmbar[sp1,ii,ff1,cc1].QLm[sp2,ii,ff2,cc2] Ga[mu,sp1,sp2]
+	dRbar[sp3,ff3,cc3].dR[sp4,ff4,cc4] Ga[mu,sp3,sp4]
+	T[aa,cc1,cc2] T[aa,cc3,cc4]
+	]
+];
+
+
+(*** class 8d ***)
+
+Oledq[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,ii,cc},
+	LLbar[sp1,ii,ff1].lR[sp1,ff2]
+	dRbar[sp2,ff3,cc].QL[sp2,ii,ff4,cc]
+	];
+
+Oquqd1[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,ii,jj},
+	QLbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc1] Eps[ii,jj]
+	QLbar[sp2,jj,ff3,cc2].dR[sp2,ff4,cc2]
+	];
+
+Oquqd8[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,cc3,cc4,aa,ii,jj},
+	QLbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc2] Eps[ii,jj]
+	QLbar[sp2,jj,ff3,cc3].dR[sp2,ff4,cc4]
+    T[aa,cc1,cc2] T[aa,cc3,cc4]
+	];
+
+Olequ1[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc,ii,jj},
+	LLbar[sp1,ii,ff1].lR[sp1,ff2] Eps[ii,jj]
+	QLbar[sp2,jj,ff3,cc].uR[sp2,ff4,cc]
+	];
+
+Olequ3[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,nu,sp1,sp2,sp3,sp4,ii,jj,cc},
+	LLbar[sp1,ii,ff1].lR[sp2,ff2]  Eps[ii,jj]
+	QLbar[sp3,jj,ff3,cc].uR[sp4,ff4,cc]
+	sigmaT[mu,nu,sp1,sp2] sigmaT[mu,nu,sp3,sp4]
+	];
+
+If[Flavor===MFV,
+OledqDu[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,ii,cc,ff},
+    Conjugate[Squ[ii,2,ff4,ff]] yd[ff3, ff]
+	LLbar[sp1,ii,ff1].lR[sp1,ff2]
+	dRbar[sp2,ff3,cc].QLm[sp2,ii,ff4,cc]
+	];
+OledqDd[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,ii,cc,ff},
+    Conjugate[Sqd[ii,2,ff4,ff]] yd[ff3, ff]
+	LLbar[sp1,ii,ff1].lR[sp1,ff2]
+	dRbar[sp2,ff3,cc].QLm[sp2,ii,ff4,cc]
+	];
+
+Oquqd1D1u[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,ii,jj,ff},
+    Squ[ii,1,ff1,ff] Conjugate[yu[ff2, ff]]
+	QLmbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc1] Eps[ii,jj]
+	QLbar[sp2,jj,ff3,cc2].dR[sp2,ff4,cc2]
+	];
+Oquqd1D1d[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,ii,jj,ff},
+    Sqd[ii,1,ff1,ff] Conjugate[yu[ff2, ff]]
+	QLmbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc1] Eps[ii,jj]
+	QLbar[sp2,jj,ff3,cc2].dR[sp2,ff4,cc2]
+	];
+Oquqd1D2u[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,ii,jj,ff},
+    Squ[jj,2,ff3,ff] Conjugate[yd[ff4,ff]]
+	QLbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc1] Eps[ii,jj]
+	QLmbar[sp2,jj,ff3,cc2].dR[sp2,ff4,cc2]
+	];
+Oquqd1D2d[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,ii,jj,ff},
+    Sqd[jj,2,ff3,ff] Conjugate[yd[ff4,ff]]
+	QLbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc1] Eps[ii,jj]
+	QLmbar[sp2,jj,ff3,cc2].dR[sp2,ff4,cc2]
+	];
+
+Oquqd11D1u[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,ii,jj,ff},
+    Squ[ii,1,ff3,ff] Conjugate[yu[ff2, ff]]
+	QLbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc1] Eps[ii,jj]
+	QLmbar[sp2,jj,ff3,cc2].dR[sp2,ff4,cc2]
+	];
+Oquqd11D1d[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,ii,jj,ff},
+    Sqd[ii,1,ff3,ff] Conjugate[yu[ff2, ff]]
+	QLbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc1] Eps[ii,jj]
+	QLmbar[sp2,jj,ff3,cc2].dR[sp2,ff4,cc2]
+	];
+Oquqd11D2u[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,ii,jj,ff},
+    Squ[jj,2,ff1,ff] Conjugate[yd[ff4,ff]]
+	QLmbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc1] Eps[ii,jj]
+	QLbar[sp2,jj,ff3,cc2].dR[sp2,ff4,cc2]
+	];
+Oquqd11D2d[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,ii,jj,ff},
+    Sqd[jj,2,ff1,ff] Conjugate[yd[ff4,ff]]
+	QLmbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc1] Eps[ii,jj]
+	QLbar[sp2,jj,ff3,cc2].dR[sp2,ff4,cc2]
+	];
+
+Oquqd8D1u[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,cc3,cc4,aa,ii,jj,ff},
+    Squ[ii,1,ff1,ff] Conjugate[yu[ff2, ff]]
+	QLmbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc2] Eps[ii,jj]
+	QLbar[sp2,jj,ff3,cc3].dR[sp2,ff4,cc4]
+    T[aa,cc1,cc2] T[aa,cc3,cc4]
+	];
+Oquqd8D1d[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,cc3,cc4,aa,ii,jj,ff},
+    Sqd[ii,1,ff1,ff] Conjugate[yu[ff2, ff]]
+	QLmbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc2] Eps[ii,jj]
+	QLbar[sp2,jj,ff3,cc3].dR[sp2,ff4,cc4]
+    T[aa,cc1,cc2] T[aa,cc3,cc4]
+	];
+Oquqd8D2u[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,cc3,cc4,aa,ii,jj,ff},
+    Squ[jj,2,ff3,ff] Conjugate[yd[ff4,ff]]
+	QLbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc2] Eps[ii,jj]
+	QLmbar[sp2,jj,ff3,cc3].dR[sp2,ff4,cc4]
+    T[aa,cc1,cc2] T[aa,cc3,cc4]
+	];
+Oquqd8D2d[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,cc3,cc4,aa,ii,jj,ff},
+    Sqd[jj,2,ff3,ff] Conjugate[yd[ff4,ff]]
+	QLbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc2] Eps[ii,jj]
+	QLmbar[sp2,jj,ff3,cc3].dR[sp2,ff4,cc4]
+    T[aa,cc1,cc2] T[aa,cc3,cc4]
+	];
+
+
+Oquqd81D1u[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,cc3,cc4,aa,ii,jj,ff},
+    Squ[ii,1,ff3,ff] Conjugate[yu[ff2, ff]]
+	QLbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc2] Eps[ii,jj]
+	QLmbar[sp2,jj,ff3,cc3].dR[sp2,ff4,cc4]
+    T[aa,cc1,cc2] T[aa,cc3,cc4]
+	];
+Oquqd81D1d[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,cc3,cc4,aa,ii,jj,ff},
+    Sqd[ii,1,ff3,ff] Conjugate[yu[ff2, ff]]
+	QLbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc2] Eps[ii,jj]
+	QLmbar[sp2,jj,ff3,cc3].dR[sp2,ff4,cc4]
+    T[aa,cc1,cc2] T[aa,cc3,cc4]
+	];
+Oquqd81D2u[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,cc3,cc4,aa,ii,jj,ff},
+    Squ[jj,2,ff1,ff] Conjugate[yd[ff4,ff]]
+	QLmbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc2] Eps[ii,jj]
+	QLbar[sp2,jj,ff3,cc3].dR[sp2,ff4,cc4]
+    T[aa,cc1,cc2] T[aa,cc3,cc4]
+	];
+Oquqd81D2d[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc1,cc2,cc3,cc4,aa,ii,jj,ff},
+    Sqd[jj,2,ff1,ff] Conjugate[yd[ff4,ff]]
+	QLmbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc2] Eps[ii,jj]
+	QLbar[sp2,jj,ff3,cc3].dR[sp2,ff4,cc4]
+    T[aa,cc1,cc2] T[aa,cc3,cc4]
+	];
+
+
+Olequ1Du[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc,ii,jj,ff},
+    Squ[jj,1,ff3,ff] Conjugate[yu[ff4,ff]]
+	LLbar[sp1,ii,ff1].lR[sp1,ff2] Eps[ii,jj]
+	QLmbar[sp2,jj,ff3,cc].uR[sp2,ff4,cc]
+	];
+Olequ1Dd[ff1_,ff2_,ff3_,ff4_]:= operator[{sp1,sp2,cc,ii,jj,ff},
+    Sqd[jj,1,ff3,ff] Conjugate[yu[ff4,ff]]
+	LLbar[sp1,ii,ff1].lR[sp1,ff2] Eps[ii,jj]
+	QLmbar[sp2,jj,ff3,cc].uR[sp2,ff4,cc]
+	];
+
+Olequ3Du[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,nu,sp1,sp2,sp3,sp4,ii,jj,cc},
+    Squ[jj,1,ff3,ff] Conjugate[yu[ff4,ff]]
+	LLbar[sp1,ii,ff1].lR[sp2,ff2]  Eps[ii,jj]
+	QLmbar[sp3,jj,ff3,cc].uR[sp4,ff4,cc]
+	sigmaT[mu,nu,sp1,sp2] sigmaT[mu,nu,sp3,sp4]
+	];
+Olequ3Dd[ff1_,ff2_,ff3_,ff4_]:= operator[{mu,nu,sp1,sp2,sp3,sp4,ii,jj,cc},
+    Sqd[jj,1,ff3,ff] Conjugate[yu[ff4,ff]]
+	LLbar[sp1,ii,ff1].lR[sp2,ff2]  Eps[ii,jj]
+	QLmbar[sp3,jj,ff3,cc].uR[sp4,ff4,cc]
+	sigmaT[mu,nu,sp1,sp2] sigmaT[mu,nu,sp3,sp4]
+	]
+];

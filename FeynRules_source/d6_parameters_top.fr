@@ -1,0 +1,2028 @@
+(* ************************************************************************ *)
+(* ***   Wilson coefficients for the top and topU3l flavor assumptions  *** *)
+(* ************************************************************************ *)
+
+(* external parameters can only be real.                                                                *)
+(* For complex Wilson coefficients im and re parts values are defined separately as external parameters *)
+
+SMEFTParametersImParts0 = {
+
+  cGtil == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTcpv,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcpv,1},{NPcGtil,1}},
+    TeX               -> Subscript[c,OverTilde[G]]
+  },
+  cWtil == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTcpv,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcpv,1},{NPcWtil,1}},
+    TeX              -> Subscript[c,OverTilde[W]]
+  },
+  cHGtil == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTcpv,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcpv,1},{NPcHGtil,1}},
+    TeX              -> Subscript[c,H OverTilde[G]]
+  },
+  cHWtil == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTcpv,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcpv,1},{NPcHWtil,1}},
+    TeX              -> Subscript[c,H OverTilde[W]]
+  },
+  cHBtil == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTcpv,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcpv,1},{NPcHBtil,1}},
+    TeX              -> Subscript[c,H OverTilde[B]]
+  },
+  cHWBtil == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTcpv,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcpv,1},{NPcHWBtil,1}},
+    TeX              -> Subscript[c,H OverTilde[W] B]
+  },
+
+ (* im parts for 2-fermion operators that are non-hermitian: classes 5+6 *)
+
+ cuGIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcuG,1}}},
+ ctGIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPctG,1}}},
+ cuWIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcuW,1}}},
+ ctWIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPctW,1}}},
+ cuBIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcuB,1}}},
+ ctBIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPctB,1}}},
+
+ cdGIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcdG,1}}},
+ cbGIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcbG,1}}},
+ cdWIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcdW,1}}},
+ cbWIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcbW,1}}},
+ cdBIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcdB,1}}},
+ cbBIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcbB,1}}},
+
+ cuHIm   == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcuH,1}}},
+ ctHIm   == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPctH,1}}},
+ cdHIm   == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcdH,1}}},
+ cbHIm   == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcbH,1}}},
+
+ (* im parts for 2-fermion operators that are non-hermitian: class 7 *)
+
+ cHudIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcHud,1}}},
+ cHtbIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcHtb,1}}},
+
+ (* im parts for 4-fermion operators that are non-hermitian: class 8 *)
+
+
+ cutbd1Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcutbd1,1}}},
+ cutbd8Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcutbd8,1}}},
+
+ cjQtu1Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcjQtu1,1}}},
+ cjQtu8Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcjQtu8,1}}},
+ cjQbd1Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcjQbd1,1}}},
+ cjQbd8Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcjQbd8,1}}},
+
+ cjujd1Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcjujd1,1}}},
+ cjujd8Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcjujd8,1}}},
+ cjujd11Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcjujd11,1}}},
+ cjujd81Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcjujd81,1}}},
+ cQtjd1Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcQtjd1,1}}},
+ cQtjd8Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcQtjd8,1}}},
+ cjuQb1Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcjuQb1,1}}},
+ cjuQb8Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcjuQb8,1}}},
+ cQujb1Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcQujb1,1}}},
+ cQujb8Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcQujb8,1}}},
+ cjtQd1Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcjtQd1,1}}},
+ cjtQd8Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcjtQd8,1}}},
+ cQtQb1Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcQtQb1,1}}},
+ cQtQb8Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcQtQb8,1}}}
+
+};
+
+
+SMEFTParametersImParts0 = Join[SMEFTParametersImParts0,
+Switch[Flavor,
+top,
+{
+ ceHIm11 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPceH,1}}},
+ ceHIm22 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPceH,1}}},
+ ceHIm33 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPceH,1}}},
+
+ ceWIm11 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPceW,1}}},
+ ceWIm22 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPceW,1}}},
+ ceWIm33 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPceW,1}}},
+ ceBIm11 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPceB,1}}},
+ ceBIm22 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPceB,1}}},
+ ceBIm33 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPceB,1}}},
+
+ cledjIm11 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcledj,1}}},
+ cledjIm22 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcledj,1}}},
+ cledjIm33 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcledj,1}}},
+ clebQIm11 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPclebQ,1}}},
+ clebQIm22 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPclebQ,1}}},
+ clebQIm33 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPclebQ,1}}},
+
+ cleju1Im11 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcleju1,1}}},
+ cleju1Im22 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcleju1,1}}},
+ cleju1Im33 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcleju1,1}}},
+ cleju3Im11 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcleju3,1}}},
+ cleju3Im22 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcleju3,1}}},
+ cleju3Im33 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcleju3,1}}},
+ cleQt1Im11 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcleQt1,1}}},
+ cleQt1Im22 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcleQt1,1}}},
+ cleQt1Im33 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcleQt1,1}}},
+ cleQt3Im11 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcleQt3,1}}},
+ cleQt3Im22 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcleQt3,1}}},
+ cleQt3Im33 == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcleQt3,1}}}
+}
+
+,topU3l,
+{
+ ceHIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPceH,1}}},
+
+ ceWIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPceW,1}}},
+ ceBIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPceB,1}}},
+
+ cledjIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcledj,1}}},
+ clebQIm == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPclebQ,1}}},
+
+ cleju1Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcleju1,1}}},
+ cleju3Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcleju3,1}}},
+ cleQt1Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcleQt1,1}}},
+ cleQt3Im == {ParameterType -> External, Value -> 0, BlockName -> SMEFTcpv, InteractionOrder->{{NP,1},{NPcpv,1},{NPcleQt3,1}}}
+}
+]];
+
+
+SMEFTParameters0 = {
+
+(*** EFT cutoff - set to 1 TeV by default ***)
+
+  LambdaSMEFT == {
+    ParameterType    -> External,
+    BlockName        -> SMEFTcutoff,
+    Value	         -> 10^(3),
+    InteractionOrder -> {QED, -1},
+    TeX              -> \[CapitalLambda]
+  },
+
+ (*** class 1 ***)
+
+  cG == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value	         -> 0,
+    InteractionOrder -> {{NP,1}, {NPcG,1}},
+    TeX              -> Subscript[c,G]
+  },
+  cW == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value	         -> 0,
+    InteractionOrder -> {{NP,1}, {NPcW,1}},
+    TeX              -> Subscript[c,W]
+  },
+
+  (*** class 2 ***)
+
+  cH == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value	         -> 0,
+    InteractionOrder -> {{NP,1}, {NPcH,1}},
+    TeX              -> Subscript[c,H]
+  },
+
+  (*** class 3 ***)
+
+  cHbox == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value	         -> 0,
+    InteractionOrder -> {{NP,1}, {NPcHbox,1}},
+    TeX              -> Subscript[c,H \[EmptySquare]]
+  },
+  cHDD == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value	         -> 0,
+    InteractionOrder -> {{NP,1}, {NPcHDD,1}},
+    TeX              -> Subscript[c,HD]
+  },
+
+  (*** class 4 ***)
+
+  cHG == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value	         -> 0,
+    InteractionOrder -> {{NP,1}, {NPcHG,1}},
+    TeX              -> Subscript[c,HG]
+  },
+  cHW == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value	         -> 0,
+    InteractionOrder -> {{NP,1}, {NPcHW,1}},
+    TeX              -> Subscript[c,HW]
+  },
+  cHB == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value	         -> 0,
+    InteractionOrder -> {{NP,1}, {NPcHB,1}},
+    TeX              -> Subscript[c,HB]
+  },
+  cHWB == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value	         -> 0,
+    InteractionOrder -> {{NP,1}, {NPcHWB,1}},
+    TeX              -> Subscript[c,HWB]
+  },
+
+
+ (*** class 5 ***)
+
+     (* re values *)
+
+ cuHRe   == {ParameterType -> External,BlockName-> SMEFT, InteractionOrder -> {{NP, 1},{NPcuH, 1}}, Value -> 0},
+ ctHRe   == {ParameterType -> External,BlockName-> SMEFT, InteractionOrder -> {{NP, 1},{NPctH, 1}}, Value -> 0},
+ cdHRe   == {ParameterType -> External,BlockName-> SMEFT, InteractionOrder -> {{NP, 1},{NPcdH, 1}}, Value -> 0},
+ cbHRe   == {ParameterType -> External,BlockName-> SMEFT, InteractionOrder -> {{NP, 1},{NPcbH, 1}}, Value -> 0},
+
+     (* complex coefficients *)
+
+ cuH == {
+    ParameterType    -> Internal,
+    Definitions      -> {cuH -> cuHRe + I cuHIm},
+    InteractionOrder -> {{NP,1},{NPcuH,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,uH]
+  },
+ ctHH == {
+    ParameterType    -> Internal,
+    Definitions      -> {ctHH -> ctHRe + I ctHIm},
+    InteractionOrder -> {{NP,1},{NPctH,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,tH]
+  },
+ cdH == {
+    ParameterType    -> Internal,
+    Definitions      -> {cdH -> cdHRe + I cdHIm},
+    InteractionOrder -> {{NP,1},{NPcdH,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,dH]
+  },
+ cbH == {
+    ParameterType    -> Internal,
+    Definitions      -> {cbH -> cbHRe + I cbHIm},
+    InteractionOrder -> {{NP,1},{NPcbH,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,bH]
+  },
+
+
+  (*** class 6 ***)
+
+     (* non hermitian*)
+
+  cuGRe   == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcuG,1}}, Value -> 0},
+  ctGRe   == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPctG,1}}, Value -> 0},
+  cuWRe   == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcuW,1}}, Value -> 0},
+  ctWRe   == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPctW,1}}, Value -> 0},
+  cuBRe   == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcuB,1}}, Value -> 0},
+  ctBRe   == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPctB,1}}, Value -> 0},
+  cdGRe   == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcdG,1}}, Value -> 0},
+  cbGRe   == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcbG,1}}, Value -> 0},
+  cdWRe   == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcdW,1}}, Value -> 0},
+  cbWRe   == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcbW,1}}, Value -> 0},
+  cdBRe   == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcdB,1}}, Value -> 0},
+  cbBRe   == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcbB,1}}, Value -> 0},
+
+      (* complex coefficients *)
+
+  cuG == {
+    ParameterType    -> Internal,
+    Definitions      -> {cuG -> cuGRe + I cuGIm},
+    InteractionOrder -> {{NP,1},{NPcuG,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,uG]
+  },
+  ctG == {
+    ParameterType    -> Internal,
+    Definitions      -> {ctG -> ctGRe + I ctGIm},
+    InteractionOrder -> {{NP,1},{NPctG,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,tG]
+  },
+  cuW == {
+    ParameterType    -> Internal,
+    Definitions      -> {cuW -> cuWRe + I cuWIm},
+    InteractionOrder -> {{NP,1},{NPcuW,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,uW]
+  },
+  ctW == {
+    ParameterType    -> Internal,
+    Definitions      -> {ctW -> ctWRe + I ctWIm},
+    InteractionOrder -> {{NP,1},{NPctW,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,tW]
+  },
+  cuB == {
+    ParameterType    -> Internal,
+    Definitions      -> {cuB -> cuBRe + I cuBIm},
+    InteractionOrder -> {{NP,1},{NPcuB,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,uB]
+  },
+  ctB == {
+    ParameterType    -> Internal,
+    Definitions      -> {ctB -> ctBRe + I ctBIm},
+    InteractionOrder -> {{NP,1},{NPctB,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,tB]
+  },
+  cdG == {
+    ParameterType    -> Internal,
+    Definitions      -> {cdG -> cdGRe + I cdGIm},
+    InteractionOrder -> {{NP,1},{NPcdG,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,dG]
+  },
+  cbG == {
+    ParameterType    -> Internal,
+    Definitions      -> {cbG -> cbGRe + I cbGIm},
+    InteractionOrder -> {{NP,1},{NPcbG,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,bG]
+  },
+  cdW == {
+    ParameterType    -> Internal,
+    Definitions      -> {cdW -> cdWRe + I cdWIm},
+    InteractionOrder -> {{NP,1},{NPcdW,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,dW]
+  },
+  cbW == {
+    ParameterType    -> Internal,
+    Definitions      -> {cbW -> cbWRe + I cbWIm},
+    InteractionOrder -> {{NP,1},{NPcbW,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,bW]
+  },
+  cdB == {
+    ParameterType    -> Internal,
+    Definitions      -> {cdB -> cdBRe + I cdBIm},
+    InteractionOrder -> {{NP,1},{NPcdB,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,dB]
+  },
+  cbBB == {
+    ParameterType    -> Internal,
+    Definitions      -> {cbBB -> cbBRe + I cbBIm},
+    InteractionOrder -> {{NP,1},{NPcbBB,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,bB]
+  },
+
+ (*** class 7 ***)
+
+     (* hermitian *)
+
+ cHj1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHj1,1}},
+   TeX              -> Subsuperscript[c,Hj,(1)]
+ },
+ cHQ1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHQ1,1}},
+   TeX              -> Subsuperscript[c,HQ,(1)]
+ },
+ cHj3 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHj3,1}},
+   TeX              -> Subsuperscript[c,Hj,(3)]
+ },
+ cHQ3 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHQ3,1}},
+   TeX              -> Subsuperscript[c,HQ,(3)]
+ },
+ cHu == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHu,1}},
+   TeX              -> Subscript[c,Hu]
+ },
+ cHt == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHt,1}},
+   TeX              -> Subscript[c,Ht]
+ },
+ cHd == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHd,1}},
+   TeX              -> Subscript[c,Hd]
+ },
+ cHbq == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHbq,1}},
+   TeX              -> Subscript[c,Hb]
+ },
+
+    (* non hermitian *)
+
+ cHudRe == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcHud,1}}, Value -> 0},
+ cHtbRe == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcHtb,1}}, Value -> 0},
+
+ cHud == {
+    ParameterType    -> Internal,
+    Definitions      -> {cHud -> cHudRe + I cHudIm},
+    InteractionOrder -> {{NP,1},{NPcHud,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,Hud]
+  },
+ cHtb == {
+    ParameterType    -> Internal,
+    Definitions      -> {cHtb -> cHtbRe + I cHtbIm},
+    InteractionOrder -> {{NP,1},{NPcHtb,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,Htb]
+  },
+
+
+(****** four fermion operators *******)
+
+ (*** class 8a ***)
+
+ cjj11 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcjj11,1}},
+    TeX              -> Subsuperscript[c,jj,(11)]
+  },
+ cjj18 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcjj18,1}},
+    TeX              -> Subsuperscript[c,jj,(18)]
+  },
+ cjj31 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcjj31,1}},
+    TeX              -> Subsuperscript[c,jj,(31)]
+ },
+ cjj38 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcjj38,1}},
+    TeX              -> Subsuperscript[c,jj,(38)]
+ },
+ cQj11 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcQj11,1}},
+    TeX              -> Subsuperscript[c,Qj,(11)]
+ },
+ cQj18 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcQj18,1}},
+    TeX              -> Subsuperscript[c,Qj,(18)]
+ },
+ cQj31 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQj31,1}},
+   TeX              -> Subsuperscript[c,Qj,(31)]
+ },
+ cQj38 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQj38,1}},
+   TeX              -> Subsuperscript[c,Qj,(38)]
+ },
+ cQQ1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQQ1,1}},
+   TeX              -> Subsuperscript[c,QQ,(1)]
+ },
+ cQQ8 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQQ8,1}},
+   TeX              -> Subsuperscript[c,QQ,(8)]
+ },
+
+ (*** class 8b ***)
+
+ cuu1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcuu1,1}},
+   TeX              -> Subsuperscript[c,uu,(1)]
+ },
+ cuu8 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcuu8,1}},
+   TeX              -> Subsuperscript[c,uu,(8)]
+ },
+ ctt == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPctt,1}},
+   TeX              -> Subscript[c,tt]
+ },
+ ctu1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPctu1,1}},
+   TeX              -> Subsuperscript[c,tu,(1)]
+ },
+ ctu8 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPctu8,1}},
+   TeX              -> Subsuperscript[c,tu,(8)]
+ },
+ cdd1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcdd1,1}},
+   ComplexParameter -> False,
+   TeX              -> Subsuperscript[c,dd,(1)]
+ },
+ cdd8 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcdd8,1}},
+   TeX              -> Subsuperscript[c,dd,(8)]
+ },
+ cbb == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcbb,1}},
+   TeX              -> Subscript[c,bb]
+ },
+ cbd1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcbd1,1}},
+   TeX              -> Subsuperscript[c,bd,(1)]
+ },
+ cbd8 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcbd8,1}},
+   TeX              -> Subsuperscript[c,bd,(8)]
+ },
+ cud1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcud1,1}},
+   TeX              -> Subsuperscript[c,ud,(1)]
+ },
+ ctb1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPctb1,1}},
+   TeX              -> Subsuperscript[c,tb,(1)]
+ },
+ ctd1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPctd1,1}},
+   TeX              -> Subsuperscript[c,td,(1)]
+ },
+ cbu1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcbu1,1}},
+   TeX              -> Subsuperscript[c,bu,(1)]
+ },
+ cud8 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcud8,1}},
+   TeX              -> Subsuperscript[c,ud,(8)]
+ },
+ ctb8 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPctb8,1}},
+   TeX              -> Subsuperscript[c,tb,(8)]
+ },
+ ctd8 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPctd8,1}},
+   TeX              -> Subsuperscript[c,td,(8)]
+ },
+ cbu8 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcbu8,1}},
+   TeX              -> Subsuperscript[c,bu,(8)]
+ },
+
+ cutbd1Re == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcutbd1,1}}, Value -> 0},
+ cutbd8Re == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcutbd8,1}}, Value -> 0},
+
+ cutbd1 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cutbd1 -> cutbd1Re + I cutbd1Im},
+    InteractionOrder -> {{NP,1},{NPcutbd1,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,utbd,(1)]
+  },
+ cutbd8 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cutbd8 -> cutbd8Re + I cutbd8Im},
+    InteractionOrder -> {{NP,1},{NPcutbd8,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,utbd,(8)]
+  },
+
+
+ (*** class 8c ***)
+
+ cju1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcju1,1}},
+   TeX              -> Subsuperscript[c,ju,(1)]
+ },
+ cQu1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQu1,1}},
+   TeX              -> Subsuperscript[c,Qu,(1)]
+ },
+ cju8 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcju8,1}},
+   TeX              -> Subsuperscript[c,ju,(8)]
+ },
+ cQu8 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQu8,1}},
+   TeX              -> Subsuperscript[c,Qu,(8)]
+ },
+ ctj1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPctj1,1}},
+   TeX              -> Subsuperscript[c,tj,(1)]
+ },
+ ctj8 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPctj8,1}},
+   TeX              -> Subsuperscript[c,tj,(8)]
+ },
+ cQt1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQt1,1}},
+   TeX              -> Subsuperscript[c,Qt,(1)]
+ },
+ cQt8 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQt8,1}},
+   TeX              -> Subsuperscript[c,Qt,(8)]
+ },
+ cjd1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcjd1,1}},
+   TeX              -> Subsuperscript[c,jd,(1)]
+ },
+ cjd8 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcjd8,1}},
+   TeX              -> Subsuperscript[c,jd,(8)]
+ },
+ cQd1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQd1,1}},
+   TeX              -> Subsuperscript[c,Qd,(1)]
+ },
+ cQd8 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQd8,1}},
+   TeX              -> Subsuperscript[c,Qd,(8)]
+ },
+ cbj1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcbj1,1}},
+   TeX              -> Subsuperscript[c,bj,(1)]
+ },
+ cbj8 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcbj8,1}},
+   TeX              -> Subsuperscript[c,bj,(8)]
+ },
+ cQb1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQb1,1}},
+   TeX              -> Subsuperscript[c,Qb,(1)]
+ },
+ cQb8 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQb8,1}},
+   TeX              -> Subsuperscript[c,Qb,(8)]
+ },
+
+ cjQtu1Re == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcjQtu1,1}}, Value -> 0},
+ cjQtu8Re == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcjQtu8,1}}, Value -> 0},
+ cjQbd1Re == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcjQbd1,1}}, Value -> 0},
+ cjQbd8Re == {ParameterType -> External,BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcjQbd8,1}}, Value -> 0},
+
+ cjQtu1 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cjQtu1 -> cjQtu1Re + I cjQtu1Im},
+    InteractionOrder -> {{NP,1},{NPcjQtu1,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,jQtu,(1)]
+  },
+ cjQtu8 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cjQtu8 -> cjQtu8Re + I cjQtu8Im},
+    InteractionOrder -> {{NP,1},{NPcjQtu8,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,jQtu,(8)]
+  },
+ cjQbd1 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cjQbd1 -> cjQbd1Re + I cjQbd1Im},
+    InteractionOrder -> {{NP,1},{NPcjQbd1,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,jQbd,(1)]
+  },
+ cjQbd8 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cjQbd8 -> cjQbd8Re + I cjQbd8Im},
+    InteractionOrder -> {{NP,1},{NPcjQbd8,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,jQbd,(8)]
+  },
+
+ (*** class 8d ***)
+
+
+  cjujd1Re   == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcjujd1,1}}, Value -> 0},
+  cjujd8Re   == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcjujd8,1}}, Value -> 0},
+  cjujd11Re   == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcjujd11,1}}, Value -> 0},
+  cjujd81Re   == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcjujd81,1}}, Value -> 0},
+  cQtjd1Re   == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcQtjd1,1}}, Value -> 0},
+  cQtjd8Re   == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcQtjd8,1}}, Value -> 0},
+  cjuQb1Re   == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcjuQb1,1}}, Value -> 0},
+  cjuQb8Re   == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcjuQb8,1}}, Value -> 0},
+  cQujb1Re   == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcQujb1,1}}, Value -> 0},
+  cQujb8Re   == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcQujb8,1}}, Value -> 0},
+  cjtQd1Re   == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcjtQd1,1}}, Value -> 0},
+  cjtQd8Re   == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcjtQd8,1}}, Value -> 0},
+  cQtQb1Re   == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcQtQb1,1}}, Value -> 0},
+  cQtQb8Re   == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcQtQb8,1}}, Value -> 0},
+
+ cjujd1 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cjujd1 -> cjujd1Re + I cjujd1Im},
+    InteractionOrder -> {{NP,1},{NPcjujd1,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,jujd,(1)]
+  },
+ cjujd8 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cjujd8 -> cjujd8Re + I cjujd8Im},
+    InteractionOrder -> {{NP,1},{NPcjujd8,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,jujd,(8)]
+  },
+ cjujd11 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cjujd11 -> cjujd11Re + I cjujd11Im},
+    InteractionOrder -> {{NP,1},{NPcjujd11,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,jujd,(1)Prime]
+  },
+ cjujd81 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cjujd81 -> cjujd81Re + I cjujd81Im},
+    InteractionOrder -> {{NP,1},{NPcjujd81,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,jujd,(8)Prime]
+  },
+ cQtjd1 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cQtjd1 -> cQtjd1Re + I cQtjd1Im},
+    InteractionOrder -> {{NP,1},{NPcQtjd1,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,Qtjd,(1)]
+  },
+ cQtjd8 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cQtjd8 -> cQtjd8Re + I cQtjd8Im},
+    InteractionOrder -> {{NP,1},{NPcQtjd8,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,Qtjd,(8)]
+  },
+ cjuQb1 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cjuQb1 -> cjuQb1Re + I cjuQb1Im},
+    InteractionOrder -> {{NP,1},{NPcjuQb1,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,juQb,(1)]
+  },
+ cjuQb8 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cjuQb8 -> cjuQb8Re + I cjuQb8Im},
+    InteractionOrder -> {{NP,1},{NPcjuQb8,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,juQb,(8)]
+  },
+ cQujb1 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cQujb1 -> cQujb1Re + I cQujb1Im},
+    InteractionOrder -> {{NP,1},{NPcQujb1,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,Qujb,(1)]
+  },
+ cQujb8 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cQujb8 -> cQujb8Re + I cQujb8Im},
+    InteractionOrder -> {{NP,1},{NPQjujb8,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,Qujb,(8)]
+  },
+ cjtQd1 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cjtQd1 -> cjtQd1Re + I cjtQd1Im},
+    InteractionOrder -> {{NP,1},{NPcjtQd1,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,jtQd,(1)]
+  },
+ cjtQd8 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cjtQd8 -> cjtQd8Re + I cjtQd8Im},
+    InteractionOrder -> {{NP,1},{NPcjtQd8,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,jtQd,(8)]
+  },
+ cQtQb1 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cQtQb1 -> cQtQb1Re + I cQtQb1Im},
+    InteractionOrder -> {{NP,1},{NPcQtQb1,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,QtQb,(1)]
+  },
+ cQtQb8 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cQtQb8 -> cQtQb8Re + I cQtQb8Im},
+    InteractionOrder -> {{NP,1},{NPcQtQb8,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,QtQb,(8)]
+  }
+
+};
+
+
+
+(* leptonic parameters: symmetry dependent *)
+
+(*********************************  U(1)^3 flavor symmetry in lepton sector  ************)
+
+SMEFTParameters0 = Join[SMEFTParameters0,
+Switch[Flavor,
+top,
+{
+ (* class 5*)
+
+ ceHRe11 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPceH, 1}}, Value -> 0},
+ ceHRe22 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPceH, 1}}, Value -> 0},
+ ceHRe33 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPceH, 1}}, Value -> 0},
+
+ ceH11 == {
+    ParameterType    -> Internal,
+    Definitions	     -> {ceH11 -> ceHRe11 + I ceHIm11},
+    InteractionOrder -> {{NP,1}, {NPceH,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subscript[c,eH]),11]
+  },
+ ceH22 == {
+    ParameterType    -> Internal,
+    Definitions	     -> {ceH22 -> ceHRe22 + I ceHIm22},
+    InteractionOrder -> {{NP,1}, {NPceH,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subscript[c,eH]),22]
+  },
+ ceH33 == {
+    ParameterType    -> Internal,
+    Definitions	     -> {ceH33 -> ceHRe33 + I ceHIm33},
+    InteractionOrder -> {{NP,1}, {NPceH,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subscript[c,eH]),33]
+  },
+
+  (* class 6 *)
+
+  ceWRe11 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPceW,1}}, Value -> 0},
+  ceWRe22 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPceW,1}}, Value -> 0},
+  ceWRe33 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPceW,1}}, Value -> 0},
+  ceBRe11 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPceB,1}}, Value -> 0},
+  ceBRe22 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPceB,1}}, Value -> 0},
+  ceBRe33 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPceB,1}}, Value -> 0},
+
+  ceW11 == {
+    ParameterType    -> Internal,
+    Definitions 	 -> {ceW11 -> ceWRe11 + I ceWIm11},
+    InteractionOrder -> {{NP,1},{NPceW,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subscript[c,eW]),11]
+  },
+  ceW22 == {
+    ParameterType    -> Internal,
+    Definitions      -> {ceW22 -> ceWRe22 + I ceWIm22},
+    InteractionOrder -> {{NP,1},{NPceW,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subscript[c,eW]),22]
+  },
+  ceW33 == {
+    ParameterType    -> Internal,
+    Definitions      -> {ceW33 -> ceWRe33 + I ceWIm33},
+    InteractionOrder -> {{NP,1},{NPceW,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subscript[c,eW]),33]
+  },
+  ceB11 == {
+    ParameterType    -> Internal,
+    Definitions      -> {ceB11 -> ceBRe11 + I ceBIm11},
+    InteractionOrder -> {{NP,1},{NPceB,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subscript[c,eB]),11]
+  },
+  ceB22 == {
+    ParameterType    -> Internal,
+    Definitions      -> {ceB22 -> ceBRe22 + I ceBIm22},
+    InteractionOrder -> {{NP,1},{NPceB,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subscript[c,eB]),22]
+  },
+  ceB33 == {
+    ParameterType    -> Internal,
+    Definitions      -> {ceB33 -> ceBRe33 + I ceBIm33},
+    InteractionOrder -> {{NP,1},{NPceB,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subscript[c,eB]),33]
+  },
+
+  (* class 7 *)
+
+ cHl111 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHl1,1}},
+   TeX              -> Subscript[(Subsuperscript[c,Hl,(1)]),11]
+ },
+ cHl122 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHl1,1}},
+   TeX              -> Subscript[(Subsuperscript[c,Hl,(1)]),22]
+ },
+ cHl133 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHl1,1}},
+   TeX              -> Subscript[(Subsuperscript[c,Hl,(1)]),33]
+ },
+ cHl311 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHl3,1}},
+   TeX              -> Subscript[(Subsuperscript[c,Hl,(3)]),11]
+ },
+ cHl322 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHl3,1}},
+   TeX              -> Subscript[(Subsuperscript[c,Hl,(3)]),22]
+ },
+ cHl333 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHl3,1}},
+   TeX              -> Subscript[(Subsuperscript[c,Hl,(3)]),33]
+ },
+ cHe11 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHe,1}},
+   TeX              -> Subscript[(Subscript[c,He]),11]
+ },
+ cHe22 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHe,1}},
+   TeX              -> Subscript[(Subscript[c,He]),22]
+ },
+ cHe33 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHe,1}},
+   TeX              -> Subscript[(Subscript[c,He]),33]
+ },
+
+ (* class 8a *)
+
+ cll1111 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcll,1}},
+    TeX              -> Subscript[(Subscript[c,ll]),1111]
+  },
+ cll2222 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcll,1}},
+    TeX              -> Subscript[(Subscript[c,ll]),2222]
+  },
+ cll3333 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcll,1}},
+    TeX              -> Subscript[(Subscript[c,ll]),3333]
+  },
+ cll1122 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcll,1}},
+    TeX              -> Subscript[(Subscript[c,ll]),1122]
+  },
+ cll1133 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcll,1}},
+    TeX              -> Subscript[(Subscript[c,ll]),1133]
+  },
+ cll2233 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcll,1}},
+    TeX              -> Subscript[(Subscript[c,ll]),2233]
+  },
+ cll1221 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcll1,1}},
+    TeX              -> Subscript[(Subscript[c,ll]),1221]
+  },
+ cll1331 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcll1,1}},
+    TeX              -> Subscript[(Subscript[c,ll]),1331]
+  },
+ cll2332 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcll1,1}},
+    TeX              -> Subscript[(Subscript[c,ll]),2332]
+  },
+ clj111 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPclj1,1}},
+   TeX              -> Subscript[(Subsuperscript[c,lj,(1)]),11]
+ },
+ clj122 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPclj1,1}},
+   TeX              -> Subscript[(Subsuperscript[c,lj,(1)]),22]
+ },
+ clj133 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPclj1,1}},
+   TeX              -> Subscript[(Subsuperscript[c,lj,(1)]),33]
+ },
+ clj311 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPclj3,1}},
+   TeX              -> Subscript[(Subsuperscript[c,lj,(3)]),11]
+ },
+ clj322 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPclj3,1}},
+   TeX              -> Subscript[(Subsuperscript[c,lj,(3)]),22]
+ },
+ clj333 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPclj3,1}},
+   TeX              -> Subscript[(Subsuperscript[c,lj,(3)]),33]
+ },
+ cQl111 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQl1,1}},
+   TeX              -> Subscript[(Subsuperscript[c,Ql,(1)]),11]
+ },
+ cQl122 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQl1,1}},
+   TeX              -> Subscript[(Subsuperscript[c,Ql,(1)]),22]
+ },
+ cQl133 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQl1,1}},
+   TeX              -> Subscript[(Subsuperscript[c,Ql,(1)]),33]
+ },
+ cQl311 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQl3,1}},
+   TeX              -> Subscript[(Subsuperscript[c,Ql,(3)]),11]
+ },
+ cQl322 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQl3,1}},
+   TeX              -> Subscript[(Subsuperscript[c,Ql,(3)]),22]
+ },
+ cQl333 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQl3,1}},
+   TeX              -> Subscript[(Subsuperscript[c,Ql,(3)]),33]
+ },
+
+
+ (* class 8b *)
+
+ cee1111 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcee,1}},
+   TeX              -> Subscript[(Subscript[c,"ee"]),1111]
+ },
+ cee2222 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcee,1}},
+   TeX              -> Subscript[(Subscript[c,"ee"]),2222]
+ },
+ cee3333 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcee,1}},
+   TeX              -> Subscript[(Subscript[c,"ee"]),3333]
+ },
+ cee1122 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcee,1}},
+   TeX              -> Subscript[(Subscript[c,"ee"]),1122]
+ },
+ cee1133 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcee,1}},
+   TeX              -> Subscript[(Subscript[c,"ee"]),1133]
+ },
+ cee2233 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcee,1}},
+   TeX              -> Subscript[(Subscript[c,"ee"]),2233]
+ },
+ ceu11 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPceu,1}},
+   TeX              -> Subscript[(Subscript[c,eu]),11]
+ },
+ ceu22 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPceu,1}},
+   TeX              -> Subscript[(Subscript[c,eu]),22]
+ },
+ ceu33 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPceu,1}},
+   TeX              -> Subscript[(Subscript[c,eu]),33]
+ },
+ cte11 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcte,1}},
+   TeX              -> Subscript[(Subscript[c,te]),11]
+ },
+ cte22 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcte,1}},
+   TeX              -> Subscript[(Subscript[c,te]),22]
+ },
+ cte33 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcte,1}},
+   TeX              -> Subscript[(Subscript[c,te]),33]
+ },
+ ced11 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPced,1}},
+   TeX              -> Subscript[(Subscript[c,ed]),11]
+ },
+ ced22 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPced,1}},
+   TeX              -> Subscript[(Subscript[c,ed]),22]
+ },
+ ced33 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPced,1}},
+   TeX              -> Subscript[(Subscript[c,ed]),33]
+ },
+ cbe11 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcbe,1}},
+   TeX              -> Subscript[(Subscript[c,be]),11]
+ },
+ cbe22 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcbe,1}},
+   TeX              -> Subscript[(Subscript[c,be]),22]
+ },
+ cbe33 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcbe,1}},
+   TeX              -> Subscript[(Subscript[c,be]),33]
+ },
+
+ (* class 8c *)
+
+ cje11 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcje,1}},
+   TeX              -> Subscript[(Subscript[c,je]),11]
+ },
+ cje22 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcje,1}},
+   TeX              -> Subscript[(Subscript[c,je]),22]
+ },
+ cje33 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcje,1}},
+   TeX              -> Subscript[(Subscript[c,je]),33]
+ },
+ cQe11 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQe,1}},
+   TeX              -> Subscript[(Subscript[c,Qe]),11]
+ },
+ cQe22 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQe,1}},
+   TeX              -> Subscript[(Subscript[c,Qe]),22]
+ },
+ cQe33 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQe,1}},
+   TeX              -> Subscript[(Subscript[c,Qe]),33]
+ },
+ clu11 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPclu,1}},
+   TeX              -> Subscript[(Subscript[c,lu]),11]
+ },
+ clu22 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPclu,1}},
+   TeX              -> Subscript[(Subscript[c,lu]),22]
+ },
+ clu33 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPclu,1}},
+   TeX              -> Subscript[(Subscript[c,lu]),33]
+ },
+ ctl11 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPctl,1}},
+   TeX              -> Subscript[(Subscript[c,tl]),11]
+ },
+ ctl22 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPctl,1}},
+   TeX              -> Subscript[(Subscript[c,tl]),22]
+ },
+ ctl33 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPctl,1}},
+   TeX              -> Subscript[(Subscript[c,tl]),33]
+ },
+ cld11 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcld,1}},
+   TeX              -> Subscript[(Subscript[c,ld]),11]
+ },
+ cld22 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcld,1}},
+   TeX              -> Subscript[(Subscript[c,ld]),22]
+ },
+ cld33 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcld,1}},
+   TeX              -> Subscript[(Subscript[c,ld]),33]
+ },
+ cbl11 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcbl,1}},
+   TeX              -> Subscript[(Subscript[c,bl]),11]
+ },
+ cbl22 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcbl,1}},
+   TeX              -> Subscript[(Subscript[c,bl]),22]
+ },
+ cbl33 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcbl,1}},
+   TeX              -> Subscript[(Subscript[c,bl]),33]
+ },
+ cle1111 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcle,1}},
+   TeX              -> Subscript[(Subscript[c,le]),1111]
+ },
+ cle2222 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcle,1}},
+   TeX              -> Subscript[(Subscript[c,le]),2222]
+ },
+ cle3333 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcle,1}},
+   TeX              -> Subscript[(Subscript[c,le]),3333]
+ },
+ cle1122 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcle,1}},
+   TeX              -> Subscript[(Subscript[c,le]),1122]
+ },
+ cle1133 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcle,1}},
+   TeX              -> Subscript[(Subscript[c,le]),1133]
+ },
+ cle2233 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcle,1}},
+   TeX              -> Subscript[(Subscript[c,le]),2233]
+ },
+ cle2211 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcle,1}},
+   TeX              -> Subscript[(Subscript[c,le]),2211]
+ },
+ cle3311 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcle,1}},
+   TeX              -> Subscript[(Subscript[c,le]),3311]
+ },
+ cle3322 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcle,1}},
+   TeX              -> Subscript[(Subscript[c,le]),3322]
+ },
+ cle1221 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcle1,1}},
+   TeX              -> Subscript[(Subscript[c,le]),1221]
+ },
+ cle1331 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcle1,1}},
+   TeX              -> Subscript[(Subscript[c,le]),1331]
+ },
+ cle2332 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcle1,1}},
+   TeX              -> Subscript[(Subscript[c,le]),2332]
+ },
+
+ (* class 8d *)
+
+  cledjRe11  == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcledj,1}}, Value -> 0},
+  cledjRe22  == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcledj,1}}, Value -> 0},
+  cledjRe33  == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcledj,1}}, Value -> 0},
+  clebQRe11  == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPclebQ,1}}, Value -> 0},
+  clebQRe22  == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPclebQ,1}}, Value -> 0},
+  clebQRe33  == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPclebQ,1}}, Value -> 0},
+  cleju1Re11 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcleju1,1}}, Value -> 0},
+  cleju1Re22 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcleju1,1}}, Value -> 0},
+  cleju1Re33 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcleju1,1}}, Value -> 0},
+  cleQt1Re11 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcleQt1,1}}, Value -> 0},
+  cleQt1Re22 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcleQt1,1}}, Value -> 0},
+  cleQt1Re33 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcleQt1,1}}, Value -> 0},
+  cleju3Re11 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcleju3,1}}, Value -> 0},
+  cleju3Re22 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcleju3,1}}, Value -> 0},
+  cleju3Re33 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcleju3,1}}, Value -> 0},
+  cleQt3Re11 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcleQt3,1}}, Value -> 0},
+  cleQt3Re22 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcleQt3,1}}, Value -> 0},
+  cleQt3Re33 == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcleQt3,1}}, Value -> 0},
+
+ cledj11 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cledj11 -> cledjRe11 + I cledjIm11},
+    InteractionOrder -> {{NP,1},{NPcledj,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subscript[c,ledj]),11]
+  },
+ cledj22 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cledj22 -> cledjRe22 + I cledjIm22},
+    InteractionOrder -> {{NP,1},{NPcledj,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subscript[c,ledj]),22]
+  },
+ cledj33 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cledj33 -> cledjRe33 + I cledjIm33},
+    InteractionOrder -> {{NP,1},{NPcledj,1}},
+    ComplexParameter -> True,
+    TeX	    	     -> Subscript[(Subscript[c,ledj]),33]
+  },
+ clebQ11 == {
+    ParameterType    -> Internal,
+    Definitions      -> {clebQ11 -> clebQRe11 + I clebQIm11},
+    InteractionOrder -> {{NP,1},{NPclebQ,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subscript[c,lebQ]),11]
+  },
+ clebQ22 == {
+    ParameterType    -> Internal,
+    Definitions      -> {clebQ22 -> clebQRe22 + I clebQIm22},
+    InteractionOrder -> {{NP,1},{NPclebQ,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subscript[c,lebQ]),22]
+  },
+ clebQ33 == {
+    ParameterType    -> Internal,
+    Definitions      -> {clebQ33 -> clebQRe33 + I clebQIm33},
+    InteractionOrder -> {{NP,1},{NPclebQ,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subscript[c,lebQ]),33]
+  },
+ cleju111 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cleju111 -> cleju1Re11 + I cleju1Im11},
+    InteractionOrder -> {{NP,1},{NPcleju1,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subsuperscript[c,leju,(1)]),11]
+  },
+ cleju122 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cleju122 -> cleju1Re22 + I cleju1Im22},
+    InteractionOrder -> {{NP,1},{NPcleju1,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subsuperscript[c,leju,(1)]),22]
+  },
+ cleju133 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cleju133 -> cleju1Re33 + I cleju1Im33},
+    InteractionOrder -> {{NP,1},{NPcleju1,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subsuperscript[c,leju,(1)]),33]
+  },
+ cleju311 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cleju311 -> cleju3Re11 + I cleju3Im11},
+    InteractionOrder -> {{NP,1},{NPcleju3,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subsuperscript[c,leju,(3)]),11]
+  },
+ cleju322 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cleju322 -> cleju3Re22 + I cleju3Im22},
+    InteractionOrder -> {{NP,1},{NPcleju3,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subsuperscript[c,leju,(3)]),22]
+  },
+ cleju333 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cleju333 -> cleju3Re33 + I cleju3Im33},
+    InteractionOrder -> {{NP,1},{NPcleju3,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subsuperscript[c,leju,(3)]),33]
+  },
+ cleQt111 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cleQt111 -> cleQt1Re11 + I cleQt1Im11},
+    InteractionOrder -> {{NP,1},{NPcleQt1,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subsuperscript[c,leQt,(1)]),11]
+  },
+ cleQt122 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cleQt122 -> cleQt1Re22 + I cleQt1Im22},
+    InteractionOrder -> {{NP,1},{NPcleQt1,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subsuperscript[c,leQt,(1)]),22]
+  },
+ cleQt133 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cleQt133 -> cleQt1Re33 + I cleQt1Im33},
+    InteractionOrder -> {{NP,1},{NPcleQt1,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subsuperscript[c,leQt,(1)]),33]
+  },
+ cleQt311 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cleQt311 -> cleQt3Re11 + I cleQt3Im11},
+    InteractionOrder -> {{NP,1},{NPcleQt3,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subsuperscript[c,leQt,(3)]),11]
+  },
+ cleQt322 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cleQt322 -> cleQt3Re22 + I cleQt3Im22},
+    InteractionOrder -> {{NP,1},{NPcleQt3,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subsuperscript[c,leQt,(3)]),22]
+  },
+ cleQt333 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cleQt333 -> cleQt3Re33 + I cleQt3Im33},
+    InteractionOrder -> {{NP,1},{NPcleQt3,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[(Subsuperscript[c,leQt,(3)]),33]
+  }
+},
+
+
+
+
+(*********************************  U(3)^2 flavor symmetry in lepton sector  ************)
+
+topU3l,
+{
+ (* class 5*)
+
+ ceHRe == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPceH, 1}}, Value -> 0},
+
+ ceH == {
+    ParameterType    -> Internal,
+    Definitions      -> {ceH -> ceHRe + I ceHIm},
+    InteractionOrder -> {{NP,1}, {NPceH,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,eH]
+  },
+
+  (* class 6 *)
+
+  ceWRe == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPceW,1}}, Value -> 0},
+  ceBRe == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPceB,1}}, Value -> 0},
+
+  ceW == {
+    ParameterType    -> Internal,
+    Definitions      -> {ceW -> ceWRe + I ceWIm},
+    InteractionOrder -> {{NP,1},{NPceW,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,eW]
+  },
+  ceB == {
+    ParameterType    -> Internal,
+    Definitions      -> {ceB -> ceBRe + I ceBIm},
+    InteractionOrder -> {{NP,1},{NPceB,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,eB]
+  },
+
+  (* class 7 *)
+
+ cHl1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value             -> 0,
+   InteractionOrder -> {{NP,1},{NPcHl1,1}},
+   TeX              -> Subsuperscript[c,Hl,(1)]
+ },
+ cHl3 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHl3,1}},
+   TeX              -> Subsuperscript[c,Hl,(3)]
+ },
+ cHe == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcHe,1}},
+   TeX              -> Subscript[c,He]
+ },
+
+ (* class 8a *)
+
+ cll == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcll,1}},
+    TeX              -> Subscript[c,ll]
+  },
+ cll1 == {
+    ParameterType    -> External,
+    BlockName        -> SMEFT,
+    Value            -> 0,
+    InteractionOrder -> {{NP,1},{NPcll1,1}},
+    TeX              -> Subsuperscript[c,ll,Prime]
+  },
+ clj1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPclj1,1}},
+   TeX              -> Subsuperscript[c,lj,(1)]
+ },
+ clj3 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPclj3,1}},
+   TeX              -> Subsuperscript[c,lj,(3)]
+ },
+ cQl1 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQl1,1}},
+   TeX              -> Subsuperscript[c,Ql,(1)]
+ },
+ cQl3 == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQl3,1}},
+   TeX              -> Subsuperscript[c,Ql,(3)]
+ },
+
+
+ (* class 8b *)
+
+ cee == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcee,1}},
+   TeX              -> Subscript[c,"ee"]
+ },
+ ceu == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPceu,1}},
+   TeX              -> Subscript[c,eu]
+ },
+ cte == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcte,1}},
+   TeX              -> Subscript[c,te]
+ },
+ ced == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPced,1}},
+   TeX              -> Subscript[c,ed]
+ },
+ cbe == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcbe,1}},
+   TeX              -> Subscript[c,be]
+ },
+
+ (* class 8c *)
+
+ cje == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcje,1}},
+   TeX              -> Subscript[c,je]
+ },
+ cQe == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcQe,1}},
+   TeX              -> Subscript[c,Qe]
+ },
+ clu == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPclu,1}},
+   TeX              -> Subscript[c,lu]
+ },
+ ctl == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPctl,1}},
+   TeX              -> Subscript[c,tl]
+ },
+ cld == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcld,1}},
+   TeX              -> Subscript[c,ld]
+ },
+ cbl == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcbl,1}},
+   TeX              -> Subscript[c,bl]
+ },
+ cle == {
+   ParameterType    -> External,
+   BlockName        -> SMEFT,
+   Value            -> 0,
+   InteractionOrder -> {{NP,1},{NPcle,1}},
+   TeX              -> Subscript[c,le]
+ },
+
+ (* class 8d *)
+
+  cledjRe  == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcledj,1}}, Value -> 0},
+  clebQRe  == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPclebQ,1}}, Value -> 0},
+  cleju1Re == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcleju1,1}}, Value -> 0},
+  cleQt1Re == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcleQt1,1}}, Value -> 0},
+  cleju3Re == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcleju3,1}}, Value -> 0},
+  cleQt3Re == {ParameterType -> External, BlockName -> SMEFT, InteractionOrder -> {{NP, 1},{NPcleQt3,1}}, Value -> 0},
+
+
+ cledj == {
+    ParameterType    -> Internal,
+    Definitions      -> {cledj -> cledjRe + I cledjIm},
+    InteractionOrder -> {{NP,1},{NPcledj,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,ledj]
+  },
+ clebQ == {
+    ParameterType    -> Internal,
+    Definitions      -> {clebQ -> clebQRe + I clebQIm},
+    InteractionOrder -> {{NP,1},{NPclebQ,1}},
+    ComplexParameter -> True,
+    TeX              -> Subscript[c,lebQ]
+  },
+ cleju1 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cleju1 -> cleju1Re + I cleju1Im},
+    InteractionOrder -> {{NP,1},{NPcleju1,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,leju,(1)]
+  },
+ cleju3 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cleju3 -> cleju3Re + I cleju3Im},
+    InteractionOrder -> {{NP,1},{NPcleju3,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,leju,(3)]
+  },
+ cleQt1 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cleQt1 -> cleQt1Re + I cleQt1Im},
+    InteractionOrder -> {{NP,1},{NPcleQt1,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,leQt,(1)]
+  },
+ cleQt3 == {
+    ParameterType    -> Internal,
+    Definitions      -> {cleQt3 -> cleQt3Re + I cleQt3Im},
+    InteractionOrder -> {{NP,1},{NPcleQt3,1}},
+    ComplexParameter -> True,
+    TeX              -> Subsuperscript[c,leQt,(3)]
+  }
+}
+]];
+
+
+
+
+
+
+(**** list names of all  Wilson coefficients ****)
+
+WC6 = Join[SMEFTParametersImParts0[[;;,1]],SMEFTParameters0[[2;; , 1]]];
