@@ -11,7 +11,7 @@ M$Information = {
   Date -> "December 2020",
   Institutions	-> {"ITP, Universität Heidelberg"},
   Emails -> {"brivio@thphys.uni-heidelberg.de"},
-  References -> {"arXiv:1709.06492", "arXiv:2012.xxxxx"},
+  References -> {"arXiv:1709.06492", "arXiv:2012.11343"},
   URLs -> {"https://feynrules.irmp.ucl.ac.be/wiki/SMEFT", "https://SMEFTsim.github.io"}
 };
 
