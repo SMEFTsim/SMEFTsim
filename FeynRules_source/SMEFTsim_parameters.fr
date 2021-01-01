@@ -396,11 +396,11 @@ alphaScheme,
 
     Switch[Flavor,
     general,
-    DG1order =   {{NP,1},{NPcHl3,1},{NPcll,1},{NPshifts,1}};
-    DGWorder =   {{NP,1},{NPcHWB,1},{NPcHDD,1},{NPcHl3,1},{NPcll,1},{NPshifts,1}};
+    DG1order =   {{NP,1},{NPcHWB,1},{NPcHDD,1},{NPcHl3,1},{NPcll,1},{NPshifts,1}};
+    DGWorder =   {{NP,1},{NPcHl3,1},{NPcll,1},{NPshifts,1}};
     ,_,
-    DG1order =   {{NP,1},{NPcHl3,1},{NPcll1,1},{NPshifts,1}};
-    DGWorder =   {{NP,1},{NPcHWB,1},{NPcHDD,1},{NPcHl3,1},{NPcll1,1},{NPshifts,1}}
+    DG1order =   {{NP,1},{NPcHWB,1},{NPcHDD,1},{NPcHl3,1},{NPcll1,1},{NPshifts,1}};
+    DGWorder =   {{NP,1},{NPcHl3,1},{NPcll1,1},{NPshifts,1}}
     ]
 
 ];

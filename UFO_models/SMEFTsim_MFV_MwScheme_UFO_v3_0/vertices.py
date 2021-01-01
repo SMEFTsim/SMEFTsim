@@ -465,6 +465,12 @@ V_76 = Vertex(name = 'V_76',
               lorentz = [ L.VVS1, L.VVS2 ],
               couplings = {(0,1):C.GC_284,(0,0):C.GC_374})
 
+V_7600 = Vertex(name = 'V_7600',
+              particles = [ P.Z, P.Z, P.H ],
+              color = [ '1' ],
+              lorentz = [ L.VVS1 ],
+              couplings = {(0,0):C.GC_37400})
+
 V_77 = Vertex(name = 'V_77',
               particles = [ P.Z, P.Z, P.H ],
               color = [ '1' ],
