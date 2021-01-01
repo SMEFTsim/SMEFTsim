@@ -7,8 +7,8 @@ M$ModelName = "SMEFTsim";
 
 M$Information = {
   Authors -> {"I. Brivio"},
-  Version -> "3.0",
-  Date -> "December 2020",
+  Version -> "3.0.1",
+  Date -> "January 2021",
   Institutions	-> {"ITP, Universität Heidelberg"},
   Emails -> {"brivio@thphys.uni-heidelberg.de"},
   References -> {"arXiv:1709.06492", "arXiv:2012.11343"},
