@@ -393,6 +393,12 @@ V_64 = Vertex(name = 'V_64',
               lorentz = [ L.VVS2, L.VVS3, L.VVS4 ],
               couplings = {(0,0):C.GC_405,(0,2):C.GC_404,(0,1):C.GC_552})
 
+V_6400 = Vertex(name = 'V_6400',
+              particles = [ P.Z, P.Z, P.H ],
+              color = [ '1' ],
+              lorentz = [ L.VVS3 ],
+              couplings = {(0,0):C.GC_55200})
+
 V_65 = Vertex(name = 'V_65',
               particles = [ P.Z, P.Z, P.H ],
               color = [ '1' ],

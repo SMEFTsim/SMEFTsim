@@ -27,19 +27,19 @@ GC_4 = Coupling(name = 'GC_4',
 
 GC_5 = Coupling(name = 'GC_5',
                 value = '(cth**2*dg1*ee*complex(0,1))/3.',
-                order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                order = {'NP':1,'NPcHl3':1,'NPcHDD':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_6 = Coupling(name = 'GC_6',
                 value = '(-2*cth**2*dg1*ee*complex(0,1))/3.',
-                order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                order = {'NP':1,'NPcHl3':1,'NPcHDD':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_7 = Coupling(name = 'GC_7',
                 value = '-(cth**2*dg1*ee*complex(0,1))',
-                order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                order = {'NP':1,'NPcHl3':1,'NPcHDD':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_8 = Coupling(name = 'GC_8',
                 value = 'cth**2*dg1*ee*complex(0,1)',
-                order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                order = {'NP':1,'NPcHl3':1,'NPcHDD':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_9 = Coupling(name = 'GC_9',
                 value = 'ee**2*complex(0,1)',
@@ -47,15 +47,15 @@ GC_9 = Coupling(name = 'GC_9',
 
 GC_10 = Coupling(name = 'GC_10',
                  value = '(dg1*ee**2*complex(0,1))/cth**2',
-                 order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':2})
+                 order = {'NP':1,'NPcHl3':1,'NPcHDD':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':2})
 
 GC_11 = Coupling(name = 'GC_11',
                  value = '-2*cth**2*dg1*ee**2*complex(0,1)',
-                 order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':2})
+                 order = {'NP':1,'NPcHl3':1,'NPcHDD':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':2})
 
 GC_12 = Coupling(name = 'GC_12',
                  value = '2*cth**2*dg1*ee**2*complex(0,1)',
-                 order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':2})
+                 order = {'NP':1,'NPcHl3':1,'NPcHDD':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':2})
 
 GC_13 = Coupling(name = 'GC_13',
                  value = '-(complex(0,1)*G)',
@@ -759,11 +759,11 @@ GC_187 = Coupling(name = 'GC_187',
 
 GC_188 = Coupling(name = 'GC_188',
                   value = '(dgw*ee**2*complex(0,1))/sth**2',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':2})
 
 GC_189 = Coupling(name = 'GC_189',
                   value = '(-2*dgw*ee**2*complex(0,1))/sth**2',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':2})
 
 GC_190 = Coupling(name = 'GC_190',
                   value = '(dkH*ee**2*complex(0,1))/sth**2',
@@ -887,19 +887,19 @@ GC_219 = Coupling(name = 'GC_219',
 
 GC_220 = Coupling(name = 'GC_220',
                   value = '-((dgw*ee*complex(0,1))/(sth*cmath.sqrt(2)))',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_221 = Coupling(name = 'GC_221',
                   value = '-(dgw*ee*complex(0,1))/(2.*cth*sth)',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_222 = Coupling(name = 'GC_222',
                   value = '(dgw*ee*complex(0,1))/(2.*cth*sth)',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_223 = Coupling(name = 'GC_223',
                   value = '-(cth*dgw*ee*complex(0,1))/(2.*sth)',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_224 = Coupling(name = 'GC_224',
                   value = '(-2*cth*ee**2*complex(0,1))/sth',
@@ -1143,31 +1143,31 @@ GC_283 = Coupling(name = 'GC_283',
 
 GC_284 = Coupling(name = 'GC_284',
                   value = '-(dg1*ee*complex(0,1)*sth)/(6.*cth)',
-                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcHDD':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_285 = Coupling(name = 'GC_285',
                   value = '-(dg1*ee*complex(0,1)*sth)/(2.*cth)',
-                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcHDD':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_286 = Coupling(name = 'GC_286',
                   value = '(5*dg1*ee*complex(0,1)*sth)/(6.*cth)',
-                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcHDD':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_287 = Coupling(name = 'GC_287',
                   value = '(-3*dg1*ee*complex(0,1)*sth)/(2.*cth)',
-                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcHDD':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_288 = Coupling(name = 'GC_288',
                   value = 'cth*dg1*ee*complex(0,1)*sth',
-                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcHDD':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_289 = Coupling(name = 'GC_289',
                   value = '-(dgw*ee*complex(0,1)*sth)/(6.*cth)',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_290 = Coupling(name = 'GC_290',
                   value = '(dgw*ee*complex(0,1)*sth)/(2.*cth)',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_291 = Coupling(name = 'GC_291',
                   value = '(cbBIm*sth)/(LambdaSMEFT**2*cmath.sqrt(2))',
@@ -1279,23 +1279,23 @@ GC_317 = Coupling(name = 'GC_317',
 
 GC_318 = Coupling(name = 'GC_318',
                   value = '(dgw*ee*complex(0,1)*sth**2)/3.',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_319 = Coupling(name = 'GC_319',
                   value = '(-2*dgw*ee*complex(0,1)*sth**2)/3.',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_320 = Coupling(name = 'GC_320',
                   value = '-(dgw*ee*complex(0,1)*sth**2)',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_321 = Coupling(name = 'GC_321',
                   value = 'dgw*ee*complex(0,1)*sth**2',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_322 = Coupling(name = 'GC_322',
                   value = '2*dgw*ee**2*complex(0,1)*sth**2',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':2})
 
 GC_323 = Coupling(name = 'GC_323',
                   value = '(4*cHB*complex(0,1)*sth**2)/LambdaSMEFT**2',
@@ -1315,43 +1315,43 @@ GC_326 = Coupling(name = 'GC_326',
 
 GC_327 = Coupling(name = 'GC_327',
                   value = '(dg1*ee*complex(0,1)*sth**3)/(3.*cth)',
-                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcHDD':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_328 = Coupling(name = 'GC_328',
                   value = '(-2*dg1*ee*complex(0,1)*sth**3)/(3.*cth)',
-                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcHDD':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_329 = Coupling(name = 'GC_329',
                   value = '(dg1*ee*complex(0,1)*sth**3)/cth',
-                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcHDD':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_330 = Coupling(name = 'GC_330',
                   value = '-(dgw*ee*complex(0,1)*sth**3)/(3.*cth)',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_331 = Coupling(name = 'GC_331',
                   value = '(2*dgw*ee*complex(0,1)*sth**3)/(3.*cth)',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_332 = Coupling(name = 'GC_332',
                   value = '-((dgw*ee*complex(0,1)*sth**3)/cth)',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_333 = Coupling(name = 'GC_333',
                   value = '-((cth*dgw*ee*complex(0,1))/sth) - cth*dgw*ee*complex(0,1)*sth',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_334 = Coupling(name = 'GC_334',
                   value = '(-2*cth*dg1*ee**2*complex(0,1))/sth + 4*cth*dg1*ee**2*complex(0,1)*sth',
-                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'NPcHDD':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':2})
 
 GC_335 = Coupling(name = 'GC_335',
                   value = '(-2*cth*dgw*ee**2*complex(0,1))/sth - 4*cth*dgw*ee**2*complex(0,1)*sth',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':2})
 
 GC_336 = Coupling(name = 'GC_336',
                   value = '(2*dgw*ee**2*complex(0,1))/sth**2 - 2*dgw*ee**2*complex(0,1)*sth**2',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':2})
 
 GC_337 = Coupling(name = 'GC_337',
                   value = '(-2*cHWB*complex(0,1))/LambdaSMEFT**2 + (4*cHWB*complex(0,1)*sth**2)/LambdaSMEFT**2',
@@ -1755,7 +1755,7 @@ GC_436 = Coupling(name = 'GC_436',
 
 GC_437 = Coupling(name = 'GC_437',
                   value = '(dgw*ee**2*complex(0,1)*vevhat)/sth**2',
-                  order = {'NP':1,'NPcHDD':1,'NPcHl3':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_438 = Coupling(name = 'GC_438',
                   value = '(dkH*ee**2*complex(0,1)*vevhat)/(2.*sth**2)',
@@ -2214,7 +2214,11 @@ GC_551 = Coupling(name = 'GC_551',
                   order = {'NP':1,'NPcHWB':1,'QED':1})
 
 GC_552 = Coupling(name = 'GC_552',
-                  value = '(dg1*ee**2*complex(0,1)*vevhat)/cth**2 + (dGf*ee**2*complex(0,1)*vevhat)/(4.*cth**2*sth**2)',
+                  value = '(dg1*ee**2*complex(0,1)*vevhat)/cth**2',
+                  order = {'NP':1,'NPcHl3':1,'NPcHDD':1,'NPcHWB':1,'NPcll1':1,'NPshifts':1,'QED':1})
+
+GC_55200 = Coupling(name = 'GC_55200',
+                  value = '(dGf*ee**2*complex(0,1)*vevhat)/(4.*cth**2*sth**2)',
                   order = {'NP':1,'NPcHl3':1,'NPcll1':1,'NPshifts':1,'QED':1})
 
 GC_553 = Coupling(name = 'GC_553',
