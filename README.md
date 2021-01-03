@@ -13,8 +13,10 @@ This web site is built with Jekyll and hosted on Github pages. You can check out
 
 This repository hosts `SMEFTsim v3.0` and higher. 
 
-The previous releases were uploaded at http://feynrules.irmp.ucl.ac.be/wiki/SMEFT.
-`v2.1` can still be downloaded from there. Older versions are available upon request.
+Every release is tagged with a version number, that is stored in the `SMEFTsim_main.fr` file in the FeynRules source and in the `version.info` file in each UFO directory. 
+
+A copy of the latest version is stored in the FeynRules database at http://feynrules.irmp.ucl.ac.be/wiki/SMEFT.
+`v2.1` can also be downloaded from there. Older versions are available upon request.
 
 A detailed list of changes made in `v3.0` is provided in the associated scientific publication. 
 The main updates are:
@@ -42,6 +44,9 @@ The main updates are:
 
 ## Installation and usage
 
+It is recommended to download the [latest tagged version](https://github.com/SMEFTsim/SMEFTsim/releases/latest).
+
+
 `SMEFTsim` does not require any installation per se. 
 The source files can be loaded in `Mathematica`, directly after importing the `FeynRules` package. The flavor and inputs choice needs to be specified behorehand, eg.
 ```
@@ -52,11 +57,11 @@ LoadModel["SMEFTsim_main.fr"]
 
 The UFO files can be imported in Monte Carlo event generators. They have been optimized for `MadGraph5_aMC@NLO`, where they can be loaded as usual with
 ```
-import model SMEFTsim_U35_MwScheme_UFO_v3_0
+import model SMEFTsim_U35_MwScheme_UFO
 ```
 or with a restriction, such as
 ```
-import model SMEFTsim_U35_MwScheme_UFO_v3_0-massless
+import model SMEFTsim_U35_MwScheme_UFO-massless
 ```
 Two restriction files are provided for each UFO:
 - `restrict_massless.dat`: sets to zero the masses and Yukawa couplings of all the fermions except the bottom and top quark, and removes CKM mixing.
