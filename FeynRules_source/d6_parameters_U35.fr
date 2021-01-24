@@ -116,7 +116,7 @@ SMEFTParameters0 = {
     ParameterType    -> External,
     BlockName        -> SMEFT,
     Value            -> 0,
-    InteractionOrder -> {{NP, 1}, {NPcH,1}},
+    InteractionOrder -> {{NP, 1}, {NPcH,1}, {QED,1}},
     TeX              -> Subscript[c,H]
   },
 
