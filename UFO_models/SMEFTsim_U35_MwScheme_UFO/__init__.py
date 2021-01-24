@@ -46,5 +46,5 @@ gauge = [0]
 
 
 __author__ = "I. Brivio"
-__date__ = "February 2020"
-__version__= "3.0"
+__date__ = "January 2021"
+__version__= "3.0.2"

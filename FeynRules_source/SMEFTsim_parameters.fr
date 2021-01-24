@@ -111,7 +111,7 @@ general,
     yu == {
       ParameterType    -> Internal,
       Indices          -> {Index[Generation], Index[Generation]},
-      Definitions      -> {yu[i_?Numeric, j_?NumericQ] :> 0  /; (i =!= j)},
+      Definitions      -> {yu[i_?NumericQ, j_?NumericQ] :> 0  /; (i =!= j)},
       Value            -> {yu[1,1] -> Sqrt[2] ymup/vevhat, yu[2,2] -> Sqrt[2] ymc/vevhat, yu[3,3] -> Sqrt[2] ymt/vevhat},
       InteractionOrder -> {QED, 1},
       ParameterName    -> {yu[1,1] -> yup, yu[2,2] -> yc, yu[3,3] -> yt},

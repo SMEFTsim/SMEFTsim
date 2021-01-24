@@ -1,6 +1,6 @@
 # This file was automatically created by FeynRules 2.3.35
 # Mathematica version: 12.1.0 for Linux x86 (64-bit) (March 18, 2020)
-# Date: Sun 2 Aug 2020 07:35:50
+# Date: Wed 13 Jan 2021 05:30:35
 
 
 
@@ -20618,7 +20618,7 @@ dMW = Parameter(name = 'dMW',
 dWT = Parameter(name = 'dWT',
                 nature = 'internal',
                 type = 'real',
-                value = 'WT*((dMW*(-(1/(MB + MT - MWsm)) - 4/MWsm + 1/(MB - MT + MWsm) + 1/(-MB + MT + MWsm) + 1/(MB + MT + MWsm) + (4*MWsm*(MB**2 + MT**2 - 4*MWsm**2))/((MB**2 - MT**2)**2 + (MB**2 + MT**2)*MWsm**2 - 2*MWsm**4)))/2. + 2*(dgw + (vevhat*(cHq3Re33*vevhat + (6*MWsm**2*(cuWRe33*MT*(MB**2 - MT**2 + MWsm**2) + cdWRe33*MB*(-MB**2 + MT**2 + MWsm**2) + cHudRe33*MT*MB*vevhat*ee/2/cmath.sqrt(2)/sth)*sth*cmath.sqrt(2))/(ee*((MB**2 - MT**2)**2 + (MB**2 + MT**2)*MWsm**2 - 2*MWsm**4))))/LambdaSMEFT**2))',
+                value = '(6*cHudRe33*MB*MT*MWsm**2*vevhat**2*WT)/(LambdaSMEFT**2*(MB**4 + MT**4 + MT**2*MWsm**2 - 2*MWsm**4 + MB**2*(-2*MT**2 + MWsm**2))) + WT*((dMW*(-(1/(MB + MT - MWsm)) - 4/MWsm + 1/(MB - MT + MWsm) + 1/(-MB + MT + MWsm) + 1/(MB + MT + MWsm) + (4*MWsm*(MB**2 + MT**2 - 4*MWsm**2))/((MB**2 - MT**2)**2 + (MB**2 + MT**2)*MWsm**2 - 2*MWsm**4)))/2. + 2*(dgw + (vevhat*(cHq3Re33*vevhat + (6*MWsm**2*(cuWRe33*MT*(MB**2 - MT**2 + MWsm**2) + cdWRe33*MB*(-MB**2 + MT**2 + MWsm**2))*sth*cmath.sqrt(2))/(ee*((MB**2 - MT**2)**2 + (MB**2 + MT**2)*MWsm**2 - 2*MWsm**4))))/LambdaSMEFT**2))',
                 texname = '\\text{dWT}')
 
 dWW = Parameter(name = 'dWW',

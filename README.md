@@ -48,12 +48,13 @@ It is recommended to download the [latest tagged version](https://github.com/SME
 
 
 `SMEFTsim` does not require any installation per se. 
-The source files can be loaded in `Mathematica`, directly after importing the `FeynRules` package. The flavor and inputs choice needs to be specified behorehand, eg.
+The source files can be loaded in `Mathematica`, directly after importing the `FeynRules` package. The flavor and inputs choice needs to be specified beforehand, eg.
 ```
 Flavor = U35;
 Scheme = MwScheme;
 LoadModel["SMEFTsim_main.fr"]
 ```
+Two Mathematica notebooks are provided in the `Mathematica_notebooks` folder: `SMEFTsim_usage_examples.nb` contains a number of examples to use `SMEFTsim` with `FeynRules`, in order to extract Feynman rules or generic analytic SMEFT results in unitary gauge. The notebook `SMEFTsim_SMHloop_FRs.nb` contains a pre-exported list of Feynman rules for the loop-generated SM Higgs couplings. It is recommended not to open this notebook, but to evaluate it as shown in `SMEFTsim_usage_examples.nb`.
 
 The UFO files can be imported in Monte Carlo event generators. They have been optimized for `MadGraph5_aMC@NLO`, where they can be loaded as usual with
 ```

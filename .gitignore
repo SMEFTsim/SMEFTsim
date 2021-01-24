@@ -131,3 +131,5 @@ dmypy.json
 # other files
 UFO_models/int_order_bug_fix*
 UFO_models/*/restrict_c*
+UFO_models/*.tar.gz
+
