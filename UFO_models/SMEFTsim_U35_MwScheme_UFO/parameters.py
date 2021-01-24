@@ -1,6 +1,6 @@
 # This file was automatically created by FeynRules 2.3.35
 # Mathematica version: 12.1.0 for Linux x86 (64-bit) (March 18, 2020)
-# Date: Tue 18 Aug 2020 11:19:59
+# Date: Wed 6 Jan 2021 14:20:52
 
 
 
@@ -1075,42 +1075,6 @@ clequ3 = Parameter(name = 'clequ3',
                    value = 'clequ3Re + clequ3Im*complex(0,1)',
                    texname = 'c_{\\text{lequ}}^3')
 
-yu1x2 = Parameter(name = 'yu1x2',
-                  nature = 'internal',
-                  type = 'real',
-                  value = '1',
-                  texname = '\\text{yu1x2}')
-
-yu1x3 = Parameter(name = 'yu1x3',
-                  nature = 'internal',
-                  type = 'real',
-                  value = '1',
-                  texname = '\\text{yu1x3}')
-
-yu2x1 = Parameter(name = 'yu2x1',
-                  nature = 'internal',
-                  type = 'real',
-                  value = '1',
-                  texname = '\\text{yu2x1}')
-
-yu2x3 = Parameter(name = 'yu2x3',
-                  nature = 'internal',
-                  type = 'real',
-                  value = '1',
-                  texname = '\\text{yu2x3}')
-
-yu3x1 = Parameter(name = 'yu3x1',
-                  nature = 'internal',
-                  type = 'real',
-                  value = '1',
-                  texname = '\\text{yu3x1}')
-
-yu3x2 = Parameter(name = 'yu3x2',
-                  nature = 'internal',
-                  type = 'real',
-                  value = '1',
-                  texname = '\\text{yu3x2}')
-
 MWsm = Parameter(name = 'MWsm',
                  nature = 'internal',
                  type = 'real',
@@ -1399,6 +1363,12 @@ gHza = Parameter(name = 'gHza',
                  value = '(ee**2*(((0.4583333333333333 + (29*MH**6)/(100800.*MWsm**6) + (19*MH**4)/(10080.*MWsm**4) + (11*MH**2)/(720.*MWsm**2) + (MH**4*MZ**2)/(2100.*MWsm**6) + (MH**2*MZ**2)/(280.*MWsm**4) + (7*MZ**2)/(180.*MWsm**2) + (67*MH**2*MZ**4)/(100800.*MWsm**6) + (53*MZ**4)/(10080.*MWsm**4) + (43*MZ**6)/(50400.*MWsm**6) - (31*cth**2)/(24.*sth**2) - (29*cth**2*MH**6)/(20160.*MWsm**6*sth**2) - (19*cth**2*MH**4)/(2016.*MWsm**4*sth**2) - (11*cth**2*MH**2)/(144.*MWsm**2*sth**2) - (cth**2*MH**4*MZ**2)/(560.*MWsm**6*sth**2) - (31*cth**2*MH**2*MZ**2)/(2520.*MWsm**4*sth**2) - (cth**2*MZ**2)/(9.*MWsm**2*sth**2) - (43*cth**2*MH**2*MZ**4)/(20160.*MWsm**6*sth**2) - (17*cth**2*MZ**4)/(1120.*MWsm**4*sth**2) - (5*cth**2*MZ**6)/(2016.*MWsm**6*sth**2))*sth)/cth + ((0.3333333333333333 + (7*MH**2)/(360.*MT**2) + (11*MZ**2)/(360.*MT**2))*(0.5 - (4*sth**2)/3.))/(cth*sth)))/(4.*cmath.pi**2)',
                  texname = 'g_{\\text{HZ$\\gamma $}}')
 
+dgw = Parameter(name = 'dgw',
+                nature = 'internal',
+                type = 'real',
+                value = '-dGf/2.',
+                texname = '\\text{dgw}')
+
 dMZ2 = Parameter(name = 'dMZ2',
                  nature = 'internal',
                  type = 'real',
@@ -1410,12 +1380,6 @@ dMH2 = Parameter(name = 'dMH2',
                  type = 'real',
                  value = '2*dkH - (3*cH*vevhat**2)/(2.*lam*LambdaSMEFT**2)',
                  texname = '\\text{dMH2}')
-
-dgw = Parameter(name = 'dgw',
-                nature = 'internal',
-                type = 'real',
-                value = '-dGf/2.',
-                texname = '\\text{dgw}')
 
 barlam = Parameter(name = 'barlam',
                    nature = 'internal',
@@ -1474,7 +1438,7 @@ dWHta = Parameter(name = 'dWHta',
 dWH = Parameter(name = 'dWH',
                 nature = 'internal',
                 type = 'real',
-                value = 'WH*(-0.24161*dGf + 0.96644*dgw + 0.48322*dkH - 0.11186509426655453*dWW + (0.17608307708657747*cHl3*vevhat**2)/LambdaSMEFT**2 + (0.3641037844923818*cHq3*vevhat**2)/LambdaSMEFT**2 + (0.1636*cHG*MT**2*vevhat**2)/(LambdaSMEFT**2*(-0.5*gHgg2*MH**2 + gHgg1*MT**2)) + (cHW*(-0.3593778511706694*gHaa*gHza + 0.006164*cth*gHaa*sth + 0.00454*gHza*sth**2)*vevhat**2)/(gHaa*gHza*LambdaSMEFT**2) + (cHWB*(-0.00454*cth*gHza*sth + gHaa*(-0.0030819999999999997 + 0.006163999999999999*sth**2))*vevhat**2)/(gHaa*gHza*LambdaSMEFT**2) + (cHB*(-0.006163999999999999*cth*gHaa*sth - 0.00454*gHza*(-1. + sth**2))*vevhat**2)/(gHaa*gHza*LambdaSMEFT**2) + dWHc + dWHb + dWHta)',
+                value = 'WH*(-0.24161*dGf + 0.96644*dgw + 0.48322*dkH - 0.11186509426655465*dWW + (0.17608307708657758*cHl3*vevhat**2)/LambdaSMEFT**2 + (0.3641037844923821*cHq3*vevhat**2)/LambdaSMEFT**2 + (0.1636*cHG*MT**2*vevhat**2)/(LambdaSMEFT**2*(-0.5*gHgg2*MH**2 + gHgg1*MT**2)) + (cHW*(-0.3593778511706701*gHaa*gHza + 0.006164*cth*gHaa*sth + 0.00454*gHza*sth**2)*vevhat**2)/(gHaa*gHza*LambdaSMEFT**2) + (cHWB*(-0.00454*cth*gHza*sth + gHaa*(-0.0030819999999999997 + 0.006163999999999999*sth**2))*vevhat**2)/(gHaa*gHza*LambdaSMEFT**2) + (cHB*(-0.006163999999999999*cth*gHaa*sth - 0.00454*gHza*(-1. + sth**2))*vevhat**2)/(gHaa*gHza*LambdaSMEFT**2) + dWHc + dWHb + dWHta)',
                 texname = '\\text{dWH}')
 
 dWZ = Parameter(name = 'dWZ',

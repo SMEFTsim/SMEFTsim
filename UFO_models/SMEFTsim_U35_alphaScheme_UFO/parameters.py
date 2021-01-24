@@ -1,6 +1,6 @@
 # This file was automatically created by FeynRules 2.3.35
 # Mathematica version: 12.1.0 for Linux x86 (64-bit) (March 18, 2020)
-# Date: Tue 18 Aug 2020 11:57:58
+# Date: Wed 6 Jan 2021 16:20:38
 
 
 
@@ -1074,42 +1074,6 @@ clequ3 = Parameter(name = 'clequ3',
                    type = 'complex',
                    value = 'clequ3Re + clequ3Im*complex(0,1)',
                    texname = 'c_{\\text{lequ}}^3')
-
-yu1x2 = Parameter(name = 'yu1x2',
-                  nature = 'internal',
-                  type = 'real',
-                  value = '1',
-                  texname = '\\text{yu1x2}')
-
-yu1x3 = Parameter(name = 'yu1x3',
-                  nature = 'internal',
-                  type = 'real',
-                  value = '1',
-                  texname = '\\text{yu1x3}')
-
-yu2x1 = Parameter(name = 'yu2x1',
-                  nature = 'internal',
-                  type = 'real',
-                  value = '1',
-                  texname = '\\text{yu2x1}')
-
-yu2x3 = Parameter(name = 'yu2x3',
-                  nature = 'internal',
-                  type = 'real',
-                  value = '1',
-                  texname = '\\text{yu2x3}')
-
-yu3x1 = Parameter(name = 'yu3x1',
-                  nature = 'internal',
-                  type = 'real',
-                  value = '1',
-                  texname = '\\text{yu3x1}')
-
-yu3x2 = Parameter(name = 'yu3x2',
-                  nature = 'internal',
-                  type = 'real',
-                  value = '1',
-                  texname = '\\text{yu3x2}')
 
 vevhat = Parameter(name = 'vevhat',
                    nature = 'internal',
