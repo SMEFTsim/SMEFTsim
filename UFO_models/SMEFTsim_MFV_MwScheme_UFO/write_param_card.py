@@ -1,10 +1,9 @@
-
 __date__ = "02 Aug 2012"
 __author__ = 'olivier.mattelaer@uclouvain.be'
 
-from function_library import *
+from .function_library import *
 
-class ParamCardWriter(object):
+class ParamCardWriter:
     
     header = \
     """######################################################################\n""" + \
@@ -15,7 +14,7 @@ class ParamCardWriter(object):
         """write a valid param_card.dat"""
         
         if not list_of_parameters:
-            from parameters import all_parameters
+            from .parameters import all_parameters
             list_of_parameters = [param for param in all_parameters if \
                                                        param.nature=='external']
         
@@ -33,7 +32,7 @@ class ParamCardWriter(object):
     def define_not_dep_param(self, list_of_parameters):
         """define self.dep_mass and self.dep_width in case that they are 
         requested in the param_card.dat"""
-        from particles import all_particles
+        from .particles import all_particles
         
         self.dep_mass = [(part, part.mass) for part in all_particles \
                             if part.pdg_code > 0 and \
@@ -67,7 +66,7 @@ class ParamCardWriter(object):
         """ """
         
         # list all lhablock
-        all_lhablock = set([param.lhablock for param in all_ext_param])
+        all_lhablock = {param.lhablock for param in all_ext_param}
         
         # ordonate lhablock alphabeticaly
         all_lhablock = list(all_lhablock)
@@ -108,9 +107,9 @@ class ParamCardWriter(object):
         
         lhacode=' '.join(['%3s' % key for key in param.lhacode])
         if lhablock != 'DECAY':
-            text = """  %s %e # %s \n""" % (lhacode, complex(param.value).real, param.name ) 
+            text = f"""  {lhacode} {complex(param.value).real:e} # {param.name} \n""" 
         else:
-            text = '''DECAY %s %e \n''' % (lhacode, complex(param.value).real)
+            text = f'''DECAY {lhacode} {complex(param.value).real:e} \n'''
         self.fsock.write(text) 
                     
 
@@ -118,10 +117,10 @@ class ParamCardWriter(object):
     
     def write_dep_param_block(self, lhablock):
         import cmath
-        from parameters import all_parameters
-        from particles import all_particles
+        from .parameters import all_parameters
+        from .particles import all_particles
         for parameter in all_parameters:
-            exec("%s = %s" % (parameter.name, parameter.value))
+            exec(f"{parameter.name} = {parameter.value}")
         text = "##  Not dependent paramater.\n"
         text += "## Those values should be edited following analytical the \n"
         text += "## analytical expression. Some generator could simply ignore \n"
@@ -177,9 +176,9 @@ class ParamCardWriter(object):
     
     def write_qnumber(self):
         """ write qnumber """
-        from particles import all_particles
-        import particles
-        print particles.__file__
+        from .particles import all_particles
+        from . import particles
+        print(particles.__file__)
         text="""#===========================================================\n"""
         text += """# QUANTUM NUMBERS OF NEW STATE(S) (NON SM PDG CODE)\n"""
         text += """#===========================================================\n\n"""
@@ -204,5 +203,5 @@ class ParamCardWriter(object):
             
 if '__main__' == __name__:
     ParamCardWriter('./param_card.dat', generic=True)
-    print 'write ./param_card.dat'
+    print('write ./param_card.dat')
     
