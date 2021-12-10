@@ -3,9 +3,9 @@
 # Date: Tue 18 Aug 2020 15:46:10
 
 
-from object_library import all_couplings, Coupling
+from .object_library import all_couplings, Coupling
 
-from function_library import complexconjugate, re, im, csc, sec, acsc, asec, cot
+from .function_library import complexconjugate, re, im, csc, sec, acsc, asec, cot
 
 
 

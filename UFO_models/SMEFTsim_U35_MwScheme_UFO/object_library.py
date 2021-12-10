@@ -14,7 +14,7 @@ class UFOError(Exception):
         """Exception raised if when inconsistencies are detected in the UFO model."""
         pass
 
-class UFOBaseClass(object):
+class UFOBaseClass:
     """The class from which all FeynRules classes are derived."""
 
     require_args = []
@@ -133,7 +133,7 @@ class Particle(UFOBaseClass):
         if self.selfconjugate:
             raise Exception('%s has no anti particle.' % self.name) 
         outdic = {}
-        for k,v in self.__dict__.iteritems():
+        for k,v in self.__dict__.items():
             if k not in self.require_args_all:                
                 outdic[k] = -v
         if self.color in [1,8]:
@@ -265,9 +265,9 @@ class Coupling(UFOBaseClass):
                if not CTparam:
                    CTparam=param
                else:
-                   raise UFOError, "UFO does not support yet more than one occurence of CTParameters in the couplings values."
+                   raise UFOError("UFO does not support yet more than one occurence of CTParameters in the couplings values.")
            elif numberOfMatches>1:
-               raise UFOError, "UFO does not support yet more than one occurence of CTParameters in the couplings values."
+               raise UFOError("UFO does not support yet more than one occurence of CTParameters in the couplings values.")
 
         if not CTparam:
             if x==0:
@@ -299,7 +299,7 @@ class Lorentz(UFOBaseClass):
 
 all_functions = []
 
-class Function(object):
+class Function:
 
     def __init__(self, name, arguments, expression):
 
@@ -313,13 +313,13 @@ class Function(object):
     def __call__(self, *opt):
 
         for i, arg in enumerate(self.arguments):
-            exec('%s = %s' % (arg, opt[i] ))
+            exec(f'{arg} = {opt[i]}')
 
         return eval(self.expr)
 
 all_orders = []
 
-class CouplingOrder(object):
+class CouplingOrder:
 
     def __init__(self, name, expansion_order, hierarchy, perturbative_expansion = 0):
         
