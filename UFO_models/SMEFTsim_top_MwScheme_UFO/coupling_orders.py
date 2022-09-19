@@ -178,6 +178,18 @@ NPcHe = CouplingOrder(name = 'NPcHe',
                       expansion_order = 99,
                       hierarchy = 1)
 
+NPcHe11 = CouplingOrder(name = 'NPcHe11',
+                        expansion_order = 99,
+                        hierarchy = 1)
+
+NPcHe22 = CouplingOrder(name = 'NPcHe22',
+                        expansion_order = 99,
+                        hierarchy = 1)
+
+NPcHe33 = CouplingOrder(name = 'NPcHe33',
+                        expansion_order = 99,
+                        hierarchy = 1)
+
 NPcHG = CouplingOrder(name = 'NPcHG',
                       expansion_order = 99,
                       hierarchy = 1)
@@ -198,9 +210,33 @@ NPcHl1 = CouplingOrder(name = 'NPcHl1',
                        expansion_order = 99,
                        hierarchy = 1)
 
+NPcHl111 = CouplingOrder(name = 'NPcHl111',
+                         expansion_order = 99,
+                         hierarchy = 1)
+
+NPcHl122 = CouplingOrder(name = 'NPcHl122',
+                         expansion_order = 99,
+                         hierarchy = 1)
+
+NPcHl133 = CouplingOrder(name = 'NPcHl133',
+                         expansion_order = 99,
+                         hierarchy = 1)
+
 NPcHl3 = CouplingOrder(name = 'NPcHl3',
                        expansion_order = 99,
                        hierarchy = 1)
+
+NPcHl311 = CouplingOrder(name = 'NPcHl311',
+                         expansion_order = 99,
+                         hierarchy = 1)
+
+NPcHl322 = CouplingOrder(name = 'NPcHl322',
+                         expansion_order = 99,
+                         hierarchy = 1)
+
+NPcHl333 = CouplingOrder(name = 'NPcHl333',
+                         expansion_order = 99,
+                         hierarchy = 1)
 
 NPcHQ1 = CouplingOrder(name = 'NPcHQ1',
                        expansion_order = 99,
@@ -377,6 +413,42 @@ NPcll = CouplingOrder(name = 'NPcll',
 NPcll1 = CouplingOrder(name = 'NPcll1',
                        expansion_order = 99,
                        hierarchy = 1)
+
+NPcll1111 = CouplingOrder(name = 'NPcll1111',
+                          expansion_order = 99,
+                          hierarchy = 1)
+
+NPcll2222 = CouplingOrder(name = 'NPcll2222',
+                          expansion_order = 99,
+                          hierarchy = 1)
+
+NPcll3333 = CouplingOrder(name = 'NPcll3333',
+                          expansion_order = 99,
+                          hierarchy = 1)
+
+NPcll1122 = CouplingOrder(name = 'NPcll1122',
+                          expansion_order = 99,
+                          hierarchy = 1)
+
+NPcll1133 = CouplingOrder(name = 'NPcll1133',
+                          expansion_order = 99,
+                          hierarchy = 1)
+
+NPcll2233 = CouplingOrder(name = 'NPcll2233',
+                          expansion_order = 99,
+                          hierarchy = 1)
+
+NPcll1221 = CouplingOrder(name = 'NPcll1221',
+                          expansion_order = 99,
+                          hierarchy = 1)
+
+NPcll1331 = CouplingOrder(name = 'NPcll1331',
+                          expansion_order = 99,
+                          hierarchy = 1)
+
+NPcll2332 = CouplingOrder(name = 'NPcll2332',
+                          expansion_order = 99,
+                          hierarchy = 1)
 
 NPclu = CouplingOrder(name = 'NPclu',
                       expansion_order = 99,
