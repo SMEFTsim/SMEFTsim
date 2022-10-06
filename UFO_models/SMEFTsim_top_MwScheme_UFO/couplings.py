@@ -1431,15 +1431,15 @@ GC_355 = Coupling(name = 'GC_355',
 
 GC_356 = Coupling(name = 'GC_356',
                   value = '-((cHl311*ee*complex(0,1)*cmath.sqrt(2))/(LambdaSMEFT**2*sth))',
-                  order = {'NP':1,'NPcHl3':1,'QED':3})
+                  order = {'NP':1,'NPcHl3':1,'QED':3,'NPcHl311':1})
 
 GC_357 = Coupling(name = 'GC_357',
                   value = '-((cHl322*ee*complex(0,1)*cmath.sqrt(2))/(LambdaSMEFT**2*sth))',
-                  order = {'NP':1,'NPcHl3':1,'QED':3})
+                  order = {'NP':1,'NPcHl3':1,'QED':3,'NPcHl322':1})
 
 GC_358 = Coupling(name = 'GC_358',
                   value = '-((cHl333*ee*complex(0,1)*cmath.sqrt(2))/(LambdaSMEFT**2*sth))',
-                  order = {'NP':1,'NPcHl3':1,'QED':3})
+                  order = {'NP':1,'NPcHl3':1,'QED':3,'NPcHl333':1})
 
 GC_359 = Coupling(name = 'GC_359',
                   value = '-((cHQ3*ee*complex(0,1)*cmath.sqrt(2))/(LambdaSMEFT**2*sth))',
@@ -1503,27 +1503,27 @@ GC_373 = Coupling(name = 'GC_373',
 
 GC_374 = Coupling(name = 'GC_374',
                   value = '-((cHl311*ee*complex(0,1))/(cth*LambdaSMEFT**2*sth))',
-                  order = {'NP':1,'NPcHl3':1,'QED':3})
+                  order = {'NP':1,'NPcHl3':1,'QED':3,'NPcHl311':1})
 
 GC_375 = Coupling(name = 'GC_375',
                   value = '(cHl311*ee*complex(0,1))/(cth*LambdaSMEFT**2*sth)',
-                  order = {'NP':1,'NPcHl3':1,'QED':3})
+                  order = {'NP':1,'NPcHl3':1,'QED':3,'NPcHl311':1})
 
 GC_376 = Coupling(name = 'GC_376',
                   value = '-((cHl322*ee*complex(0,1))/(cth*LambdaSMEFT**2*sth))',
-                  order = {'NP':1,'NPcHl3':1,'QED':3})
+                  order = {'NP':1,'NPcHl3':1,'QED':3,'NPcHl322':1})
 
 GC_377 = Coupling(name = 'GC_377',
                   value = '(cHl322*ee*complex(0,1))/(cth*LambdaSMEFT**2*sth)',
-                  order = {'NP':1,'NPcHl3':1,'QED':3})
+                  order = {'NP':1,'NPcHl3':1,'QED':3,'NPcHl322':1})
 
 GC_378 = Coupling(name = 'GC_378',
                   value = '-((cHl333*ee*complex(0,1))/(cth*LambdaSMEFT**2*sth))',
-                  order = {'NP':1,'NPcHl3':1,'QED':3})
+                  order = {'NP':1,'NPcHl3':1,'QED':3,'NPcHl333':1})
 
 GC_379 = Coupling(name = 'GC_379',
                   value = '(cHl333*ee*complex(0,1))/(cth*LambdaSMEFT**2*sth)',
-                  order = {'NP':1,'NPcHl3':1,'QED':3})
+                  order = {'NP':1,'NPcHl3':1,'QED':3,'NPcHl333':1})
 
 GC_380 = Coupling(name = 'GC_380',
                   value = '(cHQ1*ee*complex(0,1))/(cth*LambdaSMEFT**2*sth)',
@@ -2503,15 +2503,15 @@ GC_623 = Coupling(name = 'GC_623',
 
 GC_624 = Coupling(name = 'GC_624',
                   value = '-((cHl311*ee*complex(0,1)*vevhat*cmath.sqrt(2))/(LambdaSMEFT**2*sth))',
-                  order = {'NP':1,'NPcHl3':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'QED':2,'NPcHl311':1})
 
 GC_625 = Coupling(name = 'GC_625',
                   value = '-((cHl322*ee*complex(0,1)*vevhat*cmath.sqrt(2))/(LambdaSMEFT**2*sth))',
-                  order = {'NP':1,'NPcHl3':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'QED':2,'NPcHl322':1})
 
 GC_626 = Coupling(name = 'GC_626',
                   value = '-((cHl333*ee*complex(0,1)*vevhat*cmath.sqrt(2))/(LambdaSMEFT**2*sth))',
-                  order = {'NP':1,'NPcHl3':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'QED':2,'NPcHl333':1})
 
 GC_627 = Coupling(name = 'GC_627',
                   value = '-((cHQ3*ee*complex(0,1)*vevhat*cmath.sqrt(2))/(LambdaSMEFT**2*sth))',
@@ -2575,27 +2575,27 @@ GC_641 = Coupling(name = 'GC_641',
 
 GC_642 = Coupling(name = 'GC_642',
                   value = '-((cHl311*ee*complex(0,1)*vevhat)/(cth*LambdaSMEFT**2*sth))',
-                  order = {'NP':1,'NPcHl3':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'QED':2,'NPcHl311':1})
 
 GC_643 = Coupling(name = 'GC_643',
                   value = '(cHl311*ee*complex(0,1)*vevhat)/(cth*LambdaSMEFT**2*sth)',
-                  order = {'NP':1,'NPcHl3':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'QED':2,'NPcHl311':1})
 
 GC_644 = Coupling(name = 'GC_644',
                   value = '-((cHl322*ee*complex(0,1)*vevhat)/(cth*LambdaSMEFT**2*sth))',
-                  order = {'NP':1,'NPcHl3':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'QED':2,'NPcHl322':1})
 
 GC_645 = Coupling(name = 'GC_645',
                   value = '(cHl322*ee*complex(0,1)*vevhat)/(cth*LambdaSMEFT**2*sth)',
-                  order = {'NP':1,'NPcHl3':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'QED':2,'NPcHl322':1})
 
 GC_646 = Coupling(name = 'GC_646',
                   value = '-((cHl333*ee*complex(0,1)*vevhat)/(cth*LambdaSMEFT**2*sth))',
-                  order = {'NP':1,'NPcHl3':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'QED':2,'NPcHl333':1})
 
 GC_647 = Coupling(name = 'GC_647',
                   value = '(cHl333*ee*complex(0,1)*vevhat)/(cth*LambdaSMEFT**2*sth)',
-                  order = {'NP':1,'NPcHl3':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'QED':2,'NPcHl333':1})
 
 GC_648 = Coupling(name = 'GC_648',
                   value = '(cHQ1*ee*complex(0,1)*vevhat)/(cth*LambdaSMEFT**2*sth)',
@@ -3219,35 +3219,35 @@ GC_802 = Coupling(name = 'GC_802',
 
 GC_803 = Coupling(name = 'GC_803',
                   value = '-(cHl311*ee*complex(0,1)*vevhat**2)/(6.*LambdaSMEFT**2) - (cHl322*ee*complex(0,1)*vevhat**2)/(6.*LambdaSMEFT**2)',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_804 = Coupling(name = 'GC_804',
                   value = '(cHl311*ee*complex(0,1)*vevhat**2)/(3.*LambdaSMEFT**2) + (cHl322*ee*complex(0,1)*vevhat**2)/(3.*LambdaSMEFT**2)',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_805 = Coupling(name = 'GC_805',
                   value = '-(cHl311*ee*complex(0,1)*vevhat**2)/(2.*LambdaSMEFT**2) - (cHl322*ee*complex(0,1)*vevhat**2)/(2.*LambdaSMEFT**2)',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_806 = Coupling(name = 'GC_806',
                   value = '(cHl311*ee*complex(0,1)*vevhat**2)/(2.*LambdaSMEFT**2) + (cHl322*ee*complex(0,1)*vevhat**2)/(2.*LambdaSMEFT**2)',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_807 = Coupling(name = 'GC_807',
                   value = '-((cHl311*ee**2*complex(0,1)*vevhat**2)/LambdaSMEFT**2) - (cHl322*ee**2*complex(0,1)*vevhat**2)/LambdaSMEFT**2',
-                  order = {'NP':1,'NPcHl3':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'QED':2,'NPcHl311':1,'NPcHl322':1})
 
 GC_808 = Coupling(name = 'GC_808',
                   value = '(6*cHl311*complex(0,1)*lam*vevhat**2)/LambdaSMEFT**2 + (6*cHl322*complex(0,1)*lam*vevhat**2)/LambdaSMEFT**2',
-                  order = {'NP':1,'NPcHl3':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'QED':2,'NPcHl311':1,'NPcHl322':1})
 
 GC_809 = Coupling(name = 'GC_809',
                   value = '-(cHl311*ee**2*complex(0,1)*vevhat**2)/(2.*LambdaSMEFT**2*sth**2) - (cHl322*ee**2*complex(0,1)*vevhat**2)/(2.*LambdaSMEFT**2*sth**2)',
-                  order = {'NP':1,'NPcHl3':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'QED':2,'NPcHl311':1,'NPcHl322':1})
 
 GC_810 = Coupling(name = 'GC_810',
                   value = '(cHl311*ee**2*complex(0,1)*vevhat**2)/(LambdaSMEFT**2*sth**2) + (cHl322*ee**2*complex(0,1)*vevhat**2)/(LambdaSMEFT**2*sth**2)',
-                  order = {'NP':1,'NPcHl3':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'QED':2,'NPcHl311':1,'NPcHl322':1})
 
 GC_811 = Coupling(name = 'GC_811',
                   value = '(-4*cHWB*ee**2*complex(0,1)*vevhat**2)/LambdaSMEFT**2 + (2*cHWB*ee**2*complex(0,1)*vevhat**2)/(LambdaSMEFT**2*sth**2)',
@@ -3255,55 +3255,55 @@ GC_811 = Coupling(name = 'GC_811',
 
 GC_812 = Coupling(name = 'GC_812',
                   value = '-(cHl311*ee**2*complex(0,1)*vevhat**2)/(2.*cth**2*LambdaSMEFT**2*sth**2) - (cHl322*ee**2*complex(0,1)*vevhat**2)/(2.*cth**2*LambdaSMEFT**2*sth**2)',
-                  order = {'NP':1,'NPcHl3':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'QED':2,'NPcHl311':1,'NPcHl322':1})
 
 GC_813 = Coupling(name = 'GC_813',
                   value = '-((cHl311*cth**2*ee**2*complex(0,1)*vevhat**2)/(LambdaSMEFT**2*sth**2)) - (cHl322*cth**2*ee**2*complex(0,1)*vevhat**2)/(LambdaSMEFT**2*sth**2)',
-                  order = {'NP':1,'NPcHl3':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'QED':2,'NPcHl311':1,'NPcHl322':1})
 
 GC_814 = Coupling(name = 'GC_814',
                   value = '(cHl311*ee*complex(0,1)*vevhat**2)/(2.*LambdaSMEFT**2*sth*cmath.sqrt(2)) - (cHl322*ee*complex(0,1)*vevhat**2)/(2.*LambdaSMEFT**2*sth*cmath.sqrt(2))',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_815 = Coupling(name = 'GC_815',
                   value = '-(cHl311*ee*complex(0,1)*vevhat**2)/(2.*LambdaSMEFT**2*sth*cmath.sqrt(2)) + (cHl322*ee*complex(0,1)*vevhat**2)/(2.*LambdaSMEFT**2*sth*cmath.sqrt(2))',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_816 = Coupling(name = 'GC_816',
                   value = '(cHl311*ee*complex(0,1)*vevhat**2)/(2.*LambdaSMEFT**2*sth*cmath.sqrt(2)) + (cHl322*ee*complex(0,1)*vevhat**2)/(2.*LambdaSMEFT**2*sth*cmath.sqrt(2))',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_817 = Coupling(name = 'GC_817',
                   value = '(cHl311*ee*complex(0,1)*vevhat**2)/(2.*LambdaSMEFT**2*sth*cmath.sqrt(2)) + (cHl322*ee*complex(0,1)*vevhat**2)/(2.*LambdaSMEFT**2*sth*cmath.sqrt(2)) - (cHl333*ee*complex(0,1)*vevhat**2)/(LambdaSMEFT**2*sth*cmath.sqrt(2))',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1,'NPcHl333':1})
 
 GC_818 = Coupling(name = 'GC_818',
                   value = '-(cHl311*ee*complex(0,1)*vevhat**2)/(4.*cth*LambdaSMEFT**2*sth) - (cHl322*ee*complex(0,1)*vevhat**2)/(4.*cth*LambdaSMEFT**2*sth)',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_819 = Coupling(name = 'GC_819',
                   value = '(cHl311*ee*complex(0,1)*vevhat**2)/(4.*cth*LambdaSMEFT**2*sth) - (cHl322*ee*complex(0,1)*vevhat**2)/(4.*cth*LambdaSMEFT**2*sth)',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_820 = Coupling(name = 'GC_820',
                   value = '-(cHl311*ee*complex(0,1)*vevhat**2)/(4.*cth*LambdaSMEFT**2*sth) + (cHl322*ee*complex(0,1)*vevhat**2)/(4.*cth*LambdaSMEFT**2*sth)',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_821 = Coupling(name = 'GC_821',
                   value = '(cHl311*ee*complex(0,1)*vevhat**2)/(4.*cth*LambdaSMEFT**2*sth) + (cHl322*ee*complex(0,1)*vevhat**2)/(4.*cth*LambdaSMEFT**2*sth)',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_822 = Coupling(name = 'GC_822',
                   value = '(cHl311*ee*complex(0,1)*vevhat**2)/(4.*cth*LambdaSMEFT**2*sth) + (cHl322*ee*complex(0,1)*vevhat**2)/(4.*cth*LambdaSMEFT**2*sth) - (cHl333*ee*complex(0,1)*vevhat**2)/(2.*cth*LambdaSMEFT**2*sth)',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1,'NPcHl333':1})
 
 GC_823 = Coupling(name = 'GC_823',
                   value = '-(cHl311*ee*complex(0,1)*vevhat**2)/(4.*cth*LambdaSMEFT**2*sth) - (cHl322*ee*complex(0,1)*vevhat**2)/(4.*cth*LambdaSMEFT**2*sth) + (cHl333*ee*complex(0,1)*vevhat**2)/(2.*cth*LambdaSMEFT**2*sth)',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1,'NPcHl333':1})
 
 GC_824 = Coupling(name = 'GC_824',
                   value = '(cHl311*cth*ee*complex(0,1)*vevhat**2)/(2.*LambdaSMEFT**2*sth) + (cHl322*cth*ee*complex(0,1)*vevhat**2)/(2.*LambdaSMEFT**2*sth)',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_825 = Coupling(name = 'GC_825',
                   value = '(cHDD*cth*ee**2*complex(0,1)*vevhat**2)/(2.*LambdaSMEFT**2*sth**3) - (cHDD*cth*ee**2*complex(0,1)*vevhat**2)/(LambdaSMEFT**2*sth)',
@@ -3311,31 +3311,31 @@ GC_825 = Coupling(name = 'GC_825',
 
 GC_826 = Coupling(name = 'GC_826',
                   value = '(2*cHl311*cth*ee**2*complex(0,1)*vevhat**2)/(LambdaSMEFT**2*sth) + (2*cHl322*cth*ee**2*complex(0,1)*vevhat**2)/(LambdaSMEFT**2*sth)',
-                  order = {'NP':1,'NPcHl3':1,'QED':2})
+                  order = {'NP':1,'NPcHl3':1,'QED':2,'NPcHl311':1,'NPcHl322':1})
 
 GC_827 = Coupling(name = 'GC_827',
                   value = '(cHl311*ee*complex(0,1)*sth*vevhat**2)/(6.*cth*LambdaSMEFT**2) + (cHl322*ee*complex(0,1)*sth*vevhat**2)/(6.*cth*LambdaSMEFT**2)',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_828 = Coupling(name = 'GC_828',
                   value = '-(cHl311*ee*complex(0,1)*sth*vevhat**2)/(3.*cth*LambdaSMEFT**2) - (cHl322*ee*complex(0,1)*sth*vevhat**2)/(3.*cth*LambdaSMEFT**2)',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_829 = Coupling(name = 'GC_829',
                   value = '(cHl311*ee*complex(0,1)*sth*vevhat**2)/(2.*cth*LambdaSMEFT**2) + (cHl322*ee*complex(0,1)*sth*vevhat**2)/(2.*cth*LambdaSMEFT**2)',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_830 = Coupling(name = 'GC_830',
                   value = '(3*cHl311*complex(0,1)*lam*vevhat**3)/LambdaSMEFT**2 + (3*cHl322*complex(0,1)*lam*vevhat**3)/LambdaSMEFT**2',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_831 = Coupling(name = 'GC_831',
                   value = '-(cHl311*ee**2*complex(0,1)*vevhat**3)/(4.*LambdaSMEFT**2*sth**2) - (cHl322*ee**2*complex(0,1)*vevhat**3)/(4.*LambdaSMEFT**2*sth**2)',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_832 = Coupling(name = 'GC_832',
                   value = '-(cHl311*ee**2*complex(0,1)*vevhat**3)/(4.*cth**2*LambdaSMEFT**2*sth**2) - (cHl322*ee**2*complex(0,1)*vevhat**3)/(4.*cth**2*LambdaSMEFT**2*sth**2)',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_833 = Coupling(name = 'GC_833',
                   value = '-((complex(0,1)*yb)/cmath.sqrt(2))',
@@ -3359,7 +3359,7 @@ GC_837 = Coupling(name = 'GC_837',
 
 GC_838 = Coupling(name = 'GC_838',
                   value = '(cHl311*complex(0,1)*vevhat**2*yb)/(2.*LambdaSMEFT**2*cmath.sqrt(2)) + (cHl322*complex(0,1)*vevhat**2*yb)/(2.*LambdaSMEFT**2*cmath.sqrt(2))',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_839 = Coupling(name = 'GC_839',
                   value = '-((complex(0,1)*yc)/cmath.sqrt(2))',
@@ -3823,7 +3823,7 @@ GC_953 = Coupling(name = 'GC_953',
 
 GC_954 = Coupling(name = 'GC_954',
                   value = '(cHl311*complex(0,1)*vevhat**2*yc)/(2.*LambdaSMEFT**2*cmath.sqrt(2)) + (cHl322*complex(0,1)*vevhat**2*yc)/(2.*LambdaSMEFT**2*cmath.sqrt(2))',
-                  order = {'NP':1,'NPcHl3':1,'QED':1})
+                  order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_955 = Coupling(name = 'GC_955',
                   value = '-((complex(0,1)*ydo)/cmath.sqrt(2))',
@@ -4243,7 +4243,7 @@ GC_1058 = Coupling(name = 'GC_1058',
 
 GC_1059 = Coupling(name = 'GC_1059',
                    value = '(cHl311*complex(0,1)*vevhat**2*ydo)/(2.*LambdaSMEFT**2*cmath.sqrt(2)) + (cHl322*complex(0,1)*vevhat**2*ydo)/(2.*LambdaSMEFT**2*cmath.sqrt(2))',
-                   order = {'NP':1,'NPcHl3':1,'QED':1})
+                   order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_1060 = Coupling(name = 'GC_1060',
                    value = '-((complex(0,1)*ye)/cmath.sqrt(2))',
@@ -4267,7 +4267,7 @@ GC_1064 = Coupling(name = 'GC_1064',
 
 GC_1065 = Coupling(name = 'GC_1065',
                    value = '(cHl311*complex(0,1)*vevhat**2*ye)/(2.*LambdaSMEFT**2*cmath.sqrt(2)) + (cHl322*complex(0,1)*vevhat**2*ye)/(2.*LambdaSMEFT**2*cmath.sqrt(2))',
-                   order = {'NP':1,'NPcHl3':1,'QED':1})
+                   order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_1066 = Coupling(name = 'GC_1066',
                    value = '-((complex(0,1)*ym)/cmath.sqrt(2))',
@@ -4291,7 +4291,7 @@ GC_1070 = Coupling(name = 'GC_1070',
 
 GC_1071 = Coupling(name = 'GC_1071',
                    value = '(cHl311*complex(0,1)*vevhat**2*ym)/(2.*LambdaSMEFT**2*cmath.sqrt(2)) + (cHl322*complex(0,1)*vevhat**2*ym)/(2.*LambdaSMEFT**2*cmath.sqrt(2))',
-                   order = {'NP':1,'NPcHl3':1,'QED':1})
+                   order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_1072 = Coupling(name = 'GC_1072',
                    value = '-((complex(0,1)*ys)/cmath.sqrt(2))',
@@ -4771,7 +4771,7 @@ GC_1190 = Coupling(name = 'GC_1190',
 
 GC_1191 = Coupling(name = 'GC_1191',
                    value = '(cHl311*complex(0,1)*vevhat**2*ys)/(2.*LambdaSMEFT**2*cmath.sqrt(2)) + (cHl322*complex(0,1)*vevhat**2*ys)/(2.*LambdaSMEFT**2*cmath.sqrt(2))',
-                   order = {'NP':1,'NPcHl3':1,'QED':1})
+                   order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_1192 = Coupling(name = 'GC_1192',
                    value = '-((complex(0,1)*yt)/cmath.sqrt(2))',
@@ -4803,7 +4803,7 @@ GC_1198 = Coupling(name = 'GC_1198',
 
 GC_1199 = Coupling(name = 'GC_1199',
                    value = '(cHl311*complex(0,1)*vevhat**2*yt)/(2.*LambdaSMEFT**2*cmath.sqrt(2)) + (cHl322*complex(0,1)*vevhat**2*yt)/(2.*LambdaSMEFT**2*cmath.sqrt(2))',
-                   order = {'NP':1,'NPcHl3':1,'QED':1})
+                   order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_1200 = Coupling(name = 'GC_1200',
                    value = '-((complex(0,1)*ytau)/cmath.sqrt(2))',
@@ -4827,7 +4827,7 @@ GC_1204 = Coupling(name = 'GC_1204',
 
 GC_1205 = Coupling(name = 'GC_1205',
                    value = '(cHl311*complex(0,1)*vevhat**2*ytau)/(2.*LambdaSMEFT**2*cmath.sqrt(2)) + (cHl322*complex(0,1)*vevhat**2*ytau)/(2.*LambdaSMEFT**2*cmath.sqrt(2))',
-                   order = {'NP':1,'NPcHl3':1,'QED':1})
+                   order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
 
 GC_1206 = Coupling(name = 'GC_1206',
                    value = '-((complex(0,1)*yup)/cmath.sqrt(2))',
@@ -5479,5 +5479,6 @@ GC_1367 = Coupling(name = 'GC_1367',
 
 GC_1368 = Coupling(name = 'GC_1368',
                    value = '(cHl311*complex(0,1)*vevhat**2*yup)/(2.*LambdaSMEFT**2*cmath.sqrt(2)) + (cHl322*complex(0,1)*vevhat**2*yup)/(2.*LambdaSMEFT**2*cmath.sqrt(2))',
-                   order = {'NP':1,'NPcHl3':1,'QED':1})
+                   order = {'NP':1,'NPcHl3':1,'QED':1,'NPcHl311':1,'NPcHl322':1})
+
 
